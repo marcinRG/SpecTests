@@ -1,0 +1,11 @@
+@import './scss/variables';
+@import './scss/utils/fonts';
+@import './scss/utils/material-shadows';
+@import './scss/mixins';
+
+@include custom-font-mixin-simplified('Jack Frost', 'jack_frost', $path-jack-frost);
+@include custom-font-mixin-simplified('Elegant Icons', 'ElegantIcons', $path-elegant-icons);
+
+@include custom-font-mixin('Montserrat', 'montserrat-light', 300, light, $path-montserrat);
+@include custom-font-mixin('Montserrat', 'montserrat-regular', 400, normal, $path-montserrat);
+@include custom-font-mixin('Montserrat', 'montserrat-bold', 700, bold, $path-montserrat);
