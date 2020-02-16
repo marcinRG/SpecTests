@@ -19,3 +19,14 @@
   animation-iteration-count: $count;
 }
 
+@mixin font-montserrat {
+  font-family: 'Montserrat', sans-serif;
+}
+
+@mixin font-jack-frost {
+  font-family: 'Jack Frost', cursive;
+}
+
+@mixin font-elegant-icons {
+  font-family: 'Elegant Icons', cursive;
+}
