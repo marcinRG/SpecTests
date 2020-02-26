@@ -1,0 +1,85 @@
+@import '../../../scss/mixins';
+@import '../../../scss/variables';
+
+.footer-links {
+  @include font-montserrat;
+  font-size: .85em;
+  background-color: $bottom-bg;
+  padding: 2em 10%;
+  overflow: hidden;
+}
+
+.links-div {
+  @include set-to-zero;
+  width: 20%;
+  height: 100%;
+  display: inline-block;
+  margin: 0 2em;
+}
+
+.links-title {
+  @include font-montserrat;
+  font-weight: 400;
+  font-size: 1.35em;
+  color: white;
+  padding-bottom: 1em;
+}
+
+.links-list {
+  list-style-type: none;
+  display: block;
+  width: 95%;
+
+  &.circles {
+    overflow: hidden;
+    width: 100%;
+
+    &::after {
+      clear: both;
+    }
+
+    li {
+      @include set-to-zero;
+      @include block-border-box;
+      margin-left: .25em;
+      float: left;
+      width: 45px;
+      height: 45px;
+    }
+  }
+
+  li {
+    display: block;
+    width: 100%;
+    font-size: 1.05em;
+    padding: .75em 0;
+  }
+
+  a {
+    text-decoration: none;
+    color: white;
+    font-weight: 300;
+
+    &.link-circle {
+      border: 1px solid white;
+      border-radius: 50%;
+      display: block;
+      width: 100%;
+      height: 100%;
+
+      &:hover {
+        background-color: white;
+        color: $bottom-bg;
+      }
+    }
+  }
+}
+
+.footer-bottom {
+  @include font-montserrat;
+  font-size: .85em;
+  background-color: $login-bar-bg;
+  padding: 1.25em;
+  text-align: center;
+  color: white;
+}

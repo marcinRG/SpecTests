@@ -1,0 +1,176 @@
+@import '../../../scss/mixins';
+@import '../../../scss/variables';
+
+.app-content {
+  width: 100%;
+}
+
+.services-section,
+.subscribe-section {
+  background-color: $section-bg-color;
+  padding: 3em 20%;
+}
+
+.services-title,
+.subscribe-title,
+.advertisement-title,
+.brands-title {
+  @include font-montserrat;
+  font-weight: 400;
+  font-size: 1.2em;
+  text-align: center;
+  margin-bottom: 1em;
+
+  .blue {
+    color: $text-alternate;
+  }
+
+  .white {
+    color: $text-darker;
+  }
+
+  .description {
+    color: $text-darker;
+    display: inline-block;
+    width: 100%;
+    font-size: .55em;
+  }
+}
+
+.services-panel {
+
+  @include shadow-with-hover;
+  display: inline-block;
+  width: 28%;
+  background-color: white;
+  margin: 0 1.5em;
+
+  &::before {
+    margin: 2.6em auto 1.3em;
+    display: block;
+    content: '';
+    width: 70px;
+    height: 70px;
+    border: 2px solid $border-light;
+    border-radius: 50%;
+  }
+
+  h3 {
+    @include font-montserrat;
+    font-weight: 300;
+    color: $text-darker;
+    font-size: 1.25em;
+    text-align: center;
+  }
+
+  p {
+    @include font-montserrat;
+    color: $text-darker;
+    padding: 2em 6%;
+    font-weight: 300;
+    line-height: 150%;
+    text-align: center;
+    letter-spacing: 2px;
+    font-size: .65em;
+  }
+
+}
+
+.description-section,
+.brands-section {
+  background-color: white;
+  padding: 3em 15%;
+}
+
+.description-panel {
+  display: inline-block;
+  width: 50%;
+  text-align: left;
+
+  .rounded-button {
+    margin: 0;
+  }
+
+  h2 {
+    @include font-montserrat;
+    font-weight: 400;
+    letter-spacing: 3px;
+    color: $text-darker;
+    font-size: 1.5em;
+  }
+
+  p {
+    @include font-montserrat;
+    width: 60%;
+    color: $text-darker;
+    padding: 2em 0;
+    letter-spacing: 2px;
+    font-size: .65em;
+    line-height: 200%;
+    font-weight: normal;
+
+    &:nth-of-type(1) {
+      &::first-letter {
+        font-weight: 700;
+        font-size: 1.95em;
+      }
+    }
+  }
+}
+
+.subscribe-form {
+  text-align: center;
+  padding: 2em 0 1em;
+
+  .rounded-button {
+    display: inline-block;
+  }
+}
+
+.brands-images {
+  padding: 1em 0;
+}
+
+.brand-img {
+  @include shadow-with-hover;
+  display: inline-block;
+  width: 22%;
+  height: auto;
+  padding: 2em;
+  margin: 0 .5em;
+}
+
+.advertisement-section {
+  padding: 3em 15%;
+  background-color: white;
+}
+
+.advertisement-text {
+
+  width: 70%;
+  margin: 0 auto;
+
+  .rounded-button {
+    margin-left: 71%;
+  }
+}
+
+.adv-txt {
+  @include font-montserrat;
+  color: $text-darker;
+  text-align: center;
+  width: 60%;
+  padding: 2em 0;
+  margin: 0 auto 1em;
+  letter-spacing: 2px;
+  font-size: .65em;
+  line-height: 200%;
+  font-weight: normal;
+
+  &:nth-of-type(1) {
+    &::first-letter {
+      font-weight: 700;
+      font-size: 1.95em;
+    }
+  }
+}

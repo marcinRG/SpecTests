@@ -1,0 +1,91 @@
+@import '../../../scss/mixins';
+@import '../../../scss/variables';
+
+.app-header {
+  background-color: $header-bg;
+  padding: 2em 15%;
+}
+
+.app-navbar {
+  width: 100%;
+  overflow: hidden;
+
+  &::after {
+    clear: both;
+  }
+}
+
+.app-title {
+  @include font-jack-frost;
+  color: white;
+  font-size: .8em;
+  text-transform: capitalize;
+  letter-spacing: 2px;
+  padding-top: .96em;
+  display: block;
+  float: left;
+}
+
+.menu-button {
+  @include font-elegant-icons;
+  display: none;
+  float: left;
+  background-color: transparent;
+  color: white;
+  font-size: 1.25em;
+  padding-top: .45em;
+
+  &::after {
+    content: '\62';
+  }
+}
+
+.app-main-menu {
+  display: block;
+  float: right;
+  list-style-type: none;
+
+  .menu-item {
+    color: white;
+    display: inline-block;
+    padding: .85em 2em;
+    margin-right: 3px;
+    font-weight: 300;
+    font-size: .85em;
+    border: 1px solid transparent;
+    cursor: pointer;
+
+    &:hover {
+      border-color: rgba(255, 255, 255, .2);
+      background-color: rgba(255, 255, 255, .1);
+      color: black;
+    }
+  }
+}
+
+.app-jumbotron {
+  display: block;
+  padding: 4em 0;
+
+  .big-title {
+    @include font-montserrat;
+    text-align: center;
+    font-weight: bold;
+    letter-spacing: 4px;
+    font-size: 30pt;
+    color: white;
+  }
+
+  .app-description {
+    @include font-montserrat;
+    text-align: center;
+    width: 65%;
+    letter-spacing: 1px;
+    line-height: 2.1em;
+    font-size: .75em;
+    margin: 1em auto;
+    padding: 1.5em 0;
+    color: white;
+  }
+
+}
