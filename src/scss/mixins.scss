@@ -45,10 +45,44 @@
   }
 }
 
-@mixin  shadow-with-focus {
-  @include  shadow-box;
+@mixin shadow-with-focus {
+  @include shadow-box;
 
   &:focus {
     box-shadow: 0 4px 7px 2px rgba(180, 222, 253, .5);
   }
+}
+
+@mixin page-title {
+  @include font-montserrat;
+  font-weight: 400;
+  font-size: 1.2em;
+  text-align: center;
+  margin-bottom: 1em;
+
+  .blue {
+    color: $text-alternate;
+  }
+
+  .white {
+    color: $text-darker;
+  }
+}
+
+@mixin small-text {
+  color: $text-darker;
+  display: inline-block;
+  width: 100%;
+  font-size: .55em;
+}
+
+@mixin text-inputs {
+  @include shadow-with-focus;
+  @include font-montserrat;
+  outline: 0;
+  color: $text-darker;
+  font-size: .85em;
+  padding: 1.25em .5em;
+  font-weight: 400;
+  margin: 0 .5em;
 }

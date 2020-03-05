@@ -1,5 +1,6 @@
 import './ApplicationHeader.scss';
 import React from 'react';
+import {LinkList} from '../linkList/LinkList';
 
 export function ApplicationHeader() {
   return (
@@ -9,12 +10,7 @@ export function ApplicationHeader() {
                   <h1 className="app-title">Spec app</h1>
                   <button className="menu-button"></button>
                   <ul className="app-main-menu">
-                      <li className="menu-item">Home</li>
-                      <li className="menu-item">Documents</li>
-                      <li className="menu-item">Company details</li>
-                      <li className="menu-item">Clients</li>
-                      <li className="menu-item">Items</li>
-                      <li className="menu-item">Other tables</li>
+                      <LinkList/>
                   </ul>
               </nav>
               <div className="app-jumbotron">

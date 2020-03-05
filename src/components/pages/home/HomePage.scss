@@ -15,25 +15,10 @@
 .subscribe-title,
 .advertisement-title,
 .brands-title {
-  @include font-montserrat;
-  font-weight: 400;
-  font-size: 1.2em;
-  text-align: center;
-  margin-bottom: 1em;
-
-  .blue {
-    color: $text-alternate;
-  }
-
-  .white {
-    color: $text-darker;
-  }
+  @include page-title;
 
   .description {
-    color: $text-darker;
-    display: inline-block;
-    width: 100%;
-    font-size: .55em;
+    @include small-text;
   }
 }
 
@@ -153,6 +138,11 @@
   .rounded-button {
     margin-left: 71%;
   }
+}
+
+.txt-input {
+  @include text-inputs;
+  min-width: 25%;
 }
 
 .adv-txt {

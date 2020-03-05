@@ -45,15 +45,66 @@ body {
   }
 }
 
-.txt-input {
-  @include shadow-with-focus;
-  @include font-montserrat;
-  outline: 0;
-  color: $text-darker;
-  font-size: .85em;
-  padding: 1.25em .5em;
-  font-weight: 400;
-  margin: 0 .5em;
-  min-width: 25%;
+/////////////////////////////////////////////////////
 
+.form-page {
+  background-color: white;
+  padding: 3em 15%;
+}
+
+.form-title {
+  @include page-title;
+  text-align: left;
+}
+
+.label-form {
+  @include small-text;
+  padding-bottom: 1em;
+}
+
+.text-input-form {
+  @include text-inputs;
+  width: 100%;
+  margin-bottom: 1.15em;
+}
+
+.input-form {
+  @include shadow-with-hover;
+  background-color: $section-bg-color;
+  padding: 1.5em 10% 5em 5%;
+}
+
+////////////////////////////////////////////////
+
+.table-page {
+  background-color: $section-bg-color;
+  padding: 3em 15%;
+}
+
+.item-list-table {
+  @include shadow-with-hover;
+  width: 100%;
+  background-color: white;
+  border-collapse: collapse;
+
+  .header-cell {
+    @include font-montserrat;
+    text-align: center;
+    font-weight: 700;
+    letter-spacing: 1px;
+    background-color: $header-bg;
+    color: white;
+    border: 1px solid #E1E1E1;
+    padding: 1.25em 0;
+    font-size: .95em;
+  }
+
+  .table-cell {
+    @include font-montserrat;
+    font-size: .85em;
+    text-align: left;
+    color: $text-darker;
+    border: 1px solid #E1E1E1;
+    padding: 1.05em 0 1.05em .5em;
+  }
 }
