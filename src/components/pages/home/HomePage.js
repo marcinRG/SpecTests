@@ -4,18 +4,28 @@ import img1 from '../../../images/logo1.jpg';
 import img2 from '../../../images/logo2.jpg';
 import img3 from '../../../images/logo3.jpg';
 import img4 from '../../../images/logo4.jpg';
+import PropTypes from 'prop-types';
+import {connect} from 'react-redux'
+import {bindActionCreators} from 'redux';
+import {changeJumbotronVisibility, toggleJumbotronVisibility} from '../../../reduxSettings/actions/appStateActions';
 
-export class HomePage extends Component{
+class HomePage extends Component {
     constructor(props) {
-        super();
+        super(props);
+        console.log(props);
+        this.changeJumbotronVisibility = this.changeJumbotronVisibility.bind(this);
     }
 
     componentDidMount() {
-        console.log('mounted');
+        this.props.toggleJumbotronVisibility();
     }
 
     componentWillUnmount() {
-        console.log('unmount');
+        this.props.toggleJumbotronVisibility();
+    }
+
+    changeJumbotronVisibility() {
+        this.props.toggleJumbotronVisibility();
     }
 
     render() {
@@ -27,7 +37,8 @@ export class HomePage extends Component{
                             <h2>We&#39;re global</h2>
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A accusantium ad aliquam amet
                                 atque,
-                                blanditiis, eius enim fuga ipsa ipsam molestias nam nesciunt obcaecati officiis rem sed sunt
+                                blanditiis, eius enim fuga ipsa ipsam molestias nam nesciunt obcaecati officiis rem sed
+                                sunt
                                 ut,
                                 vel?</p>
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab assumenda, autem consequatur
@@ -71,7 +82,8 @@ export class HomePage extends Component{
                         </h2>
                         <div className="advertisement-text">
                             <p className="adv-txt">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet blanditiis corporis dolorem
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet blanditiis corporis
+                                dolorem
                                 expedita id ipsum iste non obcaecati officia placeat, sed, sint.
                                 Fugit illum quidem quo rem saepe veniam voluptatem.
                             </p>
@@ -107,3 +119,25 @@ export class HomePage extends Component{
         )
     }
 }
+
+HomePage.propTypes = {
+    showJumbotron: PropTypes.bool,
+    toggleJumbotronVisibility: PropTypes.func.isRequired,
+    changeJumbotronVisibility: PropTypes.func.isRequired
+};
+
+function mapStateToProps(state) {
+    return {
+        showJumbotron: state.appState.showApplicationJumbotron
+    };
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        toggleJumbotronVisibility: bindActionCreators(toggleJumbotronVisibility, dispatch),
+        changeJumbotronVisibility: bindActionCreators(changeJumbotronVisibility, dispatch),
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomePage);
+

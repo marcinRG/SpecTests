@@ -73,12 +73,24 @@
 
 .app-jumbotron {
   display: block;
-  padding: 4em 0;
+  visibility: hidden;
+  opacity: 0;
+  height: 0;
+  transition-duration: 500ms;
+  overflow: hidden;
+
+
+  &.visible {
+    visibility: visible;
+    opacity: 1;
+    height: 280px;
+  }
 
   .big-title {
     @include font-montserrat;
     text-align: center;
     font-weight: bold;
+    padding-top: 1.25em;
     letter-spacing: 4px;
     font-size: 30pt;
     color: white;

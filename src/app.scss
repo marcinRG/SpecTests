@@ -24,6 +24,7 @@ body {
 }
 
 .rounded-button {
+  outline: 0;
   display: block;
   text-align: center;
   background-color: transparent;
@@ -72,6 +73,14 @@ body {
   @include shadow-with-hover;
   background-color: $section-bg-color;
   padding: 1.5em 10% 5em 5%;
+}
+
+.form-subtitle {
+  color: $text-dark;
+  text-shadow: 0 0 3px white ;
+  font-weight: 400;
+  font-size: .95em;
+  padding: 2em 0;
 }
 
 ////////////////////////////////////////////////
