@@ -13,12 +13,26 @@ export const InitData = {
         accountNumber: ' GB 06 1189 0035 0000 0001 0056 9186'
     },
     documents: {
+       settings : {
+          editDeleteRowVisible: true
+        },
         labels: [
             {
                 labelName: 'date',
                 labelField: 'date',
                 sortable: true
-            }],
+            },
+            {
+                labelName: 'document no.',
+                labelField: 'document_nr',
+                sortable: true
+            },
+            {
+                labelName: 'total',
+                labelField: 'document_sum',
+                sortable: true
+            }
+            ],
         data: {
             '1': {},
             '2': {},
