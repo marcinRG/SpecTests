@@ -1,0 +1,19 @@
+@import '../../../scss/mixins';
+@import '../../../scss/variables';
+
+.header-cell {
+  &.sortable {
+    cursor: pointer;
+    user-select: none;
+  }
+
+  span {
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    font-size: 18px;
+    margin-left: .25em;
+    font-weight: 400;
+  }
+
+}

@@ -34,9 +34,21 @@ export const InitData = {
             }
             ],
         data: {
-            '1': {},
-            '2': {},
-            '3': {}
+            '1': {
+                date: '2020-03-17T11:32:38.000Z',
+                document_nr: '203455/30',
+                document_sum: 2457.12
+            },
+            '2': {
+                date: '2019-12-17T11:32:38.000Z',
+                document_nr: '203455/95',
+                document_sum: 125.30
+            },
+            '3': {
+                date: '2020-01-2011:32:38.000Z',
+                document_nr: '203455/12',
+                document_sum: 8825.73
+            }
         }
     }
 };
