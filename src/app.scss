@@ -96,6 +96,19 @@ body {
   background-color: white;
   border-collapse: collapse;
 
+  .table-button {
+    display: inline-block;
+    letter-spacing: 1px;
+    height: 2.25em;
+    background-color: $header-bg;
+    border: 1px solid #E1E1E1;
+    color: white;
+    padding: 2px 3em;
+    font-weight: 300;
+    font-size: .95em;
+    margin-left: 3px;
+  }
+
   .header-cell {
     @include font-montserrat;
     text-align: center;
