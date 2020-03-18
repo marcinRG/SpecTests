@@ -34,6 +34,11 @@ function getDateFromString(dateAsString) {
     }
 }
 
+function formatNumbers(n) {
+    const str = n + '';
+    return str.length > 1 ? str : '0' + str;
+}
+
 
 TableRowComponent.propTypes = {
     date: PropTypes.string.isRequired,
