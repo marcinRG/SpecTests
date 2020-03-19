@@ -1,0 +1,22 @@
+@import '../../../scss/mixins';
+@import '../../../scss/variables';
+
+.table-items-count {
+  width: 100%;
+  padding: 1em 0;
+  margin-bottom: .5em;
+  overflow: hidden;
+  float: right;
+
+  .text-element {
+    float: right;
+
+    span {
+      margin-right: .2em;
+    }
+  }
+
+  &::after {
+    clear: both;
+  }
+}

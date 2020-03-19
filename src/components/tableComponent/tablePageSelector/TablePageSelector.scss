@@ -1,0 +1,53 @@
+@import '../../../scss/mixins';
+@import '../../../scss/variables';
+
+.page-selector {
+  @include block-border-box;
+  padding: 1em 0 0;
+  overflow: hidden;
+
+  @media screen {
+    @media (min-width: $media-br-1) {
+      padding: 1em 0 0 2em;
+    }
+  }
+
+  &::after {
+    clear: both;
+  }
+
+  ul {
+    float: right;
+
+    li {
+      font-size: 1.2em;
+      display: inline-block;
+      padding: .5em;
+      color: lightgrey;
+      cursor: pointer;
+      border: 1px black dotted;
+      margin-right: .15em;
+
+      @media screen {
+        @media (min-width: $media-br-1) {
+          padding: .5em 1em;
+        }
+      }
+
+      &.active {
+        color: black;
+      }
+    }
+  }
+
+  span {
+    border: 1px solid black;
+    cursor: pointer;
+    display: block;
+    float: right;
+    font-weight: 700;
+    color: black;
+    padding: .5em 1em;
+    font-size: 1.2em;
+  }
+}

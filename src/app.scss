@@ -16,6 +16,11 @@ body {
   @include set-to-zero;
   @include font-montserrat;
   box-sizing: border-box;
+
+  button::-moz-focus-inner {
+    border: 0;
+  }
+
 }
 
 .app {
@@ -37,6 +42,13 @@ body {
 
   &.white {
     color: white;
+    border: 2px solid white;
+  }
+
+  &.white-inverted {
+    color: white;
+    background-color: $text-dark;
+    box-shadow:  0 0 0 1px $text-dark;
     border: 2px solid white;
   }
 

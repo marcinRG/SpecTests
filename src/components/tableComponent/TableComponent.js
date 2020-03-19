@@ -1,13 +1,19 @@
 import React, {Component} from 'react';
 import {TableLabelComponent} from './tableLabelComponent/TableLabelComponent';
 import {TableRowComponent} from './tableRowComponent/TableRowComponent';
-import {LabelComponent} from './tableLabelComponent/LabelComponent';
+import {TableItemsCount} from './tableItemsCount/TableItemsCount';
+import {TablePageSelector} from './tablePageSelector/TablePageSelector';
+import {ScreenMessage} from '../screenMessage/ScreenMessage';
+
 
 
 export class TableComponent extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            messageSettings: {
+                visible: false
+            },
             data: [
                 {
                     date: '2020-03-17T11:32:38.000Z',
@@ -35,22 +41,52 @@ export class TableComponent extends Component {
                     document_sum: 8825.73
                 }
             ]
-        }
+        };
+
+        this.changePage = this.changePage.bind(this);
+        this.showMessage = this.showMessage.bind(this);
+        this.hideMessage = this.hideMessage.bind(this);
+    }
+
+    changePage(i) {
+        console.log(i);
+    }
+
+    showMessage() {
+        this.setState({
+            messageSettings: {
+                visible: true
+            }
+        });
+    }
+
+    hideMessage() {
+        this.setState({
+            messageSettings: {
+                visible: false
+            }
+        });
     }
 
     render() {
         return (
-            <table className="item-list-table">
-                <TableLabelComponent/>
-                <tbody>
-                {this.state.data.map((document, i) =>
-                    <TableRowComponent key={i} date={document.date} number={document.document_nr}
-                      total={document.document_sum} />
+            <React.Fragment>
+
+                <TableItemsCount count={30} selectedPage={1} itemsPerPage={10}/>
+                <table className="item-list-table">
+                    <TableLabelComponent/>
+                    <tbody>
+                    {this.state.data.map((document, i) =>
+                        <TableRowComponent key={i} date={document.date} number={document.document_nr}
+                                           total={document.document_sum}/>
                     )
-                }
-                </tbody>
-            </table>
+                    }
+                    </tbody>
+                </table>
+                <TablePageSelector action={this.changePage} count={30} selectedPage={1} itemsPerPage={10}/>
+                <button onClick={this.showMessage}>XXXXXX</button>
+                <ScreenMessage isVisible={this.state.messageSettings.visible} action={this.hideMessage}/>
+            </React.Fragment>
         )
     }
-
 }

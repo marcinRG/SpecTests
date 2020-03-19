@@ -20,8 +20,8 @@ export class TableRowComponent extends Component {
 }
 
 function getDateAsString(dateAsString, separator) {
-    const date = new Date(dateAsString);
-    return `${date.getFullYear()}${separator}${formatNumbers(date.getMonth())}${separator}${formatNumbers(date.getDay())}`;
+    const date = getDateFromString(dateAsString);
+    return `${date.getFullYear()}${separator}${formatNumbers(date.getMonth()+1)}${separator}${formatNumbers(date.getDate())}`;
 }
 
 function validateDate(dateAsString) {
