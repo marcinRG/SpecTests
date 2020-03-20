@@ -12,8 +12,8 @@ export class TableRowComponent extends Component {
                 <td className="table-cell">{getDateAsString(this.props.date,'-')}</td>
                 <td className="table-cell">{this.props.number}</td>
                 <td className="table-cell">{this.props.total}</td>
-                <td className="table-cell"><button className="table-button">Edit</button>
-                    <button className="table-button">Remove</button></td>
+                <td className="table-cell"><button className="table-button">&#9998; Edit</button>
+                    <button className="table-button white">&#128465; Remove</button></td>
             </tr>
         );
     }

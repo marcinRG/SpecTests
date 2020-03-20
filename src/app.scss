@@ -17,8 +17,12 @@ body {
   @include font-montserrat;
   box-sizing: border-box;
 
-  button::-moz-focus-inner {
-    border: 0;
+  a,
+  button {
+
+    &::-moz-focus-inner { // sass-lint:disable-line no-vendor-prefixes
+      border: 0;
+    }
   }
 
 }
@@ -48,7 +52,7 @@ body {
   &.white-inverted {
     color: white;
     background-color: $text-dark;
-    box-shadow:  0 0 0 1px $text-dark;
+    box-shadow: 0 0 0 1px $text-dark;
     border: 2px solid white;
   }
 
@@ -89,7 +93,7 @@ body {
 
 .form-subtitle {
   color: $text-dark;
-  text-shadow: 0 0 3px white ;
+  text-shadow: 0 0 3px white;
   font-weight: 400;
   font-size: .95em;
   padding: 2em 0;
@@ -107,30 +111,47 @@ body {
   width: 100%;
   background-color: white;
   border-collapse: collapse;
+  table-layout: fixed;
+
+  tbody {
+    tr {
+      &:hover {
+        background-color: #E1E1E1;
+      }
+    }
+  }
 
   .table-button {
+    //@include shadow-with-hover;
+    cursor: pointer;
     display: inline-block;
     letter-spacing: 1px;
-    height: 2.25em;
+    //height: 2.25em;
     background-color: $header-bg;
     border: 1px solid #E1E1E1;
     color: white;
-    padding: 2px 3em;
-    font-weight: 300;
-    font-size: .95em;
-    margin-left: 3px;
+    padding: 6px 2em;
+    font-weight: 700;
+    font-size: .85em;
+    margin: 0 6px;
+
+    &.white {
+      background-color: white;
+      color: $login-bar-bg;
+    }
+
   }
 
   .header-cell {
     @include font-montserrat;
-    text-align: center;
+    text-align: left;
     font-weight: 700;
     letter-spacing: 1px;
     background-color: $header-bg;
     color: white;
     border: 1px solid #E1E1E1;
-    padding: 1.25em 0;
-    font-size: .95em;
+    padding: .45em 0 .45em .5em;
+    font-size: .85em;
   }
 
   .table-cell {
@@ -140,5 +161,7 @@ body {
     color: $text-darker;
     border: 1px solid #E1E1E1;
     padding: 1.05em 0 1.05em .5em;
+    vertical-align: center;
+
   }
 }

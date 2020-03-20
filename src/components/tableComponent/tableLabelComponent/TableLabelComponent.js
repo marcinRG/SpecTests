@@ -79,7 +79,7 @@ function changeSortDirection(obj) {
 function createOperationsLabel(editDeleteRowVisible, labelName) {
     if (editDeleteRowVisible) {
         return (
-            <td className="header-cell">{labelName}</td>
+            <th className="header-cell">{labelName}</th>
         )
     }
 }

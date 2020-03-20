@@ -10,8 +10,17 @@
 
   .text-element {
     float: right;
+    font-size: .85em;
+    color: $text-darker;
 
-    span {
+    .number-label-element {
+      font-weight: 400;
+      font-style: italic;
+      color: $text-dark;
+      margin-right: .35em;
+    }
+
+    .text-label-element {
       margin-right: .2em;
     }
   }

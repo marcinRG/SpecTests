@@ -84,8 +84,8 @@ export class TableComponent extends Component {
                     </tbody>
                 </table>
                 <TablePageSelector action={this.changePage} count={30} selectedPage={1} itemsPerPage={10}/>
-                <button onClick={this.showMessage}>XXXXXX</button>
-                <ScreenMessage isVisible={this.state.messageSettings.visible} action={this.hideMessage}/>
+                {/*<button onClick={this.showMessage}>XXXXXX</button>*/}
+                {/*<ScreenMessage isVisible={this.state.messageSettings.visible} action={this.hideMessage}/>*/}
             </React.Fragment>
         )
     }

@@ -3,7 +3,7 @@
 
 .page-selector {
   @include block-border-box;
-  padding: 1em 0 0;
+  margin-top: 1.25em;
   overflow: hidden;
 
   @media screen {
@@ -20,13 +20,14 @@
     float: right;
 
     li {
-      font-size: 1.2em;
+      @include shadow-with-hover;
+      font-size: .95em;
       display: inline-block;
       padding: .5em;
-      color: lightgrey;
+      color: $text-darker;
       cursor: pointer;
-      border: 1px black dotted;
-      margin-right: .15em;
+      border: 1px solid #E1E1E1;
+      margin-right: .45em;
 
       @media screen {
         @media (min-width: $media-br-1) {
@@ -35,19 +36,21 @@
       }
 
       &.active {
-        color: black;
+        background-color: $login-bar-bg;
+        color: white;
       }
     }
   }
 
   span {
-    border: 1px solid black;
+    //@include shadow-with-hover;
+    font-size: .95em;
+    //display: inline-block;
+    padding: .5em;
+    color: $text-darker;
     cursor: pointer;
     display: block;
     float: right;
-    font-weight: 700;
-    color: black;
-    padding: .5em 1em;
-    font-size: 1.2em;
+
   }
 }

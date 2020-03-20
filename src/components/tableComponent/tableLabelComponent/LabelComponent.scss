@@ -9,11 +9,11 @@
 
   span {
     display: inline-block;
-    width: 25px;
-    height: 25px;
+    line-height: 2em;
     font-size: 18px;
-    margin-left: .25em;
+    margin: 0 .25em;
     font-weight: 400;
+    vertical-align: center;
   }
 
 }

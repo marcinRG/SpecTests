@@ -12,9 +12,9 @@ export function LabelComponent(props) {
     };
 
     return (
-        <td className={getElementClass(props.sortable)} onClick={handleClick}>{props.labelName}
+        <th className={getElementClass(props.sortable)} onClick={handleClick}>{props.labelName}
         <span>{getSortLabel(props.sortDirection)}</span>
-        </td>
+        </th>
     )
 }
 
@@ -34,7 +34,7 @@ function getSortLabel(sortDirection) {
            return (<React.Fragment>&uarr;</React.Fragment>);
         }
         default : {
-            return (<React.Fragment>&darr;&uarr;</React.Fragment>);
+            return (<React.Fragment>&nbsp;</React.Fragment>);
         }
     }
 }

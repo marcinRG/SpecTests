@@ -8,11 +8,11 @@ export function TableItemsText(props) {
             return (
                 <div className="text-element">
                     <span className="text-label-element">{props.labels[states.OK][0]}</span>
-                    <span>
+                    <span className="number-label-element">
                         {props.lower} - {props.upper}
                     </span>
                     <span className="text-label-element">{props.labels[states.OK][1]}</span>
-                    <span>{props.all}</span>
+                    <span className="number-label-element">{props.all}</span>
                     <span className="text-label-element">{props.labels[states.OK][2]}</span>
                 </div>);
         }
