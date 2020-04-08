@@ -8,38 +8,20 @@ export class ScreenMessage extends Component {
     constructor(props) {
         super(props);
         this.hrefFullScreen = React.createRef();
-        this.okAction = this.okAction.bind(this);
-        this.cancelAction = this.cancelAction.bind(this);
-        this.yesAction = this.yesAction.bind(this);
-        this.noAction = this.noAction.bind(this);
-    }
-
-    okAction() {
-        this.props.action(buttonTypes.OK_BUTTON);
-    }
-
-    cancelAction() {
-        this.props.action(buttonTypes.CANCEL_BUTTON);
-    }
-
-    yesAction() {
-        this.props.action(buttonTypes.YES_BUTTON);
-    }
-
-    noAction() {
-        this.props.action(buttonTypes.NO_BUTTON);
     }
 
     render() {
-        console.log(createButtons(this.props.buttons,this.props.buttonLabels));
         return (
-            <div className={setHeightAndClassName(this.props.isVisible,this.hrefFullScreen.current)} ref={this.hrefFullScreen}>
-                <div className="message">
-                    <label className="message-label">{this.props.label}</label>
-                    <div className="message-body">
-                        <p className="message-txt">{this.props.message}</p>
-                        <div className="buttons-row">
-                            {createButtons(this.props.buttons,this.props.buttonLabels)}
+            <div className={setHeightAndClassName(this.props.isVisible, this.hrefFullScreen.current)}
+                 ref={this.hrefFullScreen}>
+                <div className="full-screen">
+                    <div className="message">
+                        <label className="message-label">{this.props.label}</label>
+                        <div className="message-body">
+                            <p className="message-txt">{this.props.message}</p>
+                            <div className="buttons-row">
+                                {createButtons(this.props.buttons, this.props.buttonLabels, this.props.action)}
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -48,40 +30,53 @@ export class ScreenMessage extends Component {
     }
 }
 
-function createButtons(buttons, buttonLabels) {
+function createButtons(buttons, buttonLabels, action) {
     let createdButtons = [];
     buttons.forEach(button => {
-        createdButtons.push(createButton(button,buttonLabels));
+        createdButtons.push(createButton(button, buttonLabels, action));
     });
     return createdButtons;
 }
 
-function createButton(buttonType, buttonLabels) {
+function createButton(buttonType, buttonLabels, action) {
+
     switch (buttonType) {
         case buttonTypes.OK_BUTTON: {
-            return (<button className="rounded-button white-inverted"  key={buttonType}>
+            const okAction = () => {
+                action(buttonTypes.OK_BUTTON);
+            };
+            return (<button className="rounded-button white-inverted" key={buttonType} onClick={okAction}>
                 {buttonLabels[buttonTypes.OK_BUTTON]}
             </button>)
         }
         case buttonTypes.CANCEL_BUTTON: {
-            return (<button className="rounded-button blue" key={buttonType}>
+            const cancelAction = () => {
+                action(buttonTypes.CANCEL_BUTTON);
+            };
+            return (<button className="rounded-button blue" key={buttonType} onClick={cancelAction}>
                 {buttonLabels[buttonTypes.CANCEL_BUTTON]}
             </button>)
         }
         case buttonTypes.YES_BUTTON: {
-            return (<button className="rounded-button white-inverted" key={buttonType}>
+            const yesAction = () => {
+                action(buttonTypes.YES_BUTTON);
+            };
+            return (<button className="rounded-button white-inverted" key={buttonType} onClick={yesAction}>
                 {buttonLabels[buttonTypes.YES_BUTTON]}
             </button>)
         }
         case buttonTypes.NO_BUTTON: {
-            return (<button className="rounded-button blue" key={buttonType}>
+            const noAction = () => {
+                action(buttonTypes.NO_BUTTON);
+            };
+            return (<button className="rounded-button blue" key={buttonType} onClick={noAction}>
                 {buttonLabels[buttonTypes.NO_BUTTON]}
             </button>)
         }
     }
 }
 
-function setHeightAndClassName(isVisible,DOMelement) {
+function setHeightAndClassName(isVisible, DOMelement) {
     let className = 'screen-msg';
     if (isVisible) {
         DOMelement.style.height = document.documentElement.offsetHeight + 'px';

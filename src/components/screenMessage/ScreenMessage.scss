@@ -2,7 +2,7 @@
 @import '../../scss/variables';
 
 .screen-msg {
-  background-color: rgba(255, 0, 255, .35);
+  background-color: rgba(225, 216, 237, 0.31);
   //background-color: transparent;
   z-index: 100;
   display: none;
@@ -14,10 +14,21 @@
   left: 0;
   overflow: hidden;
 
+  .full-screen {
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    z-index: 101;
+    background-color: transparent;
+  }
+
   .message {
     @include shadow-with-hover;
     position: absolute;
-    z-index: 101;
+    z-index: 102;
     width: 30%;
     background-color: white;
     top: 50%;
