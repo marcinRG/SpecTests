@@ -3,7 +3,7 @@ import {TableLabelComponent} from './tableLabelComponent/TableLabelComponent';
 import {TableRowComponent} from './tableRowComponent/TableRowComponent';
 import {TableItemsCount} from './tableItemsCount/TableItemsCount';
 import {TablePageSelector} from './tablePageSelector/TablePageSelector';
-import {ScreenMessage} from '../screenMessage/ScreenMessage';
+import {buttonTypes, ScreenMessage} from '../screenMessage/ScreenMessage';
 
 
 
@@ -84,8 +84,13 @@ export class TableComponent extends Component {
                     </tbody>
                 </table>
                 <TablePageSelector action={this.changePage} count={30} selectedPage={1} itemsPerPage={10}/>
-                {/*<button onClick={this.showMessage}>XXXXXX</button>*/}
-                {/*<ScreenMessage isVisible={this.state.messageSettings.visible} action={this.hideMessage}/>*/}
+                <button onClick={this.showMessage}>XXXXXX</button>
+                <ScreenMessage isVisible={this.state.messageSettings.visible} action={this.hideMessage}
+                               label="Yolo" message="This is message" buttons={[buttonTypes.OK_BUTTON, buttonTypes.CANCEL_BUTTON]}
+                               buttonLabels={{[buttonTypes.OK_BUTTON]:'OK',
+                                   [buttonTypes.CANCEL_BUTTON]:'ANULUJ'
+                               }}
+                />
             </React.Fragment>
         )
     }

@@ -7,6 +7,7 @@ export class ScreenMessage extends Component {
 
     constructor(props) {
         super(props);
+        this.hrefFullScreen = React.createRef();
         this.okAction = this.okAction.bind(this);
         this.cancelAction = this.cancelAction.bind(this);
         this.yesAction = this.yesAction.bind(this);
@@ -30,8 +31,9 @@ export class ScreenMessage extends Component {
     }
 
     render() {
+        console.log(createButtons(this.props.buttons,this.props.buttonLabels));
         return (
-            <div className={setClassName(this.props.isVisible)}>
+            <div className={setHeightAndClassName(this.props.isVisible,this.hrefFullScreen.current)} ref={this.hrefFullScreen}>
                 <div className="message">
                     <label className="message-label">{this.props.label}</label>
                     <div className="message-body">
@@ -57,32 +59,32 @@ function createButtons(buttons, buttonLabels) {
 function createButton(buttonType, buttonLabels) {
     switch (buttonType) {
         case buttonTypes.OK_BUTTON: {
-            return (<button className="rounded-button white-inverted" onClick={this.okAction}>
+            return (<button className="rounded-button white-inverted"  key={buttonType}>
                 {buttonLabels[buttonTypes.OK_BUTTON]}
             </button>)
         }
         case buttonTypes.CANCEL_BUTTON: {
-            return (<button className="rounded-button blue" onClick={this.cancelAction}>
+            return (<button className="rounded-button blue" key={buttonType}>
                 {buttonLabels[buttonTypes.CANCEL_BUTTON]}
             </button>)
         }
         case buttonTypes.YES_BUTTON: {
-            return (<button className="rounded-button white-inverted" onClick={this.yesAction}>
+            return (<button className="rounded-button white-inverted" key={buttonType}>
                 {buttonLabels[buttonTypes.YES_BUTTON]}
             </button>)
         }
         case buttonTypes.NO_BUTTON: {
-            return (<button className="rounded-button blue" onClick={this.noAction}>
+            return (<button className="rounded-button blue" key={buttonType}>
                 {buttonLabels[buttonTypes.NO_BUTTON]}
             </button>)
         }
     }
 }
 
-function setClassName(isVisible) {
-    //console.log(document.documentElement.getBoundingClientRect().height);
+function setHeightAndClassName(isVisible,DOMelement) {
     let className = 'screen-msg';
     if (isVisible) {
+        DOMelement.style.height = document.documentElement.offsetHeight + 'px';
         className = className + ' ' + 'visible';
     }
     return className;
@@ -98,7 +100,7 @@ ScreenMessage.propTypes = {
     buttonLabels: PropTypes.object,
 };
 
-const buttonTypes = {
+export const buttonTypes = {
     OK_BUTTON: 'ok button',
     CANCEL_BUTTON: 'cancel button',
     YES_BUTTON: 'yes button',

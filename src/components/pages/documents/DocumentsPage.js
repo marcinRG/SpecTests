@@ -2,6 +2,10 @@ import React from 'react';
 import {TableComponent} from '../../tableComponent/TableComponent';
 
 export function DocumentsPage() {
+    const func = () => {
+        console.log('xx222');
+    };
+
     return (
         <React.Fragment>
             <section className="table-page">
