@@ -71,8 +71,9 @@
 
 @mixin small-text {
   color: $text-darker;
-  display: inline-block;
+  display: block;
   width: 100%;
+  padding: 1em 0;
   font-size: .55em;
 }
 
@@ -84,5 +85,37 @@
   font-size: .85em;
   padding: 1.25em .5em;
   font-weight: 400;
-  margin: 0 .5em;
+  margin: .5em 0;
+}
+
+@mixin error-inputs {
+  @include font-montserrat;
+  @include shadow-with-focus;
+  box-sizing: border-box;
+  color: $login-bar-bg;
+  background-color: white;
+  width: 100%;
+  outline: 0;
+  font-size: .85em;
+  padding: 0 .5em;
+  font-weight: 400;
+  margin: .5em 0;
+  text-align: left;
+
+
+  &::before {
+    display: inline;
+    content: '\26A0';
+    font-weight: bold;
+    padding: 0 .25em 0 0;
+    font-size: 2.75em;
+    vertical-align: middle;
+  }
+
+  .error-txt {
+    vertical-align: middle;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 1px;
+  }
 }

@@ -1,3 +1,4 @@
+import './SimpleTextInput.scss';
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 
@@ -9,12 +10,12 @@ export class SimpleTextInput extends Component {
     render() {
         return (
             <div className="simple-text-input">
-                <label>{this.props.label}</label>
-                <div className="inputs">
-                    <input type="text" className="text-container" />
+                <label className="input-label">{this.props.label}</label>
+                <div>
+                    <input className="input-field" type="text" />
                 </div>
                 <div className="error-msg">
-                    {this.props.errorMessage}
+                    <span className="error-txt">This is some random error message!!!</span>
                 </div>
             </div>
         )

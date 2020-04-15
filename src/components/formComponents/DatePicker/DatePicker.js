@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {ComboBox} from '../ComboBox/ComboBox';
 
 export class DatePicker extends Component {
     constructor(props) {
@@ -10,9 +9,9 @@ export class DatePicker extends Component {
     render() {
         return (
             <div className="simple-text-input">
-                <label>{this.props.label}</label>
+                <label className="input-label">{this.props.label}</label>
                 <div className="inputs">
-                    <input type="text" className="text-container"/>
+                    <input type="text" className="input-field"/>
                     <button className="input-btn">Btn</button>
                 </div>
                 <div className="date-picker">
@@ -92,7 +91,7 @@ export class DatePicker extends Component {
                     </table>
                 </div>
                 <div className="error-msg">
-                    {this.props.errorMessage}
+                    <span className="error-txt">This is some random error message!!!</span>
                 </div>
             </div>
         )

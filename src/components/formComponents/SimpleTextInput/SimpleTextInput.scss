@@ -1,0 +1,21 @@
+@import '../../../scss/mixins';
+@import '../../../scss/variables';
+
+.simple-text-input {
+
+  margin: 0 0 1em;
+
+  .input-label {
+    @include small-text;
+  }
+
+  .input-field {
+    @include text-inputs;
+    width: 100%;
+  }
+
+  .error-msg {
+    @include error-inputs;
+  }
+
+}

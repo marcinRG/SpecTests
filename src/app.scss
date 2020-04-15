@@ -116,7 +116,7 @@ body {
   tbody {
     tr {
       &:hover {
-        background-color: #E1E1E1;
+        background-color: $section-bg-color;
       }
     }
   }

@@ -1,8 +1,7 @@
-import './ComboBox.scss';
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 
-export class ComboBox extends Component {
+export class DynamicComboBox extends Component {
     constructor(props) {
         super(props);
     }
@@ -30,7 +29,7 @@ export class ComboBox extends Component {
     }
 }
 
-ComboBox.propTypes = {
+DynamicComboBox.propTypes = {
     label: PropTypes.string.isRequired,
     errorMessage: PropTypes.string.isRequired,
     validation: PropTypes.object

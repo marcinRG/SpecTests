@@ -1,0 +1,51 @@
+@import '../../../scss/mixins';
+@import '../../../scss/variables';
+
+.spinner-input {
+
+  margin: 0 0 1em;
+  position: relative;
+
+  .input-label {
+    @include small-text;
+  }
+
+  .inputs {
+    @include set-to-zero;
+    @include block-border-box;
+    width: 100%;
+    display: flex;
+  }
+
+  .input-field {
+    @include text-inputs;
+    background-color: white;
+    width: 80%;
+  }
+
+  .button-wrapper {
+    @include text-inputs;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    //align-items: stretch;
+    width: 20%;
+  }
+
+  .button-up {
+    border-bottom: 1px solid #cacaca;
+    height: 50%;
+    color: $text-darker;
+  }
+
+  .button-down {
+    height: 50%;
+    color: $text-darker;
+  }
+
+  .error-msg {
+    @include error-inputs;
+  }
+
+}
