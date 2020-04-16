@@ -119,3 +119,26 @@
     letter-spacing: 1px;
   }
 }
+
+@mixin header-cell-table {
+  @include font-montserrat;
+  text-align: left;
+  font-weight: 700;
+  letter-spacing: 1px;
+  background-color: $header-bg;
+  color: white;
+  border: 1px solid #E1E1E1;
+  padding: .45em 0 .45em .5em;
+  font-size: .85em;
+}
+
+@mixin regular-cell-table {
+  @include font-montserrat;
+  font-size: .85em;
+  text-align: left;
+  color: $text-darker;
+  border: 1px solid #E1E1E1;
+  padding: 1.05em 0 1.05em .5em;
+  vertical-align: center;
+}
+
