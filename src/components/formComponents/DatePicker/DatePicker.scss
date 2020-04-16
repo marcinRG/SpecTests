@@ -1,0 +1,36 @@
+@import '../../../scss/mixins';
+@import '../../../scss/variables';
+
+.datepicker-input {
+  margin: 0 0 1em;
+  position: relative;
+
+  .input-label {
+    @include small-text;
+  }
+
+  .input-btn {
+    @include text-inputs;
+    width: 20%;
+
+    & > span {
+      font-size: 10px;
+    }
+  }
+
+  .inputs {
+    @include set-to-zero;
+    @include block-border-box;
+    width: 100%;
+  }
+
+  .input-field {
+    @include text-inputs;
+    width: 80%;
+  }
+
+  .error-msg {
+    @include error-inputs;
+  }
+
+}

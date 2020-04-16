@@ -1,10 +1,11 @@
 import React from 'react';
 import './CompanyDetailsPage.scss';
 import {SimpleTextInput} from '../../formComponents/SimpleTextInput/SimpleTextInput';
-import {DatePicker} from '../../formComponents/DatePicker/DatePicker';
 import {ComboBox} from '../../formComponents/ComboBox/ComboBox';
 import {DynamicComboBox} from '../../formComponents/DynamicComboBox/DynamicComboBox';
 import {Spinner} from '../../formComponents/Spinner/Spinner';
+import {DatePicker} from '../../formComponents/DatePicker/DatePicker';
+
 
 
 export function CompanyDetailsPage() {
@@ -36,7 +37,7 @@ export function CompanyDetailsPage() {
                     <ComboBox label={'combo box'} errorMessage={'errrorrr!!!!'} />
                     <DynamicComboBox label={'dynamic combo box'} errorMessage={'errrorrr!!!!'} />
                     <Spinner label={'Spinner'} errorMessage={'errrorrr!!!!'} />
-                    {/*<DatePicker label={'label'} errorMessage={'error!!!'} />*/}
+                    <DatePicker label={'label'} errorMessage={'error!!!'} />
 
                     <button className="rounded-button blue btn-save">Save</button>
                 </form>

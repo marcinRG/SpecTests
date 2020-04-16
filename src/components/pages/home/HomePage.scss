@@ -107,6 +107,10 @@
   text-align: center;
   padding: 2em 0 1em;
 
+  & > input {
+     margin: 0.5em;
+  }
+
   .rounded-button {
     display: inline-block;
   }

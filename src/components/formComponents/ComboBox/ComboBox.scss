@@ -14,6 +14,11 @@
     @include text-inputs;
     margin-bottom: 0;
     width: 20%;
+
+    & > span {
+      font-size: 10px;
+    }
+
   }
 
   .inputs {
