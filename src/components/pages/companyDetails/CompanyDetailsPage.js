@@ -35,7 +35,7 @@ export function CompanyDetailsPage() {
                     <span> Components to do </span>
                     <SimpleTextInput label={'txt input'} errorMessage={'error!!!'} />
                     <ComboBox label={'combo box'} errorMessage={'errrorrr!!!!'} />
-                    <DynamicComboBox label={'dynamic combo box'} errorMessage={'errrorrr!!!!'} />
+                    {/*<DynamicComboBox label={'dynamic combo box'} errorMessage={'errrorrr!!!!'} />*/}
                     <Spinner label={'Spinner'} errorMessage={'errrorrr!!!!'} />
                     <DatePicker label={'label'} errorMessage={'error!!!'} />
 
