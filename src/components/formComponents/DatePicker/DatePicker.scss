@@ -13,6 +13,7 @@
     @include text-inputs;
     width: 20%;
     margin-bottom: 0;
+    cursor: pointer;
 
     & > span {
       font-size: 10px;
@@ -31,6 +32,7 @@
   .prev-btn,
   .next-btn {
     @include text-inputs;
+    cursor: pointer;
     width: 10%;
     margin-top: 0;
     margin-bottom: 0;
@@ -61,10 +63,16 @@
     @include block-border-box;
     position: absolute;
     background-color: white;
+    transition-duration: .5s;
+    transition-property: height;
     overflow: hidden;
     height: 0;
     z-index: 10;
     width: 100%;
+
+    &.show {
+      height: 410px;
+    }
 
   }
 
@@ -92,6 +100,16 @@
     @include regular-cell-table;
     border-spacing: 0;
     text-align: center;
+    background-color: #E1E1E1;
+    color: white;
+    cursor: not-allowed;
+
+    &.enabled {
+      color: #646464;
+      background-color: white;
+      cursor: pointer;
+    }
+
   }
 
 }

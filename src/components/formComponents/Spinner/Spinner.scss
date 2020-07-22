@@ -34,6 +34,8 @@
   }
 
   .button-up {
+    cursor: pointer;
+    outline: 0;
     border-bottom: 1px solid #CACACA;
     height: 50%;
     color: $text-darker;
@@ -41,6 +43,8 @@
   }
 
   .button-down {
+    cursor: pointer;
+    outline: 0;
     height: 50%;
     color: $text-darker;
     font-size: 10px;

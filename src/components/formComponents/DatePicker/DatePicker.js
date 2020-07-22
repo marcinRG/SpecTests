@@ -1,10 +1,65 @@
 import './DatePicker.scss';
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
+import {months} from '../../../data/monthAndDaysTables';
+import {DayHeaderRow} from './DayHeaderRow';
+import {DatePickerCell} from './DatePickerCell';
+import {getDateString, getElementClass, validDate} from '../../../utils/utils';
 
 export class DatePicker extends Component {
     constructor(props) {
         super(props);
+        const date = new Date();
+        this.state = {
+            showItems: false,
+            date: date,
+            daysOfMonth: createDaysOfMonth(date),
+            isError: false,
+            dateSelected: ''
+        }
+        this.toggleItemsList = this.toggleItemsList.bind(this);
+        this.changeMonth = this.changeMonth.bind(this);
+        this.setDate = this.setDate.bind(this);
+        this.changeSelectedDate = this.changeSelectedDate.bind(this);
+    }
+
+    toggleItemsList() {
+        this.setState({showItems: !this.state.showItems});
+    }
+
+    changeSelectedDate(event) {
+        const dateTxt = event.target.value;
+        const isError = dateTxt !== '' ? !validDate(dateTxt) : false;
+        this.setState({
+            dateSelected: dateTxt,
+            isError
+        });
+    }
+
+    setDate(day) {
+        const tempDate = new Date(this.state.date.toString());
+        tempDate.setDate(day);
+        this.setState({
+            dateSelected: getDateString(tempDate.toString(), '-'),
+            showItems: false
+        });
+    }
+
+    changeMonth(event) {
+
+        let month = this.state.date.getMonth();
+        const operation = event.target.getAttribute('data-operation');
+        if (operation === 'down') {
+            month = month - 1;
+        } else {
+            month = month + 1;
+        }
+        const year = this.state.date.getFullYear();
+        const tempDate = new Date(year, month, 1);
+        this.setState({
+            date: tempDate,
+            daysOfMonth: createDaysOfMonth(tempDate)
+        });
     }
 
     render() {
@@ -12,88 +67,34 @@ export class DatePicker extends Component {
             <div className="datepicker-input">
                 <label className="input-label">{this.props.label}</label>
                 <div className="inputs">
-                    <input type="text" className="input-field"/>
-                    <button className="input-btn"><span>&#128198;</span></button>
+                    <input type="text" className="input-field" value={this.state.dateSelected}
+                           onChange={this.changeSelectedDate}/>
+                    <button className="input-btn" onClick={this.toggleItemsList}><span>&#128198;</span></button>
                 </div>
-                <div className="date-picker">
+                <div className={getElementClass(this.state.showItems, 'date-picker', 'show')}>
                     <div className="month-selection">
-                        <button className="prev-btn"><span>&#9664;</span></button>
-                        <span className="month-display">kwiecień 2020</span>
-                        <button className="next-btn"><span> &#9658;</span></button>
+                        <button className="prev-btn" onClick={this.changeMonth} data-operation={'down'}>
+                            <span>&#9664;</span></button>
+                        <span className="month-display">
+                            {this.state.date.getFullYear() + ' ' + getMonthNames(months, this.state.date.getMonth())}
+                        </span>
+                        <button className="next-btn" onClick={this.changeMonth} data-operation={'up'}>
+                            <span> &#9658;</span></button>
                     </div>
                     <table className="days-table">
                         <thead>
-                        <tr>
-                            <td className="cell-header">Nie</td>
-                            <td className="cell-header">Pon</td>
-                            <td className="cell-header">Wto</td>
-                            <td className="cell-header">Sro</td>
-                            <td className="cell-header">Czw</td>
-                            <td className="cell-header">Pio</td>
-                            <td className="cell-header">Sob</td>
-                        </tr>
+                        <DayHeaderRow cellClassName={'cell-header'} isDaysShort={false}/>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td className="cell-day disabled" disabled="">29</td>
-                            <td className="cell-day disabled" disabled="">30</td>
-                            <td className="cell-day disabled" disabled="">31</td>
-                            <td className="cell-day">1</td>
-                            <td className="cell-day">2</td>
-                            <td className="cell-day">3</td>
-                            <td className="cell-day">4</td>
-                        </tr>
-                        <tr>
-                            <td className="cell-day">5</td>
-                            <td className="cell-day">6</td>
-                            <td className="cell-day">7</td>
-                            <td className="cell-day today-date current-date">8</td>
-                            <td className="cell-day">9</td>
-                            <td className="cell-day">10</td>
-                            <td className="cell-day">11</td>
-                        </tr>
-                        <tr>
-                            <td className="cell-day">12</td>
-                            <td className="cell-day">13</td>
-                            <td className="cell-day">14</td>
-                            <td className="cell-day">15</td>
-                            <td className="cell-day">16</td>
-                            <td className="cell-day">17</td>
-                            <td className="cell-day">18</td>
-                        </tr>
-                        <tr>
-                            <td className="cell-day">19</td>
-                            <td className="cell-day">20</td>
-                            <td className="cell-day">21</td>
-                            <td className="cell-day">22</td>
-                            <td className="cell-day">23</td>
-                            <td className="cell-day">24</td>
-                            <td className="cell-day">25</td>
-                        </tr>
-                        <tr>
-                            <td className="cell-day">26</td>
-                            <td className="cell-day">27</td>
-                            <td className="cell-day">28</td>
-                            <td className="cell-day">29</td>
-                            <td className="cell-day">30</td>
-                            <td className="cell-day disabled" disabled="">1</td>
-                            <td className="cell-day disabled" disabled="">2</td>
-                        </tr>
-                        <tr>
-                            <td className="cell-day disabled" disabled="">3</td>
-                            <td className="cell-day disabled" disabled="">4</td>
-                            <td className="cell-day disabled" disabled="">5</td>
-                            <td className="cell-day disabled" disabled="">6</td>
-                            <td className="cell-day disabled" disabled="">7</td>
-                            <td className="cell-day disabled" disabled="">8</td>
-                            <td className="cell-day disabled" disabled="">9</td>
-                        </tr>
+                        {createTableRows(6, 7, this.state.daysOfMonth, this.setDate)}
                         </tbody>
                     </table>
                 </div>
+                {this.state.isError &&
                 <div className="error-msg">
                     <span className="error-txt">This is some random error message!!!</span>
-                </div>
+                </div>}
+
             </div>
         )
     }
@@ -104,3 +105,73 @@ DatePicker.propTypes = {
     errorMessage: PropTypes.string.isRequired,
     validation: PropTypes.object
 };
+
+
+function getMonthNames(monthsTable, index) {
+    return monthsTable[index];
+}
+
+function lastDayOfPreviousMonth(date) {
+    return new Date(date.getFullYear(), date.getMonth(), 0).getDate();
+}
+
+
+function firstDayWeekOfMonth(date) {
+    const dateTemp = new Date(date.getTime());
+    dateTemp.setDate(1);
+    return dateTemp.getDay();
+}
+
+function daysInMonth(date) {
+    return new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
+}
+
+function createDaysOfMonth(date) {
+    const firstDay = firstDayWeekOfMonth(date);
+    const daysInPrevious = lastDayOfPreviousMonth(date);
+    const daysCount = daysInMonth(date);
+    const maxValue = 6 * 7;
+    let values = [];
+    for (let i = 0; i < maxValue; i++) {
+        if (i < firstDay) {
+            values.push({
+                day: daysInPrevious - firstDay + i + 1,
+                enabled: false
+            });
+        }
+        if (i >= firstDay && i < (daysCount + firstDay)) {
+            values.push({
+                day: i - firstDay + 1,
+                enabled: true
+            });
+        }
+        if (i >= (daysCount + firstDay)) {
+            values.push({
+                day: i - (daysCount + firstDay) + 1,
+                enabled: false
+            });
+        }
+    }
+    return values;
+}
+
+function createTableRows(maxHeight, maxWidth, daysTable, action) {
+    let rows = [];
+    if (daysTable.length > 0) {
+        for (let i = 0; i < maxHeight; i++) {
+            rows.push(<tr key={i}>{createTableCells(i, maxWidth, daysTable, action)}</tr>)
+        }
+    }
+    return rows;
+}
+
+function createTableCells(row, maxWidth, daysTable, action) {
+    let cells = [];
+    for (let i = 0; i < maxWidth; i++) {
+        const id = row * maxWidth + i;
+        const val = daysTable[id];
+        cells.push(<DatePickerCell key={id} value={val.day} cellClass={'cell-day'} isEnabled={val.enabled}
+                                   action={action}/>);
+    }
+    return cells;
+}

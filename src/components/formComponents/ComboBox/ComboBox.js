@@ -9,6 +9,7 @@ export class ComboBox extends Component {
         this.state = {
             showItems: false,
             selected: '',
+            isError: false,
             items: ['lorem ipsum', 'costam costam', 'excetucable', 'random func']
         };
         this.toggleItemsList = this.toggleItemsList.bind(this);
@@ -23,7 +24,6 @@ export class ComboBox extends Component {
     }
 
     toggleItemsList() {
-        console.log('toggle items');
         this.setState({showItems: !this.state.showItems});
     }
 
@@ -32,7 +32,7 @@ export class ComboBox extends Component {
             <div className="combobox-input">
                 <label className="input-label">{this.props.label}</label>
                 <div className="inputs">
-                    <input type="text" className="input-field" value={this.state.selected}/>
+                    <input type="text" className="input-field" value={this.state.selected} readOnly={true}/>
                     <button className="input-btn" onClick={this.toggleItemsList}><span>&#x25bc;</span></button>
                 </div>
                 <ul className="list-of-elements" style={setListStyle(this.state.showItems, this.state.items)}>
@@ -40,9 +40,11 @@ export class ComboBox extends Component {
                         <ComboBoxItem key={index} value={elem} action={this.changeSelected}/>
                     )}
                 </ul>
+                {this.state.isError &&
                 <div className="error-msg">
                     <span className="error-txt">This is some random error message!!!</span>
-                </div>
+                </div>}
+
             </div>
         )
     }
