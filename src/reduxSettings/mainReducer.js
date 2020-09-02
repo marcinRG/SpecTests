@@ -5,7 +5,7 @@ import {documentsReducers} from './reducers/documentsReducers';
 
 const mainReducer = combineReducers({
         appState: appStateReducers,
-        companyDetails: companyDetailsReducers,
+        company: companyDetailsReducers,
         documents: documentsReducers
     }
 );
