@@ -6,21 +6,21 @@ export class SimpleTextInput extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            value: '',
+            value: props.value,
             isError: false
         }
         this.changeValue = this.changeValue.bind(this);
-
     }
 
     changeValue(event) {
-        if (this.validate(event.target.value)) {
-            this.setState({value: event.target.value})
-        }
+        this.setState({
+            value: event.target.value,
+            isError: !this.validate(event.target.value)
+        });
     }
 
     validate(txtValue) {
-        return true;
+        return this.props.validate(txtValue);
     }
 
     render() {
@@ -32,7 +32,7 @@ export class SimpleTextInput extends Component {
                 </div>
                 {this.state.isError &&
                 <div className="error-msg">
-                    <span className="error-txt">This is some random error message!!!</span>
+                    <span className="error-txt">{this.props.errorMessage}</span>
                 </div>}
             </div>
         )
@@ -41,6 +41,7 @@ export class SimpleTextInput extends Component {
 
 SimpleTextInput.propTypes = {
     label: PropTypes.string.isRequired,
+    value: PropTypes.string.isRequired,
     errorMessage: PropTypes.string.isRequired,
-    validation: PropTypes.object
+    validate: PropTypes.func
 };
