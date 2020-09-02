@@ -13,10 +13,12 @@ export class SimpleTextInput extends Component {
     }
 
     changeValue(event) {
+        const isError = !this.validate(event.target.value);
         this.setState({
             value: event.target.value,
-            isError: !this.validate(event.target.value)
+            isError
         });
+        this.props.validateForm(this.props.validateFormPropertyName,!isError);
     }
 
     validate(txtValue) {
@@ -43,5 +45,7 @@ SimpleTextInput.propTypes = {
     label: PropTypes.string.isRequired,
     value: PropTypes.string.isRequired,
     errorMessage: PropTypes.string.isRequired,
-    validate: PropTypes.func
+    validate: PropTypes.func,
+    validateForm: PropTypes.func,
+    validateFormPropertyName: PropTypes.string
 };

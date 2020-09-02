@@ -59,6 +59,14 @@ body {
   &.blue {
     color: $text-dark;
     border: 2px solid $text-dark;
+
+    &[disabled] {
+      cursor: not-allowed;
+      background-color: $section-bg-color;
+      border-color: $border-light;
+      color: $border-light;
+    }
+
   }
 }
 
