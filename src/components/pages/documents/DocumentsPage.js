@@ -1,5 +1,5 @@
 import React from 'react';
-import {TableComponent} from '../../tableComponent/TableComponent';
+import TableComponent from '../../tableComponent/TableComponent';
 
 export function DocumentsPage() {
     const func = () => {

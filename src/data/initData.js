@@ -148,7 +148,10 @@ export const InitData = {
 
     documents: {
         settings: {
-            editDeleteRowVisible: true
+            editDeleteRowVisible: true,
+            messageVisible: false,
+            itemsPerPage: 10,
+            currentPage: 1,
         },
         labels: [
             {
