@@ -7,6 +7,8 @@ import {TableItemsCount} from './tableItemsCount/TableItemsCount';
 import {TablePageSelector} from './tablePageSelector/TablePageSelector';
 import {buttonTypes, ScreenMessage} from '../screenMessage/ScreenMessage';
 import PropTypes from 'prop-types';
+import {actionNames} from '../../reduxSettings/constants';
+import {sortOrder} from '../../utils/sortOdrer';
 
 
 class TableComponent extends Component {
@@ -31,11 +33,16 @@ class TableComponent extends Component {
     }
 
     changePage(i) {
-        //console.log(i);
+        console.log(i);
     }
 
     changeSort(label) {
-        console.log(label);
+        const index = getLabelIndex(label, this.props.labels);
+        const obj = changeSortDirection(this.props.labels[index]);
+        this.props.changeSortMethod({
+           index: index,
+           newValue: obj
+        });
     }
 
     editItem(itemID) {
@@ -81,7 +88,6 @@ class TableComponent extends Component {
     }
 
     render() {
-        console.log(this.props);
         return (
             <React.Fragment>
                 <TableItemsCount count={getLengthFromObject(this.props.data)} selectedPage={this.props.settings.currentPage}
@@ -98,7 +104,8 @@ class TableComponent extends Component {
                 {/*    }*/}
                     </tbody>
                 </table>
-                {/*<TablePageSelector action={this.changePage} count={30} selectedPage={1} itemsPerPage={10}/>*/}
+                <TablePageSelector action={this.changePage} count={getLengthFromObject(this.props.data)} selectedPage={this.props.settings.currentPage}
+                                   itemsPerPage={this.props.settings.itemsPerPage}/>
                 {/*<ScreenMessage isVisible={this.state.messageSettings.visible} action={this.modalAction}*/}
                 {/*               label="Do you want to remove record" message="Press YES to remove record"*/}
                 {/*               buttons={[buttonTypes.YES_BUTTON, buttonTypes.CANCEL_BUTTON]}*/}
@@ -116,6 +123,7 @@ TableComponent.propTypes = {
     data: PropTypes.object,
     labels: PropTypes.array,
     settings: PropTypes.object,
+    changeSortMethod: PropTypes.func
 };
 
 function mapStateToProps(state) {
@@ -126,8 +134,39 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps)(TableComponent);
+function mapDispatchToProps(dispatch) {
+    return {
+        changeSortMethod: (obj) => {
+           dispatch({
+               type: actionNames.CHANGE_SORT_METHOD,
+               value: obj
+           })
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(TableComponent);
 
 function getLengthFromObject(obj) {
     return Object.keys(obj).length;
+}
+
+function getLabelIndex(labelField, labels) {
+    return labels.findIndex((label) => {
+        return label.labelField === labelField;
+    });
+}
+
+function changeSortDirection(obj) {
+    const copy = {...obj};
+    if (copy.sortDirection) {
+        if (copy.sortDirection === sortOrder.SORT_DESC) {
+            delete copy.sortDirection;
+        } else {
+            copy.sortDirection = sortOrder.SORT_DESC;
+        }
+    } else {
+        copy.sortDirection = sortOrder.SORT_ASC;
+    }
+    return copy;
 }

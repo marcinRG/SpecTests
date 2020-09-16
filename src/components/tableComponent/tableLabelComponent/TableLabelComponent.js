@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {LabelComponent} from './LabelComponent';
-import {sortOrder} from '../../../utils/sortOdrer';
 import PropTypes from 'prop-types';
 
 export class TableLabelComponent extends Component {
@@ -12,11 +11,6 @@ export class TableLabelComponent extends Component {
 
     tableLabelClick(labelField) {
         this.props.changeSort(labelField);
-        // const index = getLabelIndex(labelField, this.state.labels);
-        // const obj = changeSortDirection(this.state.labels[index]);
-        // const updatedLabels = Array.from(this.state.labels);
-        // updatedLabels[index] = obj;
-        // this.setState({labels: updatedLabels});
     }
 
     render() {
@@ -33,26 +27,6 @@ export class TableLabelComponent extends Component {
             </thead>
         );
     }
-}
-
-function getLabelIndex(labelField, labels) {
-    // return labels.findIndex((label) => {
-    //     return label.labelField === labelField;
-    // });
-}
-
-function changeSortDirection(obj) {
-    // const copy = Object.assign({}, obj);
-    // if (copy.sortDirection) {
-    //     if (copy.sortDirection === sortOrder.SORT_DESC) {
-    //         delete copy.sortDirection;
-    //     } else {
-    //         copy.sortDirection = sortOrder.SORT_DESC;
-    //     }
-    // } else {
-    //     copy.sortDirection = sortOrder.SORT_ASC;
-    // }
-    // return copy;
 }
 
 TableLabelComponent.propTypes = {
