@@ -1,3 +1,5 @@
+import {dataTypes} from './dataTypes';
+
 export function getElementClass(check, className, classAdditionalText) {
     if (check) {
         return `${className} ${classAdditionalText}`;
@@ -17,4 +19,40 @@ export function getDateString(dateAsString, separator) {
 
 export function validDate(dateAsString) {
     return (dateAsString && !Number.isNaN(Date.parse(dateAsString)));
+}
+
+export function objectIsNotEmpty(obj) {
+    if (obj && (Object.keys(obj).length !== 0)) {
+        return true;
+    }
+    return false;
+}
+
+export function objectPropertiesToArray(object) {
+    let values = [];
+    if (object) {
+        values = Object.values(object);
+    }
+    return values;
+}
+
+export function valuesAsObjectToArray(object) {
+    const keys = Object.keys(object);
+    return keys.map((key) => {
+        return {...object[key], id: key};
+    });
+}
+
+export function formatData(value, dataType) {
+    switch (dataType) {
+        case dataTypes.DATE: {
+            return getDateString(value, '-');
+        }
+        case dataTypes.STRING: {
+            return value;
+        }
+        case dataTypes.NUMBER: {
+            return value + '';
+        }
+    }
 }

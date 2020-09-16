@@ -9,6 +9,7 @@ import {buttonTypes, ScreenMessage} from '../screenMessage/ScreenMessage';
 import PropTypes from 'prop-types';
 import {actionNames} from '../../reduxSettings/constants';
 import {sortOrder} from '../../utils/sortOdrer';
+import {objectPropertiesToArray} from '../../utils/utils';
 
 
 class TableComponent extends Component {
@@ -40,8 +41,8 @@ class TableComponent extends Component {
         const index = getLabelIndex(label, this.props.labels);
         const obj = changeSortDirection(this.props.labels[index]);
         this.props.changeSortMethod({
-           index: index,
-           newValue: obj
+            index: index,
+            newValue: obj
         });
     }
 
@@ -90,21 +91,22 @@ class TableComponent extends Component {
     render() {
         return (
             <React.Fragment>
-                <TableItemsCount count={getLengthFromObject(this.props.data)} selectedPage={this.props.settings.currentPage}
+                <TableItemsCount count={getLengthFromObject(this.props.data)}
+                                 selectedPage={this.props.settings.currentPage}
                                  itemsPerPage={this.props.settings.itemsPerPage}/>
                 <table className="item-list-table">
-                    <TableLabelComponent labels={this.props.labels} editDeleteRowVisible={this.props.settings.editDeleteRowVisible}
+                    <TableLabelComponent labels={this.props.labels}
+                                         editDeleteRowVisible={this.props.settings.editDeleteRowVisible}
                                          changeSort={this.changeSort}
                     />
                     <tbody>
-                {/*    {this.state.data.map((document, i) =>*/}
-                {/*        <TableRowComponent key={i} id={document.id} date={document.date} number={document.document_nr}*/}
-                {/*                           total={document.document_sum} editAction={this.editItem} removeAction={this.removeItem}/>*/}
-                {/*    )*/}
-                {/*    }*/}
+                    {objectPropertiesToArray(this.props.data).map((document, i) =>
+                        <TableRowComponent key={i} value={document} defs={this.props.labels} editAction={this.editItem}
+                                           removeAction={this.removeItem}/>)}
                     </tbody>
                 </table>
-                <TablePageSelector action={this.changePage} count={getLengthFromObject(this.props.data)} selectedPage={this.props.settings.currentPage}
+                <TablePageSelector action={this.changePage} count={getLengthFromObject(this.props.data)}
+                                   selectedPage={this.props.settings.currentPage}
                                    itemsPerPage={this.props.settings.itemsPerPage}/>
                 {/*<ScreenMessage isVisible={this.state.messageSettings.visible} action={this.modalAction}*/}
                 {/*               label="Do you want to remove record" message="Press YES to remove record"*/}
@@ -137,10 +139,10 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
     return {
         changeSortMethod: (obj) => {
-           dispatch({
-               type: actionNames.CHANGE_SORT_METHOD,
-               value: obj
-           })
+            dispatch({
+                type: actionNames.CHANGE_SORT_METHOD,
+                value: obj
+            })
         }
     }
 }

@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
+import {formatData} from '../../../utils/utils';
 
 export class TableRowComponent extends Component {
     constructor(props) {
@@ -9,19 +10,17 @@ export class TableRowComponent extends Component {
     }
 
     editItem() {
-        this.props.editAction(this.props.id);
+        this.props.editAction(this.props.value.id);
     }
 
     removeItem() {
-        this.props.removeAction(this.props.id);
+        this.props.removeAction(this.props.value.id);
     }
 
     render() {
         return (
             <tr>
-                <td className="table-cell">{getDateAsString(this.props.date, '-')}</td>
-                <td className="table-cell">{this.props.number}</td>
-                <td className="table-cell">{this.props.total}</td>
+                {renderValues(this.props.value, this.props.defs)}
                 <td className="table-cell">
                     <button className="table-button" onClick={this.editItem}>&#9998; Edit
                     </button>
@@ -34,32 +33,15 @@ export class TableRowComponent extends Component {
     }
 }
 
-function getDateAsString(dateAsString, separator) {
-    const date = getDateFromString(dateAsString);
-    return `${date.getFullYear()}${separator}${formatNumbers(date.getMonth() + 1)}${separator}${formatNumbers(date.getDate())}`;
+function renderValues(object, defs) {
+    return defs.map((value,index) => {
+        return (<td className="table-cell" key={index}>{formatData(object[value.labelField], value.dataType)}</td>);
+    });
 }
-
-function validateDate(dateAsString) {
-    return (dateAsString && Date.parse(dateAsString) !== Number.NaN);
-}
-
-function getDateFromString(dateAsString) {
-    if (validateDate(dateAsString)) {
-        return new Date(dateAsString);
-    }
-}
-
-function formatNumbers(n) {
-    const str = n + '';
-    return str.length > 1 ? str : '0' + str;
-}
-
 
 TableRowComponent.propTypes = {
-    id: PropTypes.number.isRequired,
-    date: PropTypes.string.isRequired,
-    number: PropTypes.string.isRequired,
-    total: PropTypes.number.isRequired,
+    value: PropTypes.object.isRequired,
+    defs: PropTypes.array.isRequired,
     editAction: PropTypes.func.isRequired,
     removeAction: PropTypes.func.isRequired
 };

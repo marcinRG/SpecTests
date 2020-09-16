@@ -1,3 +1,5 @@
+import {dataTypes} from '../utils/dataTypes';
+
 export const InitData = {
     appState: {
         showApplicationJumbotron: false
@@ -157,16 +159,19 @@ export const InitData = {
             {
                 labelName: 'date',
                 labelField: 'date',
+                dataType: dataTypes.DATE,
                 sortable: true
             },
             {
                 labelName: 'document no.',
                 labelField: 'document_nr',
+                dataType: dataTypes.STRING,
                 sortable: true
             },
             {
                 labelName: 'total',
                 labelField: 'document_sum',
+                dataType: dataTypes.NUMBER,
                 sortable: true
             }
         ],
@@ -182,72 +187,72 @@ export const InitData = {
                 document_sum: 125.30
             },
             '3': {
-                date: '2020-01-2011:32:38.000Z',
+                date: '2020-01-20T11:32:38.000Z',
                 document_nr: '203455/12',
                 document_sum: 8825.73
             },
             '4': {
-                date: '2020-02-0311:32:38.000Z',
+                date: '2020-02-03T11:32:38.000Z',
                 document_nr: '203455/02',
                 document_sum: 12525.73
             },
             '5': {
-                date: '2020-02-1011:32:38.000Z',
+                date: '2020-02-10T11:32:38.000Z',
                 document_nr: '203455/03',
                 document_sum: 1255.88
             },
             '6': {
-                date: '2020-02-1011:32:38.000Z',
+                date: '2020-02-10T11:32:38.000Z',
                 document_nr: '203455/03',
                 document_sum: 1255.88
             },
             '7': {
-                date: '2020-02-1011:32:38.000Z',
+                date: '2020-02-10T11:32:38.000Z',
                 document_nr: '203455/03',
                 document_sum: 1255.88
             },
             '8': {
-                date: '2020-02-1011:32:38.000Z',
+                date: '2020-02-10T11:32:38.000Z',
                 document_nr: '203455/03',
                 document_sum: 1255.88
             },
             '9': {
-                date: '2020-02-1011:32:38.000Z',
+                date: '2020-02-10T11:32:38.000Z',
                 document_nr: '203455/03',
                 document_sum: 1255.88
             },
             '10': {
-                date: '2020-02-1011:32:38.000Z',
+                date: '2020-02-10T11:32:38.000Z',
                 document_nr: '203455/03',
                 document_sum: 1255.88
             },
             '11': {
-                date: '2020-02-1011:32:38.000Z',
+                date: '2020-02-10T11:32:38.000Z',
                 document_nr: '203455/03',
                 document_sum: 1255.88
             },
             '12': {
-                date: '2020-02-1011:32:38.000Z',
+                date: '2020-02-10T11:32:38.000Z',
                 document_nr: '203455/03',
                 document_sum: 1255.88
             },
             '13': {
-                date: '2020-02-1011:32:38.000Z',
+                date: '2020-02-10T11:32:38.000Z',
                 document_nr: '203455/03',
                 document_sum: 1255.88
             },
             '14': {
-                date: '2020-02-1011:32:38.000Z',
+                date: '2020-02-10T11:32:38.000Z',
                 document_nr: '203455/03',
                 document_sum: 1255.88
             },
             '15': {
-                date: '2020-02-1011:32:38.000Z',
+                date: '2020-02-10T11:32:38.000Z',
                 document_nr: '203455/03',
                 document_sum: 1255.88
             },
             '16': {
-                date: '2020-02-1011:32:38.000Z',
+                date: '2020-02-10T11:32:38.000Z',
                 document_nr: '203455/03',
                 document_sum: 1255.88
             },
