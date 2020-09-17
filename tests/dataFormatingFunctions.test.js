@@ -1,4 +1,4 @@
-import {describe, it} from '@jest/globals';
+import {describe, it, expect} from '@jest/globals';
 import {formatData, getDateString, validDate} from '../src/utils/utils';
 import {dataTypes} from '../src/utils/dataTypes';
 

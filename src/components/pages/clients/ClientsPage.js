@@ -1,46 +1,12 @@
 import React from 'react';
+import ClientsTable from '../../tableComponent/tables/ClientsTable';
 
 export function ClientsPage() {
     return (
         <React.Fragment>
             <section className="table-page">
                 <h2 className="form-title">Clients <span className="blue">list</span></h2>
-                <table className="item-list-table">
-                    <thead>
-                    <tr>
-                        <td className="header-cell">Name</td>
-                        <td className="header-cell">Name</td>
-                        <td className="header-cell">Name</td>
-                        <td className="header-cell">Name</td>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td className="table-cell">Name</td>
-                        <td className="table-cell">Name</td>
-                        <td className="table-cell">Name</td>
-                        <td className="table-cell">Name</td>
-                    </tr>
-                    <tr>
-                        <td className="table-cell">Name</td>
-                        <td className="table-cell">Name</td>
-                        <td className="table-cell">Name</td>
-                        <td className="table-cell">Name</td>
-                    </tr>
-                    <tr>
-                        <td className="table-cell">Name</td>
-                        <td className="table-cell">Name</td>
-                        <td className="table-cell">Name</td>
-                        <td className="table-cell">Name</td>
-                    </tr>
-                    <tr>
-                        <td className="table-cell">Name</td>
-                        <td className="table-cell">Name</td>
-                        <td className="table-cell">Name</td>
-                        <td className="table-cell">Name</td>
-                    </tr>
-                    </tbody>
-                </table>
+                <ClientsTable />
             </section>
         </React.Fragment>
     )

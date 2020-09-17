@@ -12,7 +12,6 @@ import {changeJumbotronVisibility, toggleJumbotronVisibility} from '../../../red
 class HomePage extends Component {
     constructor(props) {
         super(props);
-        console.log(props);
         this.changeJumbotronVisibility = this.changeJumbotronVisibility.bind(this);
     }
 

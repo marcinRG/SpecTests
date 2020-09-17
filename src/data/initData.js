@@ -13,140 +13,118 @@ export const InitData = {
             addressPostalCode: '23-569',
             vatUeNumber: 'GB 23450012',
         },
-        accounts: [
-            {
-                id: 1,
+        accounts: {
+            '1': {
                 default: true,
                 accountType: 'krajowe',
                 swiftCodeAccount: 'PL XX 22 33',
                 bankName: 'PKO BP',
                 accountNumber: ' PL 06 1189 0035 0000 0001 0056 9186'
             },
-            {
-                id: 2,
+            '2': {
                 default: false,
                 accountType: 'zagraniczne',
                 swiftCodeAccount: 'XW ZX GB LPP',
                 bankName: 'Bank of Austria',
                 accountNumber: ' GB 06 1189 0035 0000 0001 0056 9186'
             }
-        ]
+    }
     },
-    cars: [
-        {
-            id: 1,
+    cars: {
+        '1': {
             plateNo: 'DXC 2275',
             carName: 'Mercedes Vito'
         },
-        {
-            id: 2,
+        '2': {
             plateNo: 'WBA 3381',
             carName: 'Mercedes Sprinter'
         },
-        {
-            id: 3,
+        '3': {
             plateNo: 'AXB 125Q',
             carName: 'Fiat Ducato'
         },
-    ],
-    taxRates: [
-        {
-            id: 1,
+    },
+    taxRates: {
+        '1': {
             taxName: '0%',
             taxRate: 0
         },
-        {
-            id: 2,
+        '2': {
             taxName: '5%',
             taxRate: 0.05
         },
-        {
-            id: 3,
+        '3': {
             taxName: '8%',
             taxRate: 0.08
         },
-        {
-            id: 4,
+        '4': {
             taxName: '23%',
             taxRate: 0.23
         },
-        {
-            id: 5,
+        '5': {
             taxName: 'NP',
             taxRate: 0
         },
-    ],
-    methodsOfPayments: [
-        {
-            id: 1,
+    },
+    methodsOfPayments: {
+        '1': {
             payment: 'gotówka'
         },
-        {
-            id: 2,
+        '2': {
             payment: 'przelew'
         }
-    ],
-    accountTypes: [
-        {
-            id: 1,
+    },
+    accountTypes: {
+        '1': {
             description: 'krajowe'
         },
-        {
-            id: 2,
+        '2': {
             description: 'zagraniczne'
         },
-    ],
-    textAdditions: [
-        {
-            id: 1,
+    },
+    textAdditions: {
+        '1': {
             symbol: 'krajowe',
             text: 'Dziękujemy i zapraszamy ponownie',
         },
-        {
-            id: 2,
+        '2': {
             symbol: 'zagraniczne',
             text: 'Podatek VAT od transakcji uiszcza nabywca',
             textCont: 'Dostawa wewnątrzwspólnotowa art. 41 i 42 ust. o VAT'
         }
-    ],
-    unitsOfMeasurement: [
-        {
-            id: 1,
+    },
+    unitsOfMeasurement: {
+        '1': {
             unit: 'szt',
         },
-        {
-            id: 2,
+        '2': {
             unit: 'm'
         }
-    ],
-    currencies: [
-        {
-            id: 1,
+    },
+    currencies: {
+        '1': {
             country: 'PL',
             currency: 'zł'
         },
-        {
-            id: 2,
+        '2': {
             country: 'CZ',
             currency: 'kč'
         },
-        {
-            id: 3,
+        '3': {
             country: 'DE',
             currency: '€'
         }
 
-    ],
-    invoiceType: [
-        {
-            id: 1,
+    },
+    invoiceType: {
+        '1': {
+
             type: 'krajowa'
         },
-        {
-            id: 2,
+        '2': {
             type: 'zagraniczna'
         }
-    ],
+    },
 
     documents: {
         settings: {
@@ -259,14 +237,39 @@ export const InitData = {
         }
     },
     products: {
-        settings: {},
-        labels: [],
+        settings: {
+            editDeleteRowVisible: true,
+            messageVisible: false,
+            itemsPerPage: 10,
+            currentPage: 1,
+        },
+        labels: [
+            {
+                labelName: 'product',
+                labelField: 'productName',
+                dataType: dataTypes.STRING,
+                sortable: true
+            },
+            {
+                labelName: 'PCN',
+                labelField: 'productCode',
+                dataType: dataTypes.STRING,
+                sortable: true
+            },
+            {
+                labelName: 'price',
+                labelField: 'price',
+                dataType: dataTypes.NUMBER,
+                sortable: true
+            }
+        ],
         data: {
             '1': {
                 productName: 'Something',
                 productNameCont: '',
                 productCode: '6120045000',
                 unitsOfMeasurement: 'szt',
+                price: 12.45,
                 piecesInPackage: 5,
                 weightInKG: .35,
             },
@@ -275,15 +278,84 @@ export const InitData = {
                 productNameCont: '',
                 productCode: '6120045000',
                 unitsOfMeasurement: 'szt',
+                price: 9.25,
+                piecesInPackage: 5,
+                weightInKG: .35,
+            },
+            '3': {
+                productName: 'Lorem ipsum',
+                productNameCont: '',
+                productCode: '981245000',
+                unitsOfMeasurement: 'szt',
+                price: 25.75,
+                piecesInPackage: 5,
+                weightInKG: .35,
+            },
+            '4': {
+                productName: 'Lorem ipsum',
+                productNameCont: '',
+                productCode: '981245000',
+                unitsOfMeasurement: 'szt',
+                price: 25.75,
+                piecesInPackage: 5,
+                weightInKG: .35,
+            },
+            '5': {
+                productName: 'Lorem ipsum',
+                productNameCont: '',
+                productCode: '981245000',
+                unitsOfMeasurement: 'szt',
+                price: 25.75,
+                piecesInPackage: 5,
+                weightInKG: .35,
+            },
+            '6': {
+                productName: 'Lorem ipsum',
+                productNameCont: '',
+                productCode: '981245000',
+                unitsOfMeasurement: 'szt',
+                price: 25.75,
+                piecesInPackage: 5,
+                weightInKG: .35,
+            },
+            '7': {
+                productName: 'Lorem ipsum',
+                productNameCont: '',
+                productCode: '981245000',
+                unitsOfMeasurement: 'szt',
+                price: 25.75,
                 piecesInPackage: 5,
                 weightInKG: .35,
             }
-
         }
     },
     clients: {
-        settings: {},
-        labels: [],
+        settings: {
+            editDeleteRowVisible: true,
+            messageVisible: false,
+            itemsPerPage: 10,
+            currentPage: 1
+        },
+        labels: [
+            {
+                labelName: 'company',
+                labelField: 'companyName',
+                dataType: dataTypes.STRING,
+                sortable: true
+            },
+            {
+                labelName: 'city',
+                labelField: 'addressCity',
+                dataType: dataTypes.STRING,
+                sortable: true
+            },
+            {
+                labelName: 'street',
+                labelField: 'addressStreet',
+                dataType: dataTypes.STRING,
+                sortable: true
+            }
+        ],
         data: {
             '1': {
                 companyName: 'Something Co.',
@@ -294,20 +366,20 @@ export const InitData = {
                 vatUeNumber: 'PL 123456789',
             },
             '2': {
-                companyName: 'Something Co.',
+                companyName: 'AKME GmbH',
                 companyNameCont: '',
-                addressStreet: 'Sienkiewicza 19A/12',
-                addressCity: 'Wrocław',
-                addressPostalCode: '00-850',
-                vatUeNumber: 'PL 123456789',
+                addressStreet: 'Breslauer Str 19',
+                addressCity: 'Berlin',
+                addressPostalCode: '33-150',
+                vatUeNumber: 'DE 123456789',
             },
             '3': {
-                companyName: 'Something Co.',
+                companyName: 'Super Company',
                 companyNameCont: '',
-                addressStreet: 'Sienkiewicza 19A/12',
-                addressCity: 'Wrocław',
-                addressPostalCode: '00-850',
-                vatUeNumber: 'PL 123456789',
+                addressStreet: 'Downing Str 8',
+                addressCity: 'London',
+                addressPostalCode: 'AX-12E',
+                vatUeNumber: 'UK 123456789',
             },
             '4': {
                 companyName: 'Something Co.',

@@ -1,5 +1,5 @@
 import {objectPropertiesToArray, valuesAsObjectToArray} from '../src/utils/utils';
-import {describe, it} from '@jest/globals';
+import {describe, it, expect} from '@jest/globals';
 
 
 describe('Object coversion to Array functions tests', () => {

@@ -79,7 +79,9 @@ function createButton(buttonType, buttonLabels, action) {
 function setHeightAndClassName(isVisible, DOMelement) {
     let className = 'screen-msg';
     if (isVisible) {
-        DOMelement.style.height = document.documentElement.offsetHeight + 'px';
+        if (DOMelement) {
+            DOMelement.style.height = document.documentElement.offsetHeight + 'px';
+        }
         className = className + ' ' + 'visible';
     }
     return className;

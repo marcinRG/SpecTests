@@ -1,12 +1,12 @@
 import {InitData} from '../../data/initData';
 import {actionNames} from '../constants';
 
-export function documentsReducers(state = InitData.documents, action) {
+export function itemsReducers(state = InitData.products, action) {
     switch (action.type) {
         case actionNames.CHANGE_SORT_METHOD: {
             let newLabels = [...state.labels];
             newLabels[action.value.index] = action.value.newValue;
-            return {...state, labels: newLabels};
+            return {...state,labels: newLabels};
         }
         case actionNames.SHOW_MESSAGE: {
             let newValue = {...state.settings, messageVisible: action.value.visible}
