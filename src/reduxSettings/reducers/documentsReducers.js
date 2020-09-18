@@ -12,6 +12,12 @@ export function documentsReducers(state = InitData.documents, action) {
             let newValue = {...state.settings, messageVisible: action.value.visible}
             return {...state, settings: newValue};
         }
+
+        case actionNames.CHANGE_PAGE: {
+            let newValue = {...state.settings,currentPage: action.value.page}
+            return {...state, settings: newValue};
+        }
+
         default: {
             return state;
         }

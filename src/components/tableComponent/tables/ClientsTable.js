@@ -1,14 +1,15 @@
-import connect from 'react-redux/es/connect/connect';
+import {connect} from 'react-redux';
 import {TableComponent} from '../TableComponent';
 import {actionNames} from '../../../reduxSettings/constants';
 
 
 
-function mapStateToProps(state) {
+function mapStateToProps(state, ownProps) {
     return {
+        editFunction: ownProps.editFunction,
         data: state.clients.data,
         labels: state.clients.labels,
-        settings: state.clients.settings,
+        settings: state.clients.settings
     }
 }
 

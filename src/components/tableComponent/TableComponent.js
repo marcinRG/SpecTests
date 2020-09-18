@@ -5,9 +5,8 @@ import {TableItemsCount} from './tableItemsCount/TableItemsCount';
 import {TablePageSelector} from './tablePageSelector/TablePageSelector';
 import {buttonTypes, ScreenMessage} from '../screenMessage/ScreenMessage';
 import PropTypes from 'prop-types';
-import {actionNames} from '../../reduxSettings/constants';
 import {sortOrder} from '../../utils/sortOdrer';
-import {objectPropertiesToArray, valuesAsObjectToArray} from '../../utils/utils';
+import {valuesAsObjectToArray} from '../../utils/utils';
 
 
 export class TableComponent extends Component {
@@ -27,7 +26,17 @@ export class TableComponent extends Component {
     }
 
     changePage(i) {
-        console.log(i);
+        if (this.props.changePage) {
+            if (i) {
+                this.props.changePage({page: i});
+            } else {
+                if (this.props.settings.currentPage < getPagesNumber(getLengthFromObject(this.props.data), this.props.settings.itemsPerPage)) {
+                    this.props.changePage({page: this.props.settings.currentPage + 1});
+                } else {
+                    this.props.changePage({page: 1});
+                }
+            }
+        }
     }
 
     changeSort(label) {
@@ -42,10 +51,9 @@ export class TableComponent extends Component {
     }
 
     editItem(itemID) {
-        this.setState({
-            selected: itemID,
-            action: actions.EDIT
-        });
+        if (this.props.editFunction) {
+            this.props.editFunction(itemID);
+        }
     }
 
     removeItem(itemID) {
@@ -108,9 +116,8 @@ export class TableComponent extends Component {
                                            removeAction={this.removeItem}/>)}
                     </tbody>
                 </table>
-                <TablePageSelector action={this.changePage} count={getLengthFromObject(this.props.data)}
-                                   selectedPage={this.props.settings.currentPage}
-                                   itemsPerPage={this.props.settings.itemsPerPage}/>
+                <TablePageSelector action={this.changePage} selectedPage={this.props.settings.currentPage}
+                                   numberOfPages={getPagesNumber(getLengthFromObject(this.props.data), this.props.settings.itemsPerPage)}/>
                 <ScreenMessage isVisible={this.props.settings.messageVisible} action={this.modalAction}
                                label="Do you want to remove record" message="Press YES to remove record"
                                buttons={[buttonTypes.YES_BUTTON, buttonTypes.CANCEL_BUTTON]}
@@ -129,8 +136,18 @@ TableComponent.propTypes = {
     labels: PropTypes.array,
     settings: PropTypes.object,
     changeSortMethod: PropTypes.func,
-    toggleMessageVisibility: PropTypes.func
+    toggleMessageVisibility: PropTypes.func,
+    changePage: PropTypes.func,
+    editFunction: PropTypes.func,
+    number: PropTypes.number
 };
+
+export function getPagesNumber(count, itemsPerPage) {
+    if (count > itemsPerPage) {
+        return Math.ceil(count / itemsPerPage);
+    }
+    return 1;
+}
 
 function getLengthFromObject(obj) {
     return Object.keys(obj).length;

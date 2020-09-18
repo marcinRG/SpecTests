@@ -40,43 +40,50 @@ class CompanyDetailsPage extends Component {
         console.log(this.state);
     }
 
+    componentDidMount() {
+        this.setState({
+            companyDetails: this.props.companyDetails
+        });
+    }
+
     render() {
+        console.log(this.state);
         return (
             <React.Fragment>
-                <section className="form-page">
+                {this.state.companyDetails && <section className="form-page">
                     <h2 className="form-title">Company <span className="blue">details</span></h2>
                     <form className="input-form">
                         <SimpleTextInput label={'Nazwa firmy'} errorMessage={'Nazwa firmy nie może być pusta!'}
-                                         value={this.props.companyDetails.companyName} validate={textNotEmpty} validateForm={this.changeValidation}
+                                         value={this.state.companyDetails.companyName} validate={textNotEmpty} validateForm={this.changeValidation}
                                          validateFormPropertyName={'companyName'} />
-                        <SimpleTextInput label={'Nazwa firmy cd.'} errorMessage={''}
-                                         value={this.props.companyDetails.companyNameCont} validate={alwaysTrue}
-                                         validateForm={this.changeValidation}
-                                         validateFormPropertyName={'companyNameCont'} />
+                        {/*<SimpleTextInput label={'Nazwa firmy cd.'} errorMessage={''}*/}
+                        {/*                 value={this.state.companyDetails.companyNameCont} validate={alwaysTrue}*/}
+                        {/*                 validateForm={this.changeValidation}*/}
+                        {/*                 validateFormPropertyName={'companyNameCont'} />*/}
 
-                        <SimpleTextInput label={'Numer VAT UE'} errorMessage={'Numer VAT nie może być pusty'}
-                                         value={this.props.companyDetails.vatUeNumber} validate={textNotEmpty}
-                                         validateForm={this.changeValidation}
-                                         validateFormPropertyName={'vatUeNumber'} />
+                        {/*<SimpleTextInput label={'Numer VAT UE'} errorMessage={'Numer VAT nie może być pusty'}*/}
+                        {/*                 value={this.state.companyDetails.vatUeNumber} validate={textNotEmpty}*/}
+                        {/*                 validateForm={this.changeValidation}*/}
+                        {/*                 validateFormPropertyName={'vatUeNumber'} />*/}
 
-                        <SimpleTextInput label={'Kod pocztowy'} errorMessage={'Wypełnij kod pocztowy!'}
-                                         value={this.props.companyDetails.addressPostalCode} validate={textNotEmpty}
-                                         validateForm={this.changeValidation}
-                                         validateFormPropertyName={'addressPostalCode'} />
+                        {/*<SimpleTextInput label={'Kod pocztowy'} errorMessage={'Wypełnij kod pocztowy!'}*/}
+                        {/*                 value={this.state.companyDetails.addressPostalCode} validate={textNotEmpty}*/}
+                        {/*                 validateForm={this.changeValidation}*/}
+                        {/*                 validateFormPropertyName={'addressPostalCode'} />*/}
 
-                        <SimpleTextInput label={'Miasto'} errorMessage={'Miasto nie może być puste!'}
-                                         value={this.props.companyDetails.addressCity} validate={textNotEmpty}
-                                         validateForm={this.changeValidation}
-                                         validateFormPropertyName={'addressCity'} />
+                        {/*<SimpleTextInput label={'Miasto'} errorMessage={'Miasto nie może być puste!'}*/}
+                        {/*                 value={this.state.companyDetails.addressCity} validate={textNotEmpty}*/}
+                        {/*                 validateForm={this.changeValidation}*/}
+                        {/*                 validateFormPropertyName={'addressCity'} />*/}
 
-                        <SimpleTextInput label={'Ulica'} errorMessage={'Ulica nie może być pusta!'}
-                                         value={this.props.companyDetails.addressStreet} validate={textNotEmpty}
-                                         validateForm={this.changeValidation}
-                                         validateFormPropertyName={'addressStreet'} />
+                        {/*<SimpleTextInput label={'Ulica'} errorMessage={'Ulica nie może być pusta!'}*/}
+                        {/*                 value={this.state.companyDetails.addressStreet} validate={textNotEmpty}*/}
+                        {/*                 validateForm={this.changeValidation}*/}
+                        {/*                 validateFormPropertyName={'addressStreet'} />*/}
 
                         <button className="rounded-button blue btn-save" onClick={this.saveCompanyDetails} disabled={!this.isFormValid()} >Save</button>
                     </form>
-                </section>
+                </section>}
 
                 <section className="form-page">
                     <h2 className="form-title">Company <span className="blue">accounts</span></h2>
@@ -89,7 +96,7 @@ class CompanyDetailsPage extends Component {
 
 CompanyDetailsPage.propTypes = {
     companyDetails: PropTypes.object,
-    accounts: PropTypes.array
+    accounts: PropTypes.object
 }
 
 function mapStateToProps(state) {

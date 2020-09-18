@@ -1,11 +1,12 @@
-import connect from 'react-redux/es/connect/connect';
+import {connect} from 'react-redux';
 import {TableComponent} from '../TableComponent';
 import {actionNames} from '../../../reduxSettings/constants';
 
 
 
-function mapStateToProps(state) {
+function mapStateToProps(state, ownProps) {
     return {
+        editFunction: ownProps.editFunction,
         data: state.documents.data,
         labels: state.documents.labels,
         settings: state.documents.settings,
@@ -25,6 +26,12 @@ function mapDispatchToProps(dispatch) {
                 type: actionNames.SHOW_MESSAGE,
                 value: obj
             })
+        },
+        changePage: (obj) => {
+           dispatch({
+               type: actionNames.CHANGE_PAGE,
+               value: obj
+           })
         }
     }
 }

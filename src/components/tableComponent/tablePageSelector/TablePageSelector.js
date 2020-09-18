@@ -4,14 +4,17 @@ import './TablePageSelector.scss';
 
 export function TablePageSelector(props) {
     const onClick = () => {
-        props.action();    };
+        props.action();
+    };
     return (
-        <div className="page-selector">
-            <span onClick={onClick}>&rarr;</span>
-            <ul>
-                {createPages(getPageNumber(props.count, props.itemsPerPage), props.selectedPage, props.action)}
-            </ul>
-        </div>
+        <React.Fragment>
+            {props.numberOfPages>0 && <div className="page-selector">
+                <span onClick={onClick}>&rarr;</span>
+                <ul>
+                    {createPages(props.numberOfPages, props.selectedPage, props.action)}
+                </ul>
+            </div>}
+        </React.Fragment>
     );
 }
 
@@ -39,16 +42,8 @@ function getClassName(i, selected) {
     return '';
 }
 
-export function getPageNumber(count, itemsPerPage) {
-    if (count > itemsPerPage) {
-        return Math.ceil(count / itemsPerPage);
-    }
-    return 1;
-}
-
 TablePageSelector.propTypes = {
     action: PropTypes.func.isRequired,
-    count: PropTypes.number.isRequired,
+    numberOfPages: PropTypes.number.isRequired,
     selectedPage: PropTypes.number.isRequired,
-    itemsPerPage: PropTypes.number.isRequired
 };

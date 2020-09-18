@@ -10,6 +10,7 @@ export const actionNames = {
     CHANGE_ENTRY: 'change entry',
     SHOW_MESSAGE: 'show message',
     //filtering
+    CHANGE_PAGE: 'change page',
     CHANGE_SORT_METHOD: 'change sort method',
     CHANGE_ACTIVE_PAGE: 'change active page',
 };

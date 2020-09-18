@@ -1,9 +1,10 @@
-import connect from 'react-redux/es/connect/connect';
+import {connect} from 'react-redux';
 import {TableComponent} from '../TableComponent';
 import {actionNames} from '../../../reduxSettings/constants';
 
-function mapStateToProps(state) {
+function mapStateToProps(state, ownProps) {
     return {
+        editFunction: ownProps.editFunction,
         data: state.products.data,
         labels: state.products.labels,
         settings: state.products.settings,
