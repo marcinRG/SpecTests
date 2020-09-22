@@ -1,8 +1,6 @@
 import {connect} from 'react-redux';
-import {TableComponent} from '../TableComponent';
-import {actionNames} from '../../../reduxSettings/constants';
-
-
+import {TableComponent} from '../tableComponent/TableComponent';
+import {actionNames} from '../../reduxSettings/constants';
 
 function mapStateToProps(state, ownProps) {
     return {

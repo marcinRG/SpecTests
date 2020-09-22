@@ -1,5 +1,5 @@
 import React from 'react';
-import ClientsTable from '../../tableComponent/tables/ClientsTable';
+import ClientsTable from '../../tables/ClientsTable';
 
 export function ClientsPage() {
 

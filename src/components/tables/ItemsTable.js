@@ -1,15 +1,13 @@
 import {connect} from 'react-redux';
-import {TableComponent} from '../TableComponent';
-import {actionNames} from '../../../reduxSettings/constants';
-
-
+import {TableComponent} from '../tableComponent/TableComponent';
+import {actionNames} from '../../reduxSettings/constants';
 
 function mapStateToProps(state, ownProps) {
     return {
         editFunction: ownProps.editFunction,
-        data: state.clients.data,
-        labels: state.clients.labels,
-        settings: state.clients.settings
+        data: state.products.data,
+        labels: state.products.labels,
+        settings: state.products.settings,
     }
 }
 
@@ -30,5 +28,5 @@ function mapDispatchToProps(dispatch) {
     }
 }
 
-const ClientsTable = connect(mapStateToProps, mapDispatchToProps)(TableComponent);
-export default ClientsTable;
+const ItemsTable = connect(mapStateToProps, mapDispatchToProps)(TableComponent);
+export default ItemsTable;

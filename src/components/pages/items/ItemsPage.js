@@ -1,5 +1,5 @@
 import React from 'react';
-import ItemsTable from '../../tableComponent/tables/ItemsTable';
+import ItemsTable from '../../tables/ItemsTable';
 
 export function ItemsPage() {
     const func = (id) => {

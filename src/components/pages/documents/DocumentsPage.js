@@ -1,5 +1,5 @@
 import React from 'react';
-import DocumentsTable from '../../tableComponent/tables/DocumentsTable';
+import DocumentsTable from '../../tables/DocumentsTable';
 
 
 export function DocumentsPage() {
