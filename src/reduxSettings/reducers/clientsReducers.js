@@ -12,6 +12,15 @@ export function clientsReducers(state = InitData.clients, action) {
             let newValue = {...state.settings, messageVisible: action.value.visible}
             return {...state, settings: newValue};
         }
+
+        case actionNames.CHANGE_CLIENT_DETAILS: {
+            let newData = {...state.data};
+            if (action.value.id) {
+                newData[action.value.id] = action.value.client;
+            }
+            return {...state,data: newData};
+        }
+
         default: {
             return state;
         }

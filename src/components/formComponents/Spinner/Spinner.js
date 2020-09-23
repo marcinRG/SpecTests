@@ -18,7 +18,8 @@ export class Spinner extends Component {
         this.changeCurrentValue = this.changeCurrentValue.bind(this);
     }
 
-    moveUp() {
+    moveUp(event) {
+        event.preventDefault();
         if (this.state.current + 1 <= this.state.max) {
             this.setState({
                 current: this.state.current + 1,
@@ -28,7 +29,8 @@ export class Spinner extends Component {
         }
     }
 
-    moveDown() {
+    moveDown(event) {
+        event.preventDefault();
         if (this.state.current - 1 >= this.state.min) {
             this.setState({
                 current: this.state.current - 1,
@@ -39,6 +41,7 @@ export class Spinner extends Component {
     }
 
     changeCurrentValue(event) {
+        event.preventDefault();
         const newValue = Number.parseInt(event.target.value, 10);
         if (!Number.isNaN(newValue) && newValue <= this.state.max && newValue >= this.state.min) {
             this.setState({
@@ -79,5 +82,5 @@ export class Spinner extends Component {
 Spinner.propTypes = {
     label: PropTypes.string.isRequired,
     errorMessage: PropTypes.string.isRequired,
-    validation: PropTypes.object
+    validate: PropTypes.func,
 };

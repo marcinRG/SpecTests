@@ -5,6 +5,7 @@ import connect from 'react-redux/es/connect/connect';
 import {SimpleTextInput} from '../../formComponents/SimpleTextInput/SimpleTextInput';
 import {alwaysTrue, textNotEmpty} from '../../../utils/valideFunctions';
 import {actionNames} from '../../../reduxSettings/constants';
+import {isFieldValid, isFormValid} from '../../../utils/utils';
 
 
 class CompanyDetailsPage extends Component {
@@ -16,9 +17,17 @@ class CompanyDetailsPage extends Component {
             companyDetails: this.props.companyDetails
         };
         this.saveCompanyDetails = this.saveCompanyDetails.bind(this);
-        this.isFormValid = this.isFormValid.bind(this);
-        this.isFieldValid = this.isFieldValid.bind(this);
+        this.formValid = this.formValid.bind(this);
+        this.fieldValid = this.fieldValid.bind(this);
         this.changeValue = this.changeValue.bind(this);
+    }
+
+    fieldValid(fieldName) {
+        return isFieldValid(fieldName, this.state.validation);
+    }
+
+    formValid() {
+        return isFormValid(this.state.validation);
     }
 
     changeValue(obj) {
@@ -27,25 +36,6 @@ class CompanyDetailsPage extends Component {
             const newCompanyDetails = {...this.state.companyDetails, [obj.fieldName]: obj.value};
             this.setState({...this.state, validation: newValidationObj, companyDetails: newCompanyDetails});
         }
-    }
-
-    isFieldValid(fieldName) {
-        if (this.state.validation && this.state.validation.hasOwnProperty(fieldName)) {
-            return this.state.validation[fieldName];
-        }
-        return true;
-    }
-
-    isFormValid() {
-        let isValid = false;
-        const keys = Object.keys(this.state.validation);
-        if (keys.length > 0) {
-            isValid = true;
-            keys.forEach(key => {
-                isValid = isValid && this.state.validation[key];
-            });
-        }
-        return isValid;
     }
 
     saveCompanyDetails(event) {
@@ -63,37 +53,37 @@ class CompanyDetailsPage extends Component {
                         <SimpleTextInput label={'Nazwa firmy'} errorMessage={'Nazwa firmy nie może być pusta!'}
                                          value={this.state.companyDetails.companyName} validate={textNotEmpty}
                                          validateFormPropertyName={'companyName'} changeValue={this.changeValue}
-                                         isFieldValid={this.isFieldValid('companyName')}/>
+                                         isFieldValid={this.fieldValid('companyName')}/>
 
                         <SimpleTextInput label={'Nazwa firmy cd.'} errorMessage={''}
                                          value={this.state.companyDetails.companyNameCont} validate={alwaysTrue}
                                          validateFormPropertyName={'companyNameCont'} changeValue={this.changeValue}
-                                         isFieldValid={this.isFieldValid('companyNameCont')}/>
+                                         isFieldValid={this.fieldValid('companyNameCont')}/>
 
                         <SimpleTextInput label={'Numer VAT UE'} errorMessage={'Numer VAT nie może być pusty'}
                                          value={this.state.companyDetails.vatUeNumber} validate={textNotEmpty}
                                          validateFormPropertyName={'vatUeNumber'} changeValue={this.changeValue}
-                                         isFieldValid={this.isFieldValid('vatUeNumber')}/>
+                                         isFieldValid={this.fieldValid('vatUeNumber')}/>
 
                         <SimpleTextInput label={'Kod pocztowy'} errorMessage={'Wypełnij kod pocztowy!'}
                                          value={this.state.companyDetails.addressPostalCode} validate={textNotEmpty}
                                          validateFormPropertyName={'addressPostalCode'} changeValue={this.changeValue}
-                                         isFieldValid={this.isFieldValid('addressPostalCode')}/>
+                                         isFieldValid={this.fieldValid('addressPostalCode')}/>
 
                         <SimpleTextInput label={'Miasto'} errorMessage={'Miasto nie może być puste!'}
                                          value={this.state.companyDetails.addressCity} validate={textNotEmpty}
                                          changeValue={this.changeValue}
-                                         isFieldValid={this.isFieldValid('addressCity')}
+                                         isFieldValid={this.fieldValid('addressCity')}
                                          validateFormPropertyName={'addressCity'}/>
 
                         <SimpleTextInput label={'Ulica'} errorMessage={'Ulica nie może być pusta!'}
                                          value={this.state.companyDetails.addressStreet} validate={textNotEmpty}
                                          changeValue={this.changeValue}
-                                         isFieldValid={this.isFieldValid('addressStreet')}
-                                         validateFormPropertyName={'addressStreet'} />
+                                         isFieldValid={this.fieldValid('addressStreet')}
+                                         validateFormPropertyName={'addressStreet'}/>
 
                         <button className="rounded-button blue btn-save" onClick={this.saveCompanyDetails}
-                                disabled={!this.isFormValid()}>Save
+                                disabled={!this.formValid()}>Save
                         </button>
                     </form>
                 </section>}
@@ -110,7 +100,7 @@ class CompanyDetailsPage extends Component {
 CompanyDetailsPage.propTypes = {
     companyDetails: PropTypes.object,
     accounts: PropTypes.object,
-    changeCompanyDetails:PropTypes.func
+    changeCompanyDetails: PropTypes.func
 }
 
 function mapStateToProps(state) {

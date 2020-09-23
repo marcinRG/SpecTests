@@ -14,8 +14,8 @@ import {DocumentsPage} from './components/pages/documents/DocumentsPage';
 import CompanyDetailsPage from './components/pages/companyDetails/CompanyDetailsPage';
 import {OtherTablesPage} from './components/pages/otherTables/OtherTablesPage';
 import {DocumentDetailsPage} from './components/pages/documentDetails/DocumentDetailsPage';
-import {ItemDetailsPage} from './components/pages/itemDetails/ItemDetailsPage';
-import {ClientDetailsPage} from './components/pages/clientDetails/ClientDetailsPage';
+import ItemDetailsPage from './components/pages/itemDetails/ItemDetailsPage';
+import ClientDetailsPage from './components/pages/clientDetails/ClientDetailsPage';
 
 ReactDOM.render(
     <Provider store={store}>
@@ -42,9 +42,9 @@ ReactDOM.render(
                     <Route path="/documents/">
                         <DocumentsPage/>
                     </Route>
-                    <Route path="/documentDetails/:documentID" component={DocumentDetailsPage} />
-                    <Route path="/itemDetails/:itemID" component={ItemDetailsPage} />
-                    <Route path="/clientDetails/:clientID" component={ClientDetailsPage} />
+                    <Route path="/document-details/:documentID" component={DocumentDetailsPage} />
+                    <Route path="/item-details/:itemID" component={ItemDetailsPage} />
+                    <Route path="/client-details/:clientID" component={ClientDetailsPage} />
                 </Switch>
                 <ApplicationFooter/>
             </React.Fragment>

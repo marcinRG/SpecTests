@@ -23,7 +23,8 @@ export class ComboBox extends Component {
         });
     }
 
-    toggleItemsList() {
+    toggleItemsList(event) {
+        event.preventDefault();
         this.setState({showItems: !this.state.showItems});
     }
 

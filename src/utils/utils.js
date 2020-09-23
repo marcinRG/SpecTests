@@ -56,3 +56,23 @@ export function formatData(value, dataType) {
         }
     }
 }
+
+export function isFieldValid(fieldName, validationObject) {
+    if (validationObject && validationObject.hasOwnProperty(fieldName)) {
+        return validationObject[fieldName];
+    }
+    return true;
+}
+
+export function isFormValid(validationObject) {
+    let isValid = true;
+    if (validationObject) {
+        const keys = Object.keys(validationObject);
+        if (keys.length > 0) {
+            keys.forEach(key => {
+                isValid = isValid && validationObject[key];
+            });
+        }
+    }
+    return isValid;
+}

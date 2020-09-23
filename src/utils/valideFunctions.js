@@ -8,3 +8,7 @@ export function textNotEmpty(txt) {
     }
     return false;
 }
+
+export function numberBiggerThanZero(num) {
+    return true;
+}

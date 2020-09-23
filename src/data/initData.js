@@ -30,99 +30,102 @@ export const InitData = {
             }
     }
     },
-    cars: {
-        '1': {
-            plateNo: 'DXC 2275',
-            carName: 'Mercedes Vito'
-        },
-        '2': {
-            plateNo: 'WBA 3381',
-            carName: 'Mercedes Sprinter'
-        },
-        '3': {
-            plateNo: 'AXB 125Q',
-            carName: 'Fiat Ducato'
-        },
-    },
-    taxRates: {
-        '1': {
-            taxName: '0%',
-            taxRate: 0
-        },
-        '2': {
-            taxName: '5%',
-            taxRate: 0.05
-        },
-        '3': {
-            taxName: '8%',
-            taxRate: 0.08
-        },
-        '4': {
-            taxName: '23%',
-            taxRate: 0.23
-        },
-        '5': {
-            taxName: 'NP',
-            taxRate: 0
-        },
-    },
-    methodsOfPayments: {
-        '1': {
-            payment: 'gotówka'
-        },
-        '2': {
-            payment: 'przelew'
-        }
-    },
-    accountTypes: {
-        '1': {
-            description: 'krajowe'
-        },
-        '2': {
-            description: 'zagraniczne'
-        },
-    },
-    textAdditions: {
-        '1': {
-            symbol: 'krajowe',
-            text: 'Dziękujemy i zapraszamy ponownie',
-        },
-        '2': {
-            symbol: 'zagraniczne',
-            text: 'Podatek VAT od transakcji uiszcza nabywca',
-            textCont: 'Dostawa wewnątrzwspólnotowa art. 41 i 42 ust. o VAT'
-        }
-    },
-    unitsOfMeasurement: {
-        '1': {
-            unit: 'szt',
-        },
-        '2': {
-            unit: 'm'
-        }
-    },
-    currencies: {
-        '1': {
-            country: 'PL',
-            currency: 'zł'
-        },
-        '2': {
-            country: 'CZ',
-            currency: 'kč'
-        },
-        '3': {
-            country: 'DE',
-            currency: '€'
-        }
 
-    },
-    invoiceType: {
-        '1': {
-
-            type: 'krajowa'
+    additionalTables: {
+        cars: {
+            '1': {
+                plateNo: 'DXC 2275',
+                carName: 'Mercedes Vito'
+            },
+            '2': {
+                plateNo: 'WBA 3381',
+                carName: 'Mercedes Sprinter'
+            },
+            '3': {
+                plateNo: 'AXB 125Q',
+                carName: 'Fiat Ducato'
+            },
         },
-        '2': {
-            type: 'zagraniczna'
+        taxRates: {
+            '1': {
+                taxName: '0%',
+                taxRate: 0
+            },
+            '2': {
+                taxName: '5%',
+                taxRate: 0.05
+            },
+            '3': {
+                taxName: '8%',
+                taxRate: 0.08
+            },
+            '4': {
+                taxName: '23%',
+                taxRate: 0.23
+            },
+            '5': {
+                taxName: 'NP',
+                taxRate: 0
+            },
+        },
+        methodsOfPayments: {
+            '1': {
+                payment: 'gotówka'
+            },
+            '2': {
+                payment: 'przelew'
+            }
+        },
+        accountTypes: {
+            '1': {
+                description: 'krajowe'
+            },
+            '2': {
+                description: 'zagraniczne'
+            },
+        },
+        textAdditions: {
+            '1': {
+                symbol: 'krajowe',
+                text: 'Dziękujemy i zapraszamy ponownie',
+            },
+            '2': {
+                symbol: 'zagraniczne',
+                text: 'Podatek VAT od transakcji uiszcza nabywca',
+                textCont: 'Dostawa wewnątrzwspólnotowa art. 41 i 42 ust. o VAT'
+            }
+        },
+        unitsOfMeasurement: {
+            '1': {
+                unit: 'szt',
+            },
+            '2': {
+                unit: 'm'
+            }
+        },
+        currencies: {
+            '1': {
+                country: 'PL',
+                currency: 'zł'
+            },
+            '2': {
+                country: 'CZ',
+                currency: 'kč'
+            },
+            '3': {
+                country: 'DE',
+                currency: '€'
+            }
+
+        },
+        invoiceType: {
+            '1': {
+
+                type: 'krajowa'
+            },
+            '2': {
+                type: 'zagraniczna'
+            }
         }
     },
 
@@ -236,6 +239,7 @@ export const InitData = {
             },
         }
     },
+
     products: {
         settings: {
             editDeleteRowVisible: true,
@@ -329,6 +333,7 @@ export const InitData = {
             }
         }
     },
+
     clients: {
         settings: {
             editDeleteRowVisible: true,

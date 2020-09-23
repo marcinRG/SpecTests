@@ -4,6 +4,8 @@ export const actionNames = {
     CHANGE_APP_JUMBOTRON_VISIBILITY: 'change application jumbotron visibility',
     //company details
     CHANGE_COMPANY_DETAILS: 'change company details',
+    //client details
+    CHANGE_CLIENT_DETAILS: 'change client details',
     //entries in table
     REMOVE_ENTRY: 'remove entry',
     ADD_ENTRY: 'add entry',
