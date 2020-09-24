@@ -67,6 +67,7 @@ export class ItemDetailsPage extends Component {
     }
 
     render() {
+        console.log(this.fieldValid('price'));
         return (
             <React.Fragment>
                 <section className="form-page">
@@ -88,20 +89,23 @@ export class ItemDetailsPage extends Component {
                                          validateFormPropertyName={'productCode'} changeValue={this.changeValue}
                                          isFieldValid={this.fieldValid('productCode')}/>
 
-                        <Spinner label={'Cena netto za sztukę'}
-                                 errorMessage={'Cena nie może być mniejsza lub równa zero'}
-                                 validation={numberBiggerThanZero}/>
+                        <Spinner label={'Cena netto za sztukę'} value={this.state.item.price} min={0} max={10000}
+                                 delta={.1} errorMessage={'Cena nie może być mniejsza lub równa zero'}
+                                 changeValue={this.changeValue} validate={numberBiggerThanZero}
+                                 validateFormPropertyName={'price'}
+                                 isFieldValid={this.fieldValid('price')}
+                        />
 
-                        <ComboBox label={'Stawka VAT'} errorMessage={'Jednostka miary ZLA!!!!'}/>
+                        {/*<ComboBox label={'Stawka VAT'} errorMessage={'Jednostka miary ZLA!!!!'}/>*/}
 
-                        <Spinner label={'Ilość sztuk w opakowaniu'}
-                                 errorMessage={'Cena nie może być mniejsza lub równa zero'}
-                                 validation={numberBiggerThanZero}/>
+                        {/*<Spinner label={'Ilość sztuk w opakowaniu'}*/}
+                        {/*         errorMessage={'Cena nie może być mniejsza lub równa zero'}*/}
+                        {/*         validation={numberBiggerThanZero}/>*/}
 
-                        <Spinner label={'Waga [kg]'} errorMessage={'Cena nie może być mniejsza lub równa zero'}
-                                 validation={numberBiggerThanZero}/>
+                        {/*<Spinner label={'Waga [kg]'} errorMessage={'Cena nie może być mniejsza lub równa zero'}*/}
+                        {/*         validation={numberBiggerThanZero}/>*/}
 
-                        <ComboBox label={'Jednostka miary'} errorMessage={'Jednostka miary ZLA!!!!'}/>
+                        {/*<ComboBox label={'Jednostka miary'} errorMessage={'Jednostka miary ZLA!!!!'}/>*/}
 
 
                     </form>}

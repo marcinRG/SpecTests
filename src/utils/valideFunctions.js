@@ -10,5 +10,5 @@ export function textNotEmpty(txt) {
 }
 
 export function numberBiggerThanZero(num) {
-    return true;
+    return (!Number.isNaN(num) && Number.parseFloat(num)>=0);
 }
