@@ -276,6 +276,10 @@ export const InitData = {
                 price: '12.45',
                 piecesInPackage: '5',
                 weightInKG: '.35',
+                tax: {
+                    taxName: '0%',
+                    taxRate: 0
+                }
             },
             '2': {
                 productName: 'Other product',
@@ -285,6 +289,10 @@ export const InitData = {
                 price: '9.25',
                 piecesInPackage: '5',
                 weightInKG: '.35',
+                tax: {
+                    taxName: '23%',
+                    taxRate: 0.23
+                }
             },
             '3': {
                 productName: 'Lorem ipsum',
@@ -294,6 +302,10 @@ export const InitData = {
                 price: '25.75',
                 piecesInPackage: '5',
                 weightInKG: '.35',
+                tax: {
+                    taxName: '23%',
+                    taxRate: 0.23
+                }
             },
             '4': {
                 productName: 'Lorem ipsum',
@@ -303,6 +315,10 @@ export const InitData = {
                 price: '25.75',
                 piecesInPackage: '5',
                 weightInKG: '.35',
+                tax: {
+                    taxName: '23%',
+                    taxRate: 0.23
+                }
             },
             '5': {
                 productName: 'Lorem ipsum',
@@ -312,6 +328,10 @@ export const InitData = {
                 price: '25.75',
                 piecesInPackage: '5',
                 weightInKG: '.35',
+                tax: {
+                    taxName: '23%',
+                    taxRate: 0.23
+                }
             },
             '6': {
                 productName: 'Lorem ipsum',
@@ -321,6 +341,10 @@ export const InitData = {
                 price: '25.75',
                 piecesInPackage: '5',
                 weightInKG: '.35',
+                tax: {
+                    taxName: '23%',
+                    taxRate: 0.23
+                }
             },
             '7': {
                 productName: 'Lorem ipsum',
@@ -330,6 +354,10 @@ export const InitData = {
                 price: '25.75',
                 piecesInPackage: '5',
                 weightInKG: '.35',
+                tax: {
+                    taxName: '23%',
+                    taxRate: 0.23
+                }
             }
         }
     },

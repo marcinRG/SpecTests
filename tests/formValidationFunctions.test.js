@@ -1,6 +1,6 @@
 import {describe, it, expect} from '@jest/globals';
 import {alwaysTrue, textNotEmpty} from '../src/utils/valideFunctions';
-import {isFormValid, isFieldValid} from '../src/utils/utils';
+import {isFormValid, isFieldValid, isNumber} from '../src/utils/utils';
 
 describe('Form validation functions test',()=>{
     it('function alwaysTrue should always return true',()=>{
@@ -60,6 +60,24 @@ describe('Form validation functions test',()=>{
         expect(isFormValid(validationObject)).toBe(false);
         expect(isFieldValid('fieldOne',validationObject)).toBe(false);
 
+    });
+
+    it('function isNumber should return true if str parameter is valid number',()=>{
+        let str;
+        expect(isNumber(str)).toBe(false);
+
+        str = '';
+        expect(isNumber(str)).toBe(false);
+        str = '0';
+        expect(isNumber(str)).toBe(true);
+        str = '0.34';
+        expect(isNumber(str)).toBe(true);
+        str = '0.34f';
+        expect(isNumber(str)).toBe(true);
+        str = '123e-5'
+        expect(isNumber(str)).toBe(true);
+        str = '0x010101';
+        expect(isNumber(str)).toBe(true);
     });
 
 

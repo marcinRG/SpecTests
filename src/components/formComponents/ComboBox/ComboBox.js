@@ -29,6 +29,7 @@ export class ComboBox extends Component {
     }
 
     render() {
+        console.log(this.props.items);
         return (
             <div className="combobox-input">
                 <label className="input-label">{this.props.label}</label>
@@ -54,7 +55,10 @@ export class ComboBox extends Component {
 ComboBox.propTypes = {
     label: PropTypes.string.isRequired,
     errorMessage: PropTypes.string.isRequired,
-    validation: PropTypes.object
+    validation: PropTypes.object,
+    items: PropTypes.object,
+    fieldValue: PropTypes.string,
+    fieldDisplay: PropTypes.string
 };
 
 function getHeight(array) {

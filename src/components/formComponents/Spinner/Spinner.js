@@ -1,7 +1,7 @@
 import './Spinner.scss';
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {round} from '../../../utils/utils';
+import {isNumber, round} from '../../../utils/utils';
 
 export class Spinner extends Component {
 
@@ -15,43 +15,37 @@ export class Spinner extends Component {
 
     moveUp(event) {
         event.preventDefault();
-        const newValue = Number.parseFloat(this.props.value);
-        if (newValue + this.props.delta <= this.props.max) {
-            this.changeValue(newValue + this.props.delta);
+        if (isNumber(this.props.value) && (Number.parseFloat(this.props.value) + this.props.delta <= this.props.max)) {
+            this.changeValue('' + round(Number.parseFloat(this.props.value) + this.props.delta, this.props.rounding));
         }
     }
 
     changeValue(newValue) {
         this.props.changeValue({
             fieldName: this.props.validateFormPropertyName,
-            value: '' + round(newValue, 2),
-            isValid: this.props.validate(newValue)
+            value: newValue,
+            isValid: this.props.validate(newValue, this.props.min, this.props.max)
         });
     }
 
     moveDown(event) {
         event.preventDefault();
-        const newValue = Number.parseFloat(this.props.value);
-        if (newValue - this.props.delta >= this.props.min) {
-            this.changeValue(newValue - this.props.delta);
+        if (isNumber(this.props.value) && (Number.parseFloat(this.props.value) - this.props.delta >= this.props.min)) {
+            this.changeValue('' + round(Number.parseFloat(this.props.value) - this.props.delta, this.props.rounding));
         }
     }
 
     changeValueFromInput(event) {
         event.preventDefault();
-        // const newValue = event.target.value;
-        // if (!Number.isNaN(newValue) && Number.parseFloat(newValue) <= this.props.max && newValue >= this.props.min) {
-        //     this.changeValue(Number.parseFloat(newValue));
-        // }
+        this.changeValue(event.target.value);
     }
-
 
     render() {
         return (
             <div className="spinner-input">
                 <label className="input-label">{this.props.label}</label>
                 <div className="inputs">
-                    <input type="text" className="input-field" value={getValue(this.props.value)}
+                    <input type="text" className="input-field" value={this.props.value}
                            onChange={this.changeValueFromInput}/>
                     <div className="button-wrapper">
                         <button className="button-up" onClick={this.moveUp}>&#9650;</button>
@@ -77,9 +71,7 @@ Spinner.propTypes = {
     validate: PropTypes.func,
     isFieldValid: PropTypes.bool,
     changeValue: PropTypes.func,
-    validateFormPropertyName: PropTypes.string
+    validateFormPropertyName: PropTypes.string,
+    rounding: PropTypes.number
 };
 
-function getValue(num) {
-    return '' + num;
-}

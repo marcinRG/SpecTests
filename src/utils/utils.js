@@ -77,6 +77,14 @@ export function isFormValid(validationObject) {
     return isValid;
 }
 
+export function isNumber(str) {
+    if (str && !Number.isNaN(str) && (typeof Number.parseFloat(str) === 'number')) {
+        return true;
+    }
+    return false;
+}
+
+
 //from https://www.jacklmoore.com/notes/rounding-in-javascript/
 export function round(value, decimals) {
     return Number(Math.round(value + 'e' + decimals) + 'e-' + decimals);

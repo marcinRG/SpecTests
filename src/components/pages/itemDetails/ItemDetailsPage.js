@@ -3,7 +3,7 @@ import {isFieldValid, isFormValid} from '../../../utils/utils';
 import {PropTypes} from 'prop-types'
 import {connect} from 'react-redux';
 import {SimpleTextInput} from '../../formComponents/SimpleTextInput/SimpleTextInput';
-import {alwaysTrue, numberBiggerThanZero, textNotEmpty} from '../../../utils/valideFunctions';
+import {alwaysTrue, numberBiggerThanZero, numberInRange, textNotEmpty} from '../../../utils/valideFunctions';
 import {Spinner} from '../../formComponents/Spinner/Spinner';
 import {ComboBox} from '../../formComponents/ComboBox/ComboBox';
 
@@ -89,14 +89,24 @@ export class ItemDetailsPage extends Component {
                                          validateFormPropertyName={'productCode'} changeValue={this.changeValue}
                                          isFieldValid={this.fieldValid('productCode')}/>
 
+                        <Spinner label={'Ilość sztuk w opakowaniu'} value={this.state.item.piecesInPackage} min={1} max={100}
+                                 delta={1} errorMessage={'Ilość sztuk w opakowaniu musi zawierać się w zakresie od 1 do 100'}
+                                 changeValue={this.changeValue} validate={numberInRange}
+                                 validateFormPropertyName={'piecesInPackage'} rounding={0}
+                                 isFieldValid={this.fieldValid('piecesInPackage')}
+                        />
+
                         <Spinner label={'Cena netto za sztukę'} value={this.state.item.price} min={0} max={10000}
-                                 delta={.1} errorMessage={'Cena nie może być mniejsza lub równa zero'}
+                                 delta={.1} errorMessage={'Cena musi być liczbą większą lub równą 0'}
                                  changeValue={this.changeValue} validate={numberBiggerThanZero}
-                                 validateFormPropertyName={'price'}
+                                 validateFormPropertyName={'price'} rounding={2}
                                  isFieldValid={this.fieldValid('price')}
                         />
 
-                        {/*<ComboBox label={'Stawka VAT'} errorMessage={'Jednostka miary ZLA!!!!'}/>*/}
+
+                        <ComboBox label={'Stawka VAT'} errorMessage={'Jednostka miary ZLA!!!!'} items={this.props.taxRates}
+                                  fieldDisplay={'taxName'} fieldValue={'taxRate'}
+                        />
 
                         {/*<Spinner label={'Ilość sztuk w opakowaniu'}*/}
                         {/*         errorMessage={'Cena nie może być mniejsza lub równa zero'}*/}
@@ -128,7 +138,8 @@ function mapStateToProps(state) {
 
 ItemDetailsPage.propTypes = {
     match: PropTypes.object,
-    products: PropTypes.object
+    products: PropTypes.object,
+    taxRates: PropTypes.object
 }
 
 export default connect(mapStateToProps)(ItemDetailsPage);

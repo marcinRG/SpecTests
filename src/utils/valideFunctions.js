@@ -1,14 +1,20 @@
+import {isNumber} from './utils';
+
 export function alwaysTrue() {
     return true;
 }
 
 export function textNotEmpty(txt) {
-    if (txt && (typeof txt ==='string')) {
-        return txt.length>0;
+    if (txt && (typeof txt === 'string')) {
+        return txt.length > 0;
     }
     return false;
 }
 
-export function numberBiggerThanZero(num) {
-    return (!Number.isNaN(num) && Number.parseFloat(num)>=0);
+export function numberBiggerThanZero(str) {
+    return (isNumber(str) && Number.parseFloat(str) >= 0);
+}
+
+export function numberInRange(str, min, max) {
+    return (isNumber(str) && Number.parseFloat(str) >= min && Number.parseFloat(str) <= max);
 }
