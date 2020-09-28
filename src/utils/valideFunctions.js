@@ -18,3 +18,7 @@ export function numberBiggerThanZero(str) {
 export function numberInRange(str, min, max) {
     return (isNumber(str) && Number.parseFloat(str) >= min && Number.parseFloat(str) <= max);
 }
+
+export function objectExistAndNotEmpty(obj) {
+    return true;
+}

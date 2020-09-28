@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 export function ComboBoxItem(props) {
 
     const onClickHandler = () => {
-        props.action(props.value);
+        props.action(props.id);
     }
 
     return (
@@ -13,6 +13,7 @@ export function ComboBoxItem(props) {
 }
 
 ComboBoxItem.propTypes = {
+    id: PropTypes.string.isRequired,
     value: PropTypes.string.isRequired,
-    action: PropTypes.func.isRequired,
+    action: PropTypes.func.isRequired
 };

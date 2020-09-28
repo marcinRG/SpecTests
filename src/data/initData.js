@@ -28,7 +28,7 @@ export const InitData = {
                 bankName: 'Bank of Austria',
                 accountNumber: ' GB 06 1189 0035 0000 0001 0056 9186'
             }
-    }
+        }
     },
 
     additionalTables: {
@@ -101,6 +101,9 @@ export const InitData = {
             },
             '2': {
                 unit: 'm'
+            },
+            '3': {
+                unit: 'y'
             }
         },
         currencies: {
@@ -272,7 +275,9 @@ export const InitData = {
                 productName: 'Something',
                 productNameCont: '',
                 productCode: '6120045000',
-                unitsOfMeasurement: 'szt',
+                unitsOfMeasurement: {
+                    unit: 'szt'
+                },
                 price: '12.45',
                 piecesInPackage: '5',
                 weightInKG: '.35',
@@ -285,7 +290,9 @@ export const InitData = {
                 productName: 'Other product',
                 productNameCont: '',
                 productCode: '6120045000',
-                unitsOfMeasurement: 'szt',
+                unitsOfMeasurement: {
+                    unit: 'szt'
+                },
                 price: '9.25',
                 piecesInPackage: '5',
                 weightInKG: '.35',
@@ -298,7 +305,9 @@ export const InitData = {
                 productName: 'Lorem ipsum',
                 productNameCont: '',
                 productCode: '981245000',
-                unitsOfMeasurement: 'szt',
+                unitsOfMeasurement: {
+                    unit: 'szt'
+                },
                 price: '25.75',
                 piecesInPackage: '5',
                 weightInKG: '.35',
@@ -311,7 +320,9 @@ export const InitData = {
                 productName: 'Lorem ipsum',
                 productNameCont: '',
                 productCode: '981245000',
-                unitsOfMeasurement: 'szt',
+                unitsOfMeasurement: {
+                    unit: 'szt'
+                },
                 price: '25.75',
                 piecesInPackage: '5',
                 weightInKG: '.35',
@@ -324,7 +335,9 @@ export const InitData = {
                 productName: 'Lorem ipsum',
                 productNameCont: '',
                 productCode: '981245000',
-                unitsOfMeasurement: 'szt',
+                unitsOfMeasurement: {
+                    unit: 'szt'
+                },
                 price: '25.75',
                 piecesInPackage: '5',
                 weightInKG: '.35',
@@ -337,7 +350,9 @@ export const InitData = {
                 productName: 'Lorem ipsum',
                 productNameCont: '',
                 productCode: '981245000',
-                unitsOfMeasurement: 'szt',
+                unitsOfMeasurement: {
+                    unit: 'szt'
+                },
                 price: '25.75',
                 piecesInPackage: '5',
                 weightInKG: '.35',
@@ -350,7 +365,9 @@ export const InitData = {
                 productName: 'Lorem ipsum',
                 productNameCont: '',
                 productCode: '981245000',
-                unitsOfMeasurement: 'szt',
+                unitsOfMeasurement: {
+                    unit: 'szt'
+                },
                 price: '25.75',
                 piecesInPackage: '5',
                 weightInKG: '.35',
