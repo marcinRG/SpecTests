@@ -5,6 +5,7 @@ import {SimpleTextInput} from '../../formComponents/SimpleTextInput/SimpleTextIn
 import {alwaysTrue, textNotEmpty} from '../../../utils/valideFunctions';
 import {isFieldValid, isFormValid} from '../../../utils/utils';
 import {actionNames} from '../../../reduxSettings/constants';
+import {Link} from 'react-router-dom';
 
 class ClientDetailsPage extends Component {
     constructor(props) {
@@ -113,6 +114,9 @@ class ClientDetailsPage extends Component {
 
                     </form>
                     }
+                    <div>
+                        <Link className="rounded-button blue btn-back" to={'/clients'}>Back</Link>
+                    </div>
                 </section>
             </React.Fragment>
         )

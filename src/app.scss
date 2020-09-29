@@ -19,7 +19,7 @@ body {
 
   a,
   button {
-
+    text-decoration: none;
     &::-moz-focus-inner { // sass-lint:disable-line no-vendor-prefixes
       border: 0;
     }

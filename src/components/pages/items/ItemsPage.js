@@ -1,9 +1,10 @@
 import React from 'react';
 import ItemsTable from '../../tables/ItemsTable';
+import {PropTypes} from 'prop-types';
 
-export function ItemsPage() {
+export function ItemsPage(props) {
     const func = (id) => {
-        console.log('items:' + id);
+        props.history.push('/item-details/' + id);
     }
 
     return (
@@ -14,4 +15,8 @@ export function ItemsPage() {
             </section>
         </React.Fragment>
     )
+}
+
+ItemsPage.propTypes = {
+    history: PropTypes.object
 }

@@ -15,14 +15,12 @@ export const InitData = {
         },
         accounts: {
             '1': {
-                default: true,
                 accountType: 'krajowe',
                 swiftCodeAccount: 'PL XX 22 33',
                 bankName: 'PKO BP',
                 accountNumber: ' PL 06 1189 0035 0000 0001 0056 9186'
             },
             '2': {
-                default: false,
                 accountType: 'zagraniczne',
                 swiftCodeAccount: 'XW ZX GB LPP',
                 bankName: 'Bank of Austria',

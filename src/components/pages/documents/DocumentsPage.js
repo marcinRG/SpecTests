@@ -1,11 +1,12 @@
 import React from 'react';
 import DocumentsTable from '../../tables/DocumentsTable';
+import {PropTypes} from 'prop-types';
 
+export function DocumentsPage(props) {
 
-export function DocumentsPage() {
 
     const func = (id) => {
-        console.log('documents:' + id);
+        props.history.push('/document-details/' + id);
     }
 
     return (
@@ -18,3 +19,6 @@ export function DocumentsPage() {
     )
 }
 
+DocumentsPage.propTypes = {
+    history: PropTypes.object
+}

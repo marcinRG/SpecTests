@@ -1,11 +1,11 @@
 import React from 'react';
 import ClientsTable from '../../tables/ClientsTable';
+import {PropTypes} from 'prop-types';
 
-export function ClientsPage() {
-
+export function ClientsPage(props) {
 
     const func = (id) => {
-        console.log('clients:' + id);
+        props.history.push('/client-details/' + id);
     }
 
     return (
@@ -16,4 +16,8 @@ export function ClientsPage() {
             </section>
         </React.Fragment>
     )
+}
+
+ClientsPage.propTypes = {
+    history: PropTypes.object
 }

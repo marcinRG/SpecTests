@@ -27,11 +27,8 @@ ReactDOM.render(
                     <Route exact path="/">
                         <HomePage/>
                     </Route>
-                    <Route path="/items/">
-                        <ItemsPage/>
-                    </Route>
-                    <Route path="/clients/">
-                        <ClientsPage/>
+                    <Route path="/items/" component={ItemsPage} />
+                    <Route path="/clients/" component={ClientsPage}>
                     </Route>
                     <Route path="/company-details/">
                         <CompanyDetailsPage/>
@@ -39,9 +36,7 @@ ReactDOM.render(
                     <Route path="/other/">
                         <OtherTablesPage/>
                     </Route>
-                    <Route path="/documents/">
-                        <DocumentsPage/>
-                    </Route>
+                    <Route path="/documents/" component={DocumentsPage} />
                     <Route path="/document-details/:documentID" component={DocumentDetailsPage} />
                     <Route path="/item-details/:itemID" component={ItemDetailsPage} />
                     <Route path="/client-details/:clientID" component={ClientDetailsPage} />

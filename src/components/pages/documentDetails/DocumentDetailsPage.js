@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {Link} from 'react-router-dom';
 
 export class DocumentDetailsPage extends Component{
     constructor(props) {
@@ -13,6 +14,9 @@ export class DocumentDetailsPage extends Component{
                     <form className="input-form">
 
                     </form>
+                    <div>
+                        <Link className="rounded-button blue btn-back" to={'/documents'}>Back</Link>
+                    </div>
                 </section>
             </React.Fragment>
         )

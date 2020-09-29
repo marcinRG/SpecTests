@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {isFieldValid, isFormValid} from '../../../utils/utils';
+import {isFieldValid, isFormValid, isNumber, round} from '../../../utils/utils';
 import {PropTypes} from 'prop-types'
 import {connect} from 'react-redux';
 import {SimpleTextInput} from '../../formComponents/SimpleTextInput/SimpleTextInput';
@@ -12,6 +12,7 @@ import {
 } from '../../../utils/valideFunctions';
 import {Spinner} from '../../formComponents/Spinner/Spinner';
 import {ComboBox} from '../../formComponents/ComboBox/ComboBox';
+import {Link} from 'react-router-dom';
 
 export class ItemDetailsPage extends Component {
 
@@ -60,7 +61,6 @@ export class ItemDetailsPage extends Component {
     }
 
     formValid() {
-        console.log(this.state.validation);
         return isFormValid(this.state.validation);
     }
 
@@ -94,8 +94,10 @@ export class ItemDetailsPage extends Component {
                                          validateFormPropertyName={'productCode'} changeValue={this.changeValue}
                                          isFieldValid={this.fieldValid('productCode')}/>
 
-                        <Spinner label={'Ilość sztuk w opakowaniu'} value={this.state.item.piecesInPackage} min={1} max={100}
-                                 delta={1} errorMessage={'Ilość sztuk w opakowaniu musi zawierać się w zakresie od 1 do 100'}
+                        <Spinner label={'Ilość sztuk w opakowaniu'} value={this.state.item.piecesInPackage} min={1}
+                                 max={100}
+                                 delta={1}
+                                 errorMessage={'Ilość sztuk w opakowaniu musi zawierać się w zakresie od 1 do 100'}
                                  changeValue={this.changeValue} validate={numberInRange}
                                  validateFormPropertyName={'piecesInPackage'} rounding={0}
                                  isFieldValid={this.fieldValid('piecesInPackage')}
@@ -109,15 +111,23 @@ export class ItemDetailsPage extends Component {
                         />
 
 
-                        <ComboBox label={'Stawka VAT'} errorMessage={'Wystąpił nieokreślony błąd!!!'} items={this.props.taxRates}
+                        <ComboBox label={'Stawka VAT'} errorMessage={'Wystąpił nieokreślony błąd!!!'}
+                                  items={this.props.taxRates}
                                   value={this.state.item.tax} validateFormPropertyName={'tax'}
-                                  fieldDisplay={'taxName'} fieldValue={'taxRate'}  validate={objectExistAndNotEmpty}
+                                  fieldDisplay={'taxName'} fieldValue={'taxRate'} validate={objectExistAndNotEmpty}
                                   isFieldValid={this.fieldValid('tax')} changeValue={this.changeValue}
                         />
 
-                        <ComboBox label={'Jednostka miary'} errorMessage={'Wystąpił nieokreślony błąd!!!'} items={this.props.units}
-                                  value={this.state.item.unitsOfMeasurement} validateFormPropertyName={'unitsOfMeasurement'}
-                                  fieldDisplay={'unit'} fieldValue={'unit'}  validate={objectExistAndNotEmpty}
+                        <SimpleTextInput label={'Cena brutto'} errorMessage={''}
+                                         value={calculateGrossPrice(this.state.item.price, this.state.item.tax)}
+                                         validate={alwaysTrue}
+                                         isFieldValid={true}/>
+
+                        <ComboBox label={'Jednostka miary'} errorMessage={'Wystąpił nieokreślony błąd!!!'}
+                                  items={this.props.units}
+                                  value={this.state.item.unitsOfMeasurement}
+                                  validateFormPropertyName={'unitsOfMeasurement'}
+                                  fieldDisplay={'unit'} fieldValue={'unit'} validate={objectExistAndNotEmpty}
                                   isFieldValid={this.fieldValid('unitsOfMeasurement')} changeValue={this.changeValue}
                         />
 
@@ -132,23 +142,23 @@ export class ItemDetailsPage extends Component {
                                 disabled={!this.formValid()}>Save
                         </button>
 
-                        {/*<Spinner label={'Ilość sztuk w opakowaniu'}*/}
-                        {/*         errorMessage={'Cena nie może być mniejsza lub równa zero'}*/}
-                        {/*         validation={numberBiggerThanZero}/>*/}
-
-                        {/*<Spinner label={'Waga [kg]'} errorMessage={'Cena nie może być mniejsza lub równa zero'}*/}
-                        {/*         validation={numberBiggerThanZero}/>*/}
-
-                        {/*<ComboBox label={'Jednostka miary'} errorMessage={'Jednostka miary ZLA!!!!'}/>*/}
-
-
                     </form>}
-
+                    <div>
+                        <Link className="rounded-button blue btn-back" to={'/items'}>Back</Link>
+                    </div>
 
                 </section>
             </React.Fragment>
         )
     }
+}
+
+export function calculateGrossPrice(netPrice, taxRate) {
+    if (isNumber(netPrice) && taxRate && isNumber(taxRate.taxRate)) {
+        const gross = Number.parseFloat(netPrice) + Number.parseFloat(netPrice) * Number.parseFloat(taxRate.taxRate);
+        return '' + round(gross, 2);
+    }
+    return '0';
 }
 
 function mapStateToProps(state) {
