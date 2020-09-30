@@ -1,0 +1,13 @@
+
+.tab-panel {
+  display: none;
+  width: 100%;
+  padding: 2em;
+  background-color: white;
+
+  &.selected {
+    display: block;
+
+  }
+
+}
