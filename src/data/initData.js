@@ -31,103 +31,177 @@ export const InitData = {
 
     additionalTables: {
         cars: {
-            '1': {
-                plateNo: 'DXC 2275',
-                carName: 'Mercedes Vito'
+            labels: {
+                plateNo: {
+                    name: 'numer rejestracyjny',
+                    dataType: dataTypes.STRING,
+                    required: true
+                },
+                carName: {
+                    name: 'nazwa samochodu',
+                    dataType: dataTypes.STRING,
+                    required: true
+                }
             },
-            '2': {
-                plateNo: 'WBA 3381',
-                carName: 'Mercedes Sprinter'
-            },
-            '3': {
-                plateNo: 'AXB 125Q',
-                carName: 'Fiat Ducato'
-            },
-        },
-        taxRates: {
-            '1': {
-                taxName: '0%',
-                taxRate: 0
-            },
-            '2': {
-                taxName: '5%',
-                taxRate: 0.05
-            },
-            '3': {
-                taxName: '8%',
-                taxRate: 0.08
-            },
-            '4': {
-                taxName: '23%',
-                taxRate: 0.23
-            },
-            '5': {
-                taxName: 'NP',
-                taxRate: 0
-            },
+            data: {
+                '1': {
+                    plateNo: 'DXC 2275',
+                    carName: 'Mercedes Vito'
+                },
+                '2': {
+                    plateNo: 'WBA 3381',
+                    carName: 'Mercedes Sprinter'
+                },
+                '3': {
+                    plateNo: 'AXB 125Q',
+                    carName: 'Fiat Ducato'
+                },
+            }
+
         },
         methodsOfPayments: {
-            '1': {
-                payment: 'gotówka'
+            labels: {
+                payment: {
+                    name: 'rodzaj płatności',
+                    dataType: dataTypes.STRING,
+                    required: true
+                }
             },
-            '2': {
-                payment: 'przelew'
+            data: {
+                '1': {
+                    payment: 'gotówka'
+                },
+                '2': {
+                    payment: 'przelew'
+                }
             }
         },
-        accountTypes: {
-            '1': {
-                description: 'krajowe'
+        invoiceType: {
+            labels: {
+                type: {
+                    name: 'typ faktury',
+                    dataType: dataTypes.STRING,
+                    required: true
+                }
             },
-            '2': {
-                description: 'zagraniczne'
-            },
+            data: {
+                '1': {
+                    type: 'krajowa'
+                },
+                '2': {
+                    type: 'zagraniczna'
+                }
+            }
         },
-        textAdditions: {
-            '1': {
-                symbol: 'krajowe',
-                text: 'Dziękujemy i zapraszamy ponownie',
+        taxRates: {
+            labels: {
+                taxName: {
+                    name: 'nazwa podatku',
+                    dataType: dataTypes.STRING,
+                    required: true
+                },
+                taxRate: {
+                    name: 'stawka podatku',
+                    dataType: dataTypes.NUMBER,
+                    required: true
+                }
             },
-            '2': {
-                symbol: 'zagraniczne',
-                text: 'Podatek VAT od transakcji uiszcza nabywca',
-                textCont: 'Dostawa wewnątrzwspólnotowa art. 41 i 42 ust. o VAT'
+            data: {
+                '1': {
+                    taxName: '0%',
+                    taxRate: 0
+                },
+                '2': {
+                    taxName: '5%',
+                    taxRate: 0.05
+                },
+                '3': {
+                    taxName: '8%',
+                    taxRate: 0.08
+                },
+                '4': {
+                    taxName: '23%',
+                    taxRate: 0.23
+                },
+                '5': {
+                    taxName: 'NP',
+                    taxRate: 0
+                }
+            }
+        },
+
+        textAdditions: {
+            labels:  {
+                symbol: {
+                    name: 'skrócona nazwa',
+                    dataType: dataTypes.STRING,
+                    required: true
+                },
+                text: {
+                    name: 'tekst dopiski',
+                    dataType: dataTypes.STRING,
+                    required: true
+                },
+                textCont: {
+                    name: 'tekst dopiski cd.',
+                    dataType: dataTypes.STRING,
+                    required: false
+                },
+            },
+            data: {
+                '1': {
+                    symbol: 'krajowe',
+                    text: 'Dziękujemy i zapraszamy ponownie',
+                    textCont: ''
+                },
+                '2': {
+                    symbol: 'zagraniczne',
+                    text: 'Podatek VAT od transakcji uiszcza nabywca',
+                    textCont: 'Dostawa wewnątrzwspólnotowa art. 41 i 42 ust. o VAT'
+                }
             }
         },
         unitsOfMeasurement: {
-            '1': {
-                unit: 'szt',
+            labels: {
+                unit: {
+                    name: 'nazwa jednostki miary',
+                    dataType: dataTypes.STRING,
+                    required: true
+                }
             },
-            '2': {
-                unit: 'm'
-            },
-            '3': {
-                unit: 'y'
+            data: {
+                '1': {
+                    unit: 'szt',
+                },
+                '2': {
+                    unit: 'm'
+                },
+                '3': {
+                    unit: 'y'
+                }
             }
+
         },
         currencies: {
-            '1': {
-                country: 'PL',
-                currency: 'zł'
+            labels: {
+                currency: {
+                    name: 'symbol waluty',
+                    dataType: dataTypes.STRING,
+                    required: true
+                }
             },
-            '2': {
-                country: 'CZ',
-                currency: 'kč'
-            },
-            '3': {
-                country: 'DE',
-                currency: '€'
+            data: {
+                '1': {
+                    currency: 'zł'
+                },
+                '2': {
+                    currency: 'kč'
+                },
+                '3': {
+                    currency: '€'
+                }
             }
-
         },
-        invoiceType: {
-            '1': {
-
-                type: 'krajowa'
-            },
-            '2': {
-                type: 'zagraniczna'
-            }
-        }
     },
 
     documents: {

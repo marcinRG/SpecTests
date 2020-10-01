@@ -1,10 +1,18 @@
+@import '../../../../scss/mixins';
+@import '../../../../scss/variables';
+
+//.tab-container {
+//  @include shadow-with-hover;
+//  background-color: white;
+//}
 
 .tab {
+
   display: inline-block;
   height: 45px;
-  background-color: #3A9DF9;
+  background-color: $header-bg;
   color: white;
-  border: 1px solid #0082E5;
+  border: 1px solid $login-bar-bg;
   margin-right: 3px;
   vertical-align: middle;
   line-height: 45px;
@@ -15,13 +23,13 @@
   cursor: pointer;
 
   &:hover {
-    background-color: #1389e8;
+    background-color: $bottom-bg;
   }
 
   &.selected {
     background-color: white;
-    color: black;
-    border: 1px solid gray;
+    color: $text-darker;
+    border: 1px solid lightgray;
     border-bottom: 1px solid transparent;
   }
 

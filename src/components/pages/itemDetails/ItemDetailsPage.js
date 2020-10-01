@@ -164,8 +164,8 @@ export function calculateGrossPrice(netPrice, taxRate) {
 function mapStateToProps(state) {
     return {
         products: state.products,
-        units: state.additionalTables.unitsOfMeasurement,
-        taxRates: state.additionalTables.taxRates
+        units: state.additionalTables.unitsOfMeasurement.data,
+        taxRates: state.additionalTables.taxRates.data
     };
 }
 

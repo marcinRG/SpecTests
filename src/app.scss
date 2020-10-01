@@ -6,9 +6,9 @@
 @include custom-font-mixin-simplified('Jack Frost', 'jack_frost', $path-jack-frost);
 @include custom-font-mixin-simplified('Elegant Icons', 'ElegantIcons', $path-elegant-icons);
 
-@include custom-font-mixin('Montserrat', 'montserrat-light', 300, light, $path-montserrat);
+@include custom-font-mixin('Montserrat', 'montserrat-light', 300, normal, $path-montserrat);
 @include custom-font-mixin('Montserrat', 'montserrat-regular', 400, normal, $path-montserrat);
-@include custom-font-mixin('Montserrat', 'montserrat-bold', 700, bold, $path-montserrat);
+@include custom-font-mixin('Montserrat', 'montserrat-bold', 700, normal, $path-montserrat);
 
 *,
 html,
@@ -20,11 +20,11 @@ body {
   a,
   button {
     text-decoration: none;
+
     &::-moz-focus-inner { // sass-lint:disable-line no-vendor-prefixes
       border: 0;
     }
   }
-
 }
 
 .app {
