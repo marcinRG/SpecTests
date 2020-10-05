@@ -58,7 +58,7 @@ export const InitData = {
                 },
             }
 
-        },
+        }, //x
         methodsOfPayments: {
             labels: {
                 payment: {
@@ -75,7 +75,7 @@ export const InitData = {
                     payment: 'przelew'
                 }
             }
-        },
+        }, //x
         invoiceType: {
             labels: {
                 type: {
@@ -128,8 +128,7 @@ export const InitData = {
                     taxRate: 0
                 }
             }
-        },
-
+        }, //x
         textAdditions: {
             labels:  {
                 symbol: {
@@ -160,7 +159,7 @@ export const InitData = {
                     textCont: 'Dostawa wewnątrzwspólnotowa art. 41 i 42 ust. o VAT'
                 }
             }
-        },
+        }, //x
         unitsOfMeasurement: {
             labels: {
                 unit: {
@@ -181,7 +180,7 @@ export const InitData = {
                 }
             }
 
-        },
+        }, //x
         currencies: {
             labels: {
                 currency: {
@@ -201,7 +200,7 @@ export const InitData = {
                     currency: '€'
                 }
             }
-        },
+        }, //x
     },
 
     documents: {

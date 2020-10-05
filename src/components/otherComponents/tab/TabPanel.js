@@ -1,7 +1,6 @@
-import './TabPanel.scss';
 import React from 'react';
 import {PropTypes} from 'prop-types';
-import {getElementClass} from '../../../../utils/utils';
+import {getElementClass} from '../../../utils/utils';
 
 export function TabPanel(props) {
     const setClass = () => {

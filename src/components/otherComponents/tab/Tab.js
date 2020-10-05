@@ -1,7 +1,7 @@
 import './Tab.scss';
 import React from 'react';
 import {PropTypes} from 'prop-types';
-import {getElementClass} from '../../../../utils/utils';
+import {getElementClass} from '../../../utils/utils';
 
 export function Tab(props) {
     const setClass = () => {

@@ -19,9 +19,7 @@ export function SimpleTextInput(props) {
     return (
         <div className="simple-text-input">
             <label className="input-label">{props.label}</label>
-            <div>
-                <input className="input-field" type="text" value={props.value} onChange={changeValue}/>
-            </div>
+            <input className="input-field" type="text" value={props.value} onChange={changeValue}/>
             {!props.isFieldValid &&
             <div className="error-msg">
                 <span className="error-txt">{props.errorMessage}</span>
