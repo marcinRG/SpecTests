@@ -39,7 +39,8 @@ export function objectPropertiesToArray(object) {
 export function valuesAsObjectToArray(object) {
     const keys = Object.keys(object);
     return keys.map((key) => {
-        return {...object[key], id: key};
+        return {...object[key], id: key,
+        };
     });
 }
 

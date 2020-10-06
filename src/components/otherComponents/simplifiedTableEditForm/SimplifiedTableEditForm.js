@@ -6,14 +6,30 @@ import {PropTypes} from 'prop-types';
 export class SimplifiedTableEditForm extends Component {
     constructor(props) {
         super(props);
+        this.remove = this.remove.bind(this);
+        this.edit = this.edit.bind(this);
+        this.save = this.save.bind(this);
+    }
+
+    remove(id) {
+        console.log('remove:' + id);
+    }
+
+    edit(id) {
+        console.log('edit:' + id);
+    }
+
+    save(obj) {
+        console.log('save:');
+        console.log(obj);
     }
 
     render() {
-        console.log(this.props);
         return (
             <div>
-                <SimplifiedForm labels={this.props.labels}/>
-                <SimplifiedTable data={this.props.data} labels={this.props.labels}/>
+                <SimplifiedForm labels={this.props.labels} save={this.save}/>
+                <SimplifiedTable data={this.props.data} labels={this.props.labels} edit={this.edit}
+                                 remove={this.remove}/>
             </div>);
     }
 }
