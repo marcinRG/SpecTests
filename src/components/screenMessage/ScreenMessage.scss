@@ -35,50 +35,52 @@
     left: 50%;
     border: 1px solid #E1E1E1;
     transform: translate(-50%, -50%);
+
+    .message-label {
+      @include block-border-box;
+      background-color: $header-bg;
+      width: 100%;
+      height: 100%;
+      padding: .85em .8em;
+      color: white;
+      font-weight: 300;
+      font-size: .85em;
+      letter-spacing: 1px;
+    }
+
+    .rounded-button {
+      display: inline-block;
+      margin: .25em;
+    }
+
+    .buttons-row {
+      padding: 1em 0;
+      text-align: center;
+    }
+
+    .message-txt {
+      padding: 2em;
+      text-align: justify;
+      line-height: 170%;
+      font-size: .75em;
+    }
+
+    .message-button {
+      display: inline-block;
+      margin: .25em;
+      padding: .85em 2em;
+      color: white;
+      font-weight: 300;
+      font-size: .85em;
+      background-color: $header-bg;
+    }
+
+    &.visible {
+      display: block;
+      visibility: visible;
+    }
   }
 
-  .message-label {
-    @include block-border-box;
-    background-color: $header-bg;
-    width: 100%;
-    height: 100%;
-    padding: .85em .8em;
-    color: white;
-    font-weight: 300;
-    font-size: .85em;
-    letter-spacing: 1px;
-  }
-
-  .rounded-button {
-    display: inline-block;
-    margin: .25em;
-  }
-
-  .buttons-row {
-    padding: 1em 0;
-    text-align: center;
-  }
-
-  .message-txt {
-    padding: 2em;
-    text-align: justify;
-    line-height: 170%;
-    font-size: .75em;
-  }
-
-  .message-button {
-    display: inline-block;
-    margin: .25em;
-    padding: .85em 2em;
-    color: white;
-    font-weight: 300;
-    font-size: .85em;
-    background-color: $header-bg;
-  }
-
-
-  &.visible {
-    display: block;
-    visibility: visible;
-  }
 }
+
+

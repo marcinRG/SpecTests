@@ -28,5 +28,6 @@ export class SimplifiedForm extends Component {
 
 SimplifiedForm.propTypes = {
     labels: PropTypes.object,
-    save: PropTypes.func
+    save: PropTypes.func,
+    cancel: PropTypes.func
 }
