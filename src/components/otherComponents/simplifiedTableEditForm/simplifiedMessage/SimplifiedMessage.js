@@ -7,10 +7,16 @@ export function SimplifiedMessage(props) {
         <div className="simplified-message">
             <p className="message-txt">{props.message}</p>
             <div className="buttons-row">
-                <button className="rounded-button white-inverted">
+                <button className="rounded-button white-inverted" onClick={(event)=>{
+                    event.preventDefault();
+                    props.removeAction();
+                }}>
                     {props.buttonOKLabel}
                 </button>
-                <button className="rounded-button blue">
+                <button className="rounded-button blue" onClick={(event)=>{
+                    event.preventDefault();
+                    props.cancelAction();
+                }}>
                     {props.buttonCancelLabel}
                 </button>
             </div>
@@ -19,7 +25,6 @@ export function SimplifiedMessage(props) {
 }
 
 SimplifiedMessage.propTypes = {
-    id: PropTypes.string,
     buttonOKLabel: PropTypes.string,
     buttonCancelLabel: PropTypes.string,
     message: PropTypes.string,

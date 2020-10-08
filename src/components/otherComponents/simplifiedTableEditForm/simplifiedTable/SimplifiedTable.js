@@ -1,7 +1,7 @@
 import React from 'react';
 import {PropTypes} from 'prop-types';
-import {valuesAsObjectToArray} from '../../../utils/utils';
-import {SimplifiedTableHeader} from './SimplifiedTableHeader/SimplifiedTableHeader';
+import {valuesAsObjectToArray} from '../../../../utils/utils';
+import {SimplifiedTableHeader} from '../simplifiedTableHeader/SimplifiedTableHeader';
 
 export function SimplifiedTable(props) {
 
