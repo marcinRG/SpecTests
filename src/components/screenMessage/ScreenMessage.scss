@@ -14,6 +14,11 @@
   left: 0;
   overflow: hidden;
 
+  &.visible {
+    display: block;
+    visibility: visible;
+  }
+
   .full-screen {
     position: absolute;
     width: 100%;
@@ -73,11 +78,6 @@
       font-weight: 300;
       font-size: .85em;
       background-color: $header-bg;
-    }
-
-    &.visible {
-      display: block;
-      visibility: visible;
     }
   }
 

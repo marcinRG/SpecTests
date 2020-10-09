@@ -6,6 +6,7 @@ import {SimpleTextInput} from '../../formComponents/SimpleTextInput/SimpleTextIn
 import {alwaysTrue, textNotEmpty} from '../../../utils/valideFunctions';
 import {actionNames} from '../../../reduxSettings/constants';
 import {isFieldValid, isFormValid} from '../../../utils/utils';
+import SimplifiedCompanyAccounts from '../../simplifedFormTables/SimpifiedCompanyAccounts';
 
 
 class CompanyDetailsPage extends Component {
@@ -90,7 +91,7 @@ class CompanyDetailsPage extends Component {
 
                 <section className="form-page">
                     <h2 className="form-title">Company <span className="blue">accounts</span></h2>
-                    <div></div>
+                    <SimplifiedCompanyAccounts/>
                 </section>
             </React.Fragment>
         );

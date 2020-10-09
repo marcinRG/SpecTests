@@ -4,6 +4,9 @@ import {SimplifiedTable} from './simplifiedTable/SimplifiedTable';
 import {PropTypes} from 'prop-types';
 import {SimplifiedMessage} from './simplifiedMessage/SimplifiedMessage';
 import './SimplifiedTableEditForm.scss';
+import {dataTypes} from '../../../utils/dataTypes';
+import {getDateString} from '../../../utils/utils';
+
 
 export class SimplifiedTableEditForm extends Component {
     constructor(props) {
@@ -12,6 +15,7 @@ export class SimplifiedTableEditForm extends Component {
             componentState: formStates.TABLE,
             selectedItem: {}
         }
+
         this.showRemoveDialog = this.showRemoveDialog.bind(this);
         this.showEditForm = this.showEditForm.bind(this);
         this.showNewForm = this.showNewForm.bind(this);
@@ -40,7 +44,7 @@ export class SimplifiedTableEditForm extends Component {
         if (this.state.componentState === formStates.TABLE) {
             this.setState({
                 componentState: formStates.ADD_NEW,
-                selectedItem: {}
+                selectedItem: createEmpty(this.props.labels)
             });
         }
     }
@@ -64,36 +68,37 @@ export class SimplifiedTableEditForm extends Component {
     }
 
     save() {
+        console.log('save:');
         this.setState({
             componentState: formStates.TABLE,
             selectedItem: {}
         });
-        console.log('save:');
+
     }
 
     remove() {
+        console.log('remove:');
         this.setState({
             componentState: formStates.TABLE,
             selectedItem: {}
         });
-        console.log('remove:');
     }
 
     render() {
         return (
             <div className="simplified-table-edit-form">
-                {this.state.componentState === formStates.EDIT &&
+                {(this.state.componentState === formStates.EDIT || this.state.componentState === formStates.ADD_NEW) &&
                 <SimplifiedForm labels={this.props.labels} save={this.save} cancel={this.cancel}
                                 selectedValue={this.state.selectedItem} changeSelected={this.changeSelectedItem}/>}
 
                 {this.state.componentState === formStates.REMOVE &&
-                <SimplifiedMessage buttonCancelLabel={'Cancel'} buttonOKLabel={'Ok'} message={'Czy chcesz usunąć?'}
+                <SimplifiedMessage buttonCancelLabel={'Cancel'} buttonOKLabel={'Ok'} message={'Czy chcesz usunąć wybraną wartość?'}
                                    cancelAction={this.cancel} removeAction={this.remove}/>}
 
                 <SimplifiedTable data={this.props.data} labels={this.props.labels} edit={this.showEditForm}
                                  remove={this.showRemoveDialog}/>
                 <div className="buttons-table">
-                    <button className="rounded-button white-inverted" disabled={false}>Add new</button>
+                    <button className="rounded-button white-inverted" onClick={this.showNewForm}>Add new</button>
                 </div>
 
             </div>);
@@ -112,4 +117,31 @@ const formStates = {
     'EDIT': 'show edit form',
     'REMOVE': 'show remove question',
     'ADD_NEW': 'show new form'
+}
+
+function createEmpty(labels) {
+    const obj = {};
+    Object.keys(labels).forEach(label => {
+        obj[label] = getEmptyValue(labels[label].dataType);
+    });
+    console.log(obj);
+    return obj;
+}
+
+function getEmptyValue(dataType) {
+    switch (dataType) {
+        case dataTypes.DATE: {
+            return getDateString(new Date().toString(), '-');
+        }
+        case dataTypes.STRING: {
+            return '-';
+        }
+        case dataTypes.NUMBER: {
+            return 0;
+        }
+        default: {
+            return false;
+        }
+    }
+
 }

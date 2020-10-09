@@ -1,7 +1,6 @@
 import React from 'react';
 import {PropTypes} from 'prop-types';
-import {dataTypes} from '../../../../utils/dataTypes';
-import {getDateString, isNumber, validDate} from '../../../../utils/utils';
+import {isDataValid} from '../../../../utils/utils';
 
 export function SimplifiedInputField(props) {
     return (
@@ -9,12 +8,16 @@ export function SimplifiedInputField(props) {
             <label className="input-label">{props.label.name}</label>
             <input className="input-field" type="text"
                    value={getValue(props.label.id, props.value)} onChange={(event) => {
-                props.changeValue(setValue(event.target.value, props.label.id, props.value));
+                props.changeValue({
+                    fieldName: props.label.id,
+                    value: event.target.value,
+                    isValid: fieldIsValid(event.target.value + '', props.label)
+                });
             }}
             />
-            {!isDataValid(getValue(props.label.id, props.value), props.label.dataType) &&
+            {!fieldIsValid(getValue(props.label.id, props.value), props.label) &&
             <div className="error-msg">
-                <span className="error-txt">{props.errorMessage}</span>
+                <span className="error-txt">{props.label.errorMsg}</span>
             </div>}
         </div>
     )
@@ -24,39 +27,20 @@ export function SimplifiedInputField(props) {
 SimplifiedInputField.propTypes = {
     label: PropTypes.object,
     value: PropTypes.object,
-    changeValue: PropTypes.func,
-    errorMessage: PropTypes.string
+    changeValue: PropTypes.func
 }
 
-function isValid(fieldName, obj, objDescription) {
-
+function fieldIsValid(value, objDescription) {
+    if (objDescription.required) {
+        return isDataValid(value, objDescription.dataType);
+    }
+    return true;
 }
 
 function getValue(fieldName, obj) {
     if (obj && obj.hasOwnProperty(fieldName)) {
-        return obj[fieldName]+'';
+        return obj[fieldName] + '';
     }
     return '';
 }
 
-function setValue(val, fieldName, obj) {
-    if (obj && obj.hasOwnProperty(fieldName)) {
-        const newValue = {...obj};
-        newValue[fieldName] = val;
-        return newValue;
-    }
-}
-
-function isDataValid(valueAsString, dataType) {
-    switch (dataType) {
-        case dataTypes.DATE: {
-            return validDate(valueAsString);
-        }
-        case dataTypes.STRING: {
-            return (valueAsString.length > 0);
-        }
-        case dataTypes.NUMBER: {
-            return isNumber(valueAsString);
-        }
-    }
-}

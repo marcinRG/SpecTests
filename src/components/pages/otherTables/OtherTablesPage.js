@@ -3,6 +3,12 @@ import {Tabs} from '../../otherComponents/tab/Tabs';
 import {Tab} from '../../otherComponents/tab/Tab';
 import {TabPanel} from '../../otherComponents/tab/TabPanel';
 import SimplifiedTaxRates from '../../simplifedFormTables/SimplifiedTaxRates';
+import SimplifiedCurrencies from '../../simplifedFormTables/SimplifiedCurrencies';
+import SimplifiedMethodsOfPayments from '../../simplifedFormTables/SimplifiedMethodsOfPayments';
+import SimplifiedCars from '../../simplifedFormTables/SimplifiedCars';
+import SimplifiedTextAdditions from '../../simplifedFormTables/SimplifiedTextAdditions';
+import SimplifiedUnitsOfMeasurements from '../../simplifedFormTables/SimplifiedUnitsOfMeasurements';
+import SimplifiedInvoiceTypes from '../../simplifedFormTables/SimplifiedInvoiceTypes';
 
 export class OtherTablesPage extends Component {
     constructor(props) {
@@ -31,7 +37,7 @@ export class OtherTablesPage extends Component {
                                  selected={this.state.selected}/>
                             <Tab id={2} action={this.changeSelected} text={'Methods of payments'}
                                  selected={this.state.selected}/>
-                            <Tab id={3} action={this.changeSelected} text={'Account types'}
+                            <Tab id={3} action={this.changeSelected} text={'Cars'}
                                  selected={this.state.selected}/>
                             <Tab id={4} action={this.changeSelected} text={'Text additions'}
                                  selected={this.state.selected}/>
@@ -44,22 +50,22 @@ export class OtherTablesPage extends Component {
                             <SimplifiedTaxRates/>
                         </TabPanel>
                         <TabPanel id={1} selected={this.state.selected}>
-                            <span>Tab Panel 2</span>
+                            <SimplifiedCurrencies/>
                         </TabPanel>
                         <TabPanel id={2} selected={this.state.selected}>
-                            <span>Tab Panel 3</span>
+                            <SimplifiedMethodsOfPayments/>
                         </TabPanel>
                         <TabPanel id={3} selected={this.state.selected}>
-                            <span>Tab Panel 4</span>
+                            <SimplifiedCars/>
                         </TabPanel>
                         <TabPanel id={4} selected={this.state.selected}>
-                            <span>Tab Panel 5</span>
+                            <SimplifiedTextAdditions/>
                         </TabPanel>
                         <TabPanel id={5} selected={this.state.selected}>
-                            <span>Tab Panel 6</span>
+                            <SimplifiedUnitsOfMeasurements/>
                         </TabPanel>
                         <TabPanel id={6} selected={this.state.selected}>
-                            <span>Tab Panel 7</span>
+                            <SimplifiedInvoiceTypes/>
                         </TabPanel>
                     </div>
                 </section>

@@ -39,7 +39,8 @@ export function objectPropertiesToArray(object) {
 export function valuesAsObjectToArray(object) {
     const keys = Object.keys(object);
     return keys.map((key) => {
-        return {...object[key], id: key,
+        return {
+            ...object[key], id: key,
         };
     });
 }
@@ -91,7 +92,7 @@ export function isDataValid(valueAsString, dataType) {
             return validDate(valueAsString);
         }
         case dataTypes.STRING: {
-            return true;
+            return valueAsString.length > 0;
         }
         case dataTypes.NUMBER: {
             return isNumber(valueAsString);
@@ -99,6 +100,14 @@ export function isDataValid(valueAsString, dataType) {
         default: {
             return false;
         }
+    }
+}
+
+export function setValue(value, fieldName, obj) {
+    if (obj && obj.hasOwnProperty(fieldName)) {
+        const newValue = {...obj};
+        newValue[fieldName] = value;
+        return newValue;
     }
 }
 

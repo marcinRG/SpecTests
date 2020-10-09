@@ -14,18 +14,47 @@ export const InitData = {
             vatUeNumber: 'GB 23450012',
         },
         accounts: {
-            '1': {
-                accountType: 'krajowe',
-                swiftCodeAccount: 'PL XX 22 33',
-                bankName: 'PKO BP',
-                accountNumber: ' PL 06 1189 0035 0000 0001 0056 9186'
+            labels: {
+                accountType: {
+                    name: 'Skrócona nazwa konta',
+                    dataType: dataTypes.STRING,
+                    required: true,
+                    errorMsg: 'Skórcona nazwa konta jest wymagana!'
+                },
+                swiftCodeAccount: {
+                    name: 'Numer konta SWIFT',
+                    dataType: dataTypes.STRING,
+                    required: true,
+                    errorMsg: 'Numer Swift jest wymagany!'
+                },
+                bankName: {
+                    name: 'Nazwa banku',
+                    dataType: dataTypes.STRING,
+                    required: true,
+                    errorMsg: 'Nazwa banku jest wymagana!'
+                },
+                accountNumber: {
+                    name: 'Numer konta',
+                    dataType: dataTypes.STRING,
+                    required: true,
+                    errorMsg: 'Numer konta jest wymagany!'
+                }
             },
-            '2': {
-                accountType: 'zagraniczne',
-                swiftCodeAccount: 'XW ZX GB LPP',
-                bankName: 'Bank of Austria',
-                accountNumber: ' GB 06 1189 0035 0000 0001 0056 9186'
-            }
+            data: {
+                '1': {
+                    accountType: 'krajowe',
+                    swiftCodeAccount: 'PL XX 22 33',
+                    bankName: 'PKO BP',
+                    accountNumber: ' PL 06 1189 0035 0000 0001 0056 9186'
+                },
+                '2': {
+                    accountType: 'zagraniczne',
+                    swiftCodeAccount: 'XW ZX GB LPP',
+                    bankName: 'Bank of Austria',
+                    accountNumber: ' GB 06 1189 0035 0000 0001 0056 9186'
+                }
+            },
+
         }
     },
 
@@ -35,12 +64,14 @@ export const InitData = {
                 plateNo: {
                     name: 'numer rejestracyjny',
                     dataType: dataTypes.STRING,
-                    required: true
+                    required: true,
+                    errorMsg: 'Numer rejestracyjny jest wymagany!'
                 },
                 carName: {
                     name: 'nazwa samochodu',
                     dataType: dataTypes.STRING,
-                    required: true
+                    required: true,
+                    errorMsg: 'Musisz wpisać nazwę samochodu!'
                 }
             },
             data: {
@@ -58,13 +89,14 @@ export const InitData = {
                 },
             }
 
-        }, //x
+        },
         methodsOfPayments: {
             labels: {
                 payment: {
                     name: 'rodzaj płatności',
                     dataType: dataTypes.STRING,
-                    required: true
+                    required: true,
+                    errorMsg: 'Musisz wpisać nazwę rodzaju płatności!'
                 }
             },
             data: {
@@ -75,13 +107,14 @@ export const InitData = {
                     payment: 'przelew'
                 }
             }
-        }, //x
+        },
         invoiceType: {
             labels: {
                 type: {
                     name: 'typ faktury',
                     dataType: dataTypes.STRING,
-                    required: true
+                    required: true,
+                    errorMsg: 'Musisz określić typ faktury!'
                 }
             },
             data: {
@@ -98,12 +131,14 @@ export const InitData = {
                 taxName: {
                     name: 'nazwa podatku',
                     dataType: dataTypes.STRING,
-                    required: true
+                    required: true,
+                    errorMsg: 'Nazwa podatku nie może być pusta!'
                 },
                 taxRate: {
                     name: 'stawka podatku',
                     dataType: dataTypes.NUMBER,
-                    required: true
+                    required: true,
+                    errorMsg: 'Podaj wartość dla stawki podatku!'
                 }
             },
             data: {
@@ -128,23 +163,26 @@ export const InitData = {
                     taxRate: 0
                 }
             }
-        }, //x
+        },
         textAdditions: {
-            labels:  {
+            labels: {
                 symbol: {
                     name: 'skrócona nazwa',
                     dataType: dataTypes.STRING,
-                    required: true
+                    required: true,
+                    errorMsg: 'Skrót nie może być pusty!'
                 },
                 text: {
                     name: 'tekst dopiski',
                     dataType: dataTypes.STRING,
-                    required: true
+                    required: true,
+                    errorMsg: 'Tekst dopiski nie może być pusty!'
                 },
                 textCont: {
                     name: 'tekst dopiski cd.',
                     dataType: dataTypes.STRING,
-                    required: false
+                    required: false,
+                    errorMsg: ''
                 },
             },
             data: {
@@ -159,13 +197,14 @@ export const InitData = {
                     textCont: 'Dostawa wewnątrzwspólnotowa art. 41 i 42 ust. o VAT'
                 }
             }
-        }, //x
+        },
         unitsOfMeasurement: {
             labels: {
                 unit: {
                     name: 'nazwa jednostki miary',
                     dataType: dataTypes.STRING,
-                    required: true
+                    required: true,
+                    errorMsg: 'Nazwa jednostki miary nie może być pusta!'
                 }
             },
             data: {
@@ -180,13 +219,14 @@ export const InitData = {
                 }
             }
 
-        }, //x
+        },
         currencies: {
             labels: {
                 currency: {
                     name: 'symbol waluty',
                     dataType: dataTypes.STRING,
-                    required: true
+                    required: true,
+                    errorMsg: 'Symbol waluty nie może być pusty!'
                 }
             },
             data: {
@@ -200,7 +240,7 @@ export const InitData = {
                     currency: '€'
                 }
             }
-        }, //x
+        },
     },
 
     documents: {
