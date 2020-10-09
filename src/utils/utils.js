@@ -79,12 +79,28 @@ export function isFormValid(validationObject) {
 }
 
 export function isNumber(str) {
-    if (str && !Number.isNaN(str) && (typeof Number.parseFloat(str) === 'number')) {
+    if (str && !Number.isNaN(Number.parseFloat(str))) {
         return true;
     }
     return false;
 }
 
+export function isDataValid(valueAsString, dataType) {
+    switch (dataType) {
+        case dataTypes.DATE: {
+            return validDate(valueAsString);
+        }
+        case dataTypes.STRING: {
+            return true;
+        }
+        case dataTypes.NUMBER: {
+            return isNumber(valueAsString);
+        }
+        default: {
+            return false;
+        }
+    }
+}
 
 //from https://www.jacklmoore.com/notes/rounding-in-javascript/
 export function round(value, decimals) {

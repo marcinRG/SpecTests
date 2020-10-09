@@ -40,7 +40,7 @@ function createSimplifiedTableRow(key, dataObj, labelKeys, editItem, removeItem)
             {labelKeys.map((key, index) =>
                 <td className="table-cell" key={index}>{dataObj[key]}</td>
             )}
-            <td>
+            <td className="table-cell">
                 <button className="table-button" onClick={() => editItem(dataObj.id)}>&#9998; Edit
                 </button>
                 <button className="table-button white"

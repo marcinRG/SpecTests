@@ -28,7 +28,7 @@ export class SimplifiedTableEditForm extends Component {
     }
 
     showRemoveDialog(id) {
-        if (this.state.componentState == formStates.TABLE) {
+        if (this.state.componentState === formStates.TABLE) {
             this.setState({
                 componentState: formStates.REMOVE,
                 selectedItem: this.props.data[id]
@@ -37,7 +37,7 @@ export class SimplifiedTableEditForm extends Component {
     }
 
     showNewForm() {
-        if (this.state.componentState == formStates.TABLE) {
+        if (this.state.componentState === formStates.TABLE) {
             this.setState({
                 componentState: formStates.ADD_NEW,
                 selectedItem: {}
@@ -46,7 +46,7 @@ export class SimplifiedTableEditForm extends Component {
     }
 
     showEditForm(id) {
-        if (this.state.componentState == formStates.TABLE) {
+        if (this.state.componentState === formStates.TABLE) {
             this.setState({
                 componentState: formStates.EDIT,
                 selectedItem: this.props.data[id]

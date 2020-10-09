@@ -78,6 +78,9 @@ describe('Form validation functions test',()=>{
         expect(isNumber(str)).toBe(true);
         str = '0x010101';
         expect(isNumber(str)).toBe(true);
+        str = 'zy';
+        expect(isNumber(str)).toBe(false);
+
     });
 
 

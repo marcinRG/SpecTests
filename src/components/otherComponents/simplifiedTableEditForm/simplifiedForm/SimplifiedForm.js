@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {PropTypes} from 'prop-types';
 import {valuesAsObjectToArray} from '../../../../utils/utils';
 import './SimplifiedForm.scss';
+import {SimplifiedInputField} from '../simplifiedInputField/SimplifiedInputField';
 
 export class SimplifiedForm extends Component {
     constructor(props) {
@@ -14,13 +15,9 @@ export class SimplifiedForm extends Component {
             <div className="simplified-form">
                 <form className="input-form">
                     {valuesAsObjectToArray(this.props.labels).map((label, index) =>
-                        <div key={index} className="simple-text-input">
-                            <label className="input-label">{label.name}</label>
-                            <input className="input-field" type="text"
-                                   value={getValue(label.id, this.props.selectedValue)} onChange={(event) => {
-                                this.props.changeSelected(setValue(event.target.value, label.id, this.props.selectedValue));
-                            }}/>
-                        </div>
+                        <SimplifiedInputField key={index} value={this.props.selectedValue} label={label}
+                                              changeValue={this.props.changeSelected}
+                                              errorMessage={'Tory były złe!!!'}/>
                     )}
                     <div className="buttons-row">
                         <button className="rounded-button white-inverted" onClick={this.props.save}
@@ -44,17 +41,3 @@ SimplifiedForm.propTypes = {
     changeSelected: PropTypes.func
 }
 
-function getValue(fieldName, obj) {
-    if (obj && obj.hasOwnProperty(fieldName)) {
-        return obj[fieldName];
-    }
-    return '';
-}
-
-function setValue(val, fieldName, obj) {
-    if (obj && obj.hasOwnProperty(fieldName)) {
-        const newValue = {...obj};
-        newValue[fieldName] = val;
-        return newValue;
-    }
-}
