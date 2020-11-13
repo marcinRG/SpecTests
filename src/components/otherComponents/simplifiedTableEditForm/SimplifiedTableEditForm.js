@@ -26,6 +26,8 @@ export class SimplifiedTableEditForm extends Component {
     }
 
     changeSelectedItem(obj) {
+        console.log('change selected');
+        console.log(obj);
         this.setState({
             selectedItem: obj
         });
@@ -44,7 +46,7 @@ export class SimplifiedTableEditForm extends Component {
         if (this.state.componentState === formStates.TABLE) {
             this.setState({
                 componentState: formStates.ADD_NEW,
-                selectedItem: createEmpty(this.props.labels)
+                selectedItem: {}
             });
         }
     }
@@ -68,7 +70,6 @@ export class SimplifiedTableEditForm extends Component {
     }
 
     save() {
-        console.log('save:');
         this.setState({
             componentState: formStates.TABLE,
             selectedItem: {}
@@ -77,7 +78,6 @@ export class SimplifiedTableEditForm extends Component {
     }
 
     remove() {
-        console.log('remove:');
         this.setState({
             componentState: formStates.TABLE,
             selectedItem: {}
@@ -89,10 +89,13 @@ export class SimplifiedTableEditForm extends Component {
             <div className="simplified-table-edit-form">
                 {(this.state.componentState === formStates.EDIT || this.state.componentState === formStates.ADD_NEW) &&
                 <SimplifiedForm labels={this.props.labels} save={this.save} cancel={this.cancel}
-                                selectedValue={this.state.selectedItem} changeSelected={this.changeSelectedItem}/>}
+                                selectedValue={this.state.selectedItem} changeSelected={this.changeSelectedItem}
+                                componentState={this.state.componentState}
+                />}
 
                 {this.state.componentState === formStates.REMOVE &&
-                <SimplifiedMessage buttonCancelLabel={'Cancel'} buttonOKLabel={'Ok'} message={'Czy chcesz usunąć wybraną wartość?'}
+                <SimplifiedMessage buttonCancelLabel={'Cancel'} buttonOKLabel={'Ok'}
+                                   message={'Czy chcesz usunąć wybraną wartość?'}
                                    cancelAction={this.cancel} removeAction={this.remove}/>}
 
                 <SimplifiedTable data={this.props.data} labels={this.props.labels} edit={this.showEditForm}
@@ -112,36 +115,35 @@ SimplifiedTableEditForm.propTypes = {
     removeValue: PropTypes.func
 }
 
-const formStates = {
-    'TABLE': 'table',
-    'EDIT': 'show edit form',
-    'REMOVE': 'show remove question',
-    'ADD_NEW': 'show new form'
-}
+export const formStates = {
+    TABLE: 'table',
+    EDIT: 'show edit form',
+    REMOVE: 'show remove question',
+    ADD_NEW: 'show new form'
+};
 
-function createEmpty(labels) {
-    const obj = {};
-    Object.keys(labels).forEach(label => {
-        obj[label] = getEmptyValue(labels[label].dataType);
-    });
-    console.log(obj);
-    return obj;
-}
-
-function getEmptyValue(dataType) {
-    switch (dataType) {
-        case dataTypes.DATE: {
-            return getDateString(new Date().toString(), '-');
-        }
-        case dataTypes.STRING: {
-            return '-';
-        }
-        case dataTypes.NUMBER: {
-            return 0;
-        }
-        default: {
-            return false;
-        }
-    }
-
-}
+// function createEmpty(labels) {
+//     const obj = {};
+//     Object.keys(labels).forEach(label => {
+//         obj[label] = getEmptyValue(labels[label].dataType);
+//     });
+//     console.log(obj);
+//     return obj;
+// }
+//
+// function getEmptyValue(dataType) {
+//     switch (dataType) {
+//         case dataTypes.DATE: {
+//             return getDateString(new Date().toString(), '-');
+//         }
+//         case dataTypes.STRING: {
+//             return '-';
+//         }
+//         case dataTypes.NUMBER: {
+//             return 0;
+//         }
+//         default: {
+//             return false;
+//         }
+//     }
+// }
