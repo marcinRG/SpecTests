@@ -47,25 +47,25 @@ export class OtherTablesPage extends Component {
                                  selected={this.state.selected}/>
                         </Tabs>
                         <TabPanel id={0} selected={this.state.selected}>
-                            <SimplifiedTaxRates/>
+                            <SimplifiedTaxRates isSelected={this.state.selected===0}/>
                         </TabPanel>
                         <TabPanel id={1} selected={this.state.selected}>
-                            <SimplifiedCurrencies/>
+                            <SimplifiedCurrencies isSelected={this.state.selected===1}/>
                         </TabPanel>
                         <TabPanel id={2} selected={this.state.selected}>
-                            <SimplifiedMethodsOfPayments/>
+                            <SimplifiedMethodsOfPayments isSelected={this.state.selected===2}/>
                         </TabPanel>
                         <TabPanel id={3} selected={this.state.selected}>
-                            <SimplifiedCars/>
+                            <SimplifiedCars isSelected={this.state.selected===3}/>
                         </TabPanel>
                         <TabPanel id={4} selected={this.state.selected}>
-                            <SimplifiedTextAdditions/>
+                            <SimplifiedTextAdditions isSelected={this.state.selected===4}/>
                         </TabPanel>
                         <TabPanel id={5} selected={this.state.selected}>
-                            <SimplifiedUnitsOfMeasurements/>
+                            <SimplifiedUnitsOfMeasurements isSelected={this.state.selected===5}/>
                         </TabPanel>
                         <TabPanel id={6} selected={this.state.selected}>
-                            <SimplifiedInvoiceTypes/>
+                            <SimplifiedInvoiceTypes isSelected={this.state.selected===6}/>
                         </TabPanel>
                     </div>
                 </section>

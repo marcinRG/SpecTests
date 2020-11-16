@@ -1,6 +1,7 @@
 import React from 'react';
 import {PropTypes} from 'prop-types';
 import {isDataValid} from '../../../../utils/utils';
+import {fieldState} from '../simplifiedForm/SimplifiedForm';
 
 export function SimplifiedInputField(props) {
     return (
@@ -11,11 +12,11 @@ export function SimplifiedInputField(props) {
                 props.changeValue({
                     fieldName: props.label.id,
                     value: event.target.value,
-                    isValid: fieldIsValid(event.target.value + '', props.label)
+                    isValid: isDataValid(event.target.value + '', props.label.dataType)
                 });
             }}
             />
-            {!fieldIsValid(getValue(props.label.id, props.value), props.label) &&
+            {!fieldIsValid(getValue(props.label.id, props.value), props.label, props.fieldStates) &&
             <div className="error-msg">
                 <span className="error-txt">{props.label.errorMsg}</span>
             </div>}
@@ -26,12 +27,14 @@ export function SimplifiedInputField(props) {
 
 SimplifiedInputField.propTypes = {
     label: PropTypes.object,
+    fieldStates: PropTypes.object,
     value: PropTypes.object,
     changeValue: PropTypes.func
 }
 
-function fieldIsValid(value, objDescription) {
-    if (objDescription.required) {
+function fieldIsValid(value, objDescription, fieldStates) {
+    const stateOfField = fieldStates[objDescription.id];
+    if (stateOfField != fieldState.CLEAN && objDescription.required) {
         return isDataValid(value, objDescription.dataType);
     }
     return true;

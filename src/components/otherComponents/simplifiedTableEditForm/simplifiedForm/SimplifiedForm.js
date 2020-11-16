@@ -17,11 +17,9 @@ export class SimplifiedForm extends Component {
 
     changeValueAndValidate(obj) {
         this.props.changeSelected(setValue(obj.value, obj.fieldName, this.props.selectedValue));
-        // const newEditedFields = {...this.state.editedFields, [obj.fieldName]: true};
-        // //console.log(newEditedFields);
-        // const newValidationObj = {...this.state.validation, [obj.fieldName]: obj.isValid};
-        // //console.log(newValidationObj);
-        // this.setState({validation: newValidationObj, editedFields: newEditedFields});
+        const newEditedFields = {...this.state.editedFields, [obj.fieldName]: fieldState.EDITED};
+        const newValidationObj = {...this.state.validation, [obj.fieldName]: obj.isValid};
+        this.setState({validation: newValidationObj, editedFields: newEditedFields});
     }
 
     render() {
@@ -30,6 +28,7 @@ export class SimplifiedForm extends Component {
                 <form className="input-form">
                     {valuesAsObjectToArray(this.props.labels).map((label, index) =>
                         <SimplifiedInputField key={index} value={this.props.selectedValue} label={label}
+                                              fieldStates = {this.state.editedFields}
                                               changeValue={this.changeValueAndValidate}/>
                     )}
                     <div className="buttons-row">
@@ -102,11 +101,11 @@ function getFormState(labels, fieldState) {
     labelKeys.forEach(label => {
         formFieldsState = {...formFieldsState,[label]: fieldState};
     });
-    return formFieldsState
+    return formFieldsState;
 }
 
 
-const fieldState = {
+export const fieldState = {
     CLEAN: 'clean',
     EDITED: 'edited',
     VALUES: 'values',

@@ -15,7 +15,7 @@ export class SimplifiedTableEditForm extends Component {
             componentState: formStates.TABLE,
             selectedItem: {}
         }
-
+        this.initState = this.initState.bind(this);
         this.showRemoveDialog = this.showRemoveDialog.bind(this);
         this.showEditForm = this.showEditForm.bind(this);
         this.showNewForm = this.showNewForm.bind(this);
@@ -25,9 +25,14 @@ export class SimplifiedTableEditForm extends Component {
         this.changeSelectedItem = this.changeSelectedItem.bind(this);
     }
 
+    initState() {
+        this.setState({
+            componentState: formStates.TABLE,
+            selectedItem: {}
+        });
+    }
+
     changeSelectedItem(obj) {
-        console.log('change selected');
-        console.log(obj);
         this.setState({
             selectedItem: obj
         });
@@ -70,21 +75,21 @@ export class SimplifiedTableEditForm extends Component {
     }
 
     save() {
-        this.setState({
-            componentState: formStates.TABLE,
-            selectedItem: {}
-        });
-
+        this.initState();
     }
 
     remove() {
-        this.setState({
-            componentState: formStates.TABLE,
-            selectedItem: {}
-        });
+        this.initState();
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        if (!prevProps.isSelected && (prevState.componentState != formStates.TABLE)) {
+            this.initState();
+        }
     }
 
     render() {
+
         return (
             <div className="simplified-table-edit-form">
                 {(this.state.componentState === formStates.EDIT || this.state.componentState === formStates.ADD_NEW) &&
@@ -106,9 +111,17 @@ export class SimplifiedTableEditForm extends Component {
 
             </div>);
     }
+
+    componentDidMount() {
+        this.setState({
+            componentState: formStates.TABLE,
+            selectedItem: {}
+        });
+    }
 }
 
 SimplifiedTableEditForm.propTypes = {
+    isSelected: PropTypes.bool,
     data: PropTypes.object,
     labels: PropTypes.object,
     changeValue: PropTypes.func,
