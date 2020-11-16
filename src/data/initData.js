@@ -59,6 +59,12 @@ export const InitData = {
     },
 
     additionalTables: {
+        invoiceTypes: {
+          PROFORMA: 'faktura proforma',
+          WDT: 'wewnątrzwspólnotowa dostawa towarów',
+          VAT: 'faktura VAT',
+          KOREKTA: 'faktura korygująca'
+        },
         cars: {
             labels: {
                 plateNo: {

@@ -1,9 +1,38 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
+import {valuesAsObjectToArray} from '../../../utils/utils';
+import {ComboBoxItem} from '../ComboBox/ComboBoxItem';
 
 export class DynamicComboBox extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            showItems: false,
+            textValue: ''
+        };
+        this.handleClick = this.handleClick.bind(this);
+        this.handleTextInput = this.handleTextInput.bind(this);
+        this.clickDropdownItem = this.clickDropdownItem.bind(this);
+    }
+
+    clickDropdownItem(item) {
+        this.setState({
+            showItems: false,
+            textValue: item
+        });
+    }
+
+    handleTextInput(event) {
+        console.log(event.target.value);
+        this.setState({
+            textValue: event.target.value
+        });
+    }
+
+    handleClick(event) {
+        event.preventDefault();
+        console.log('change visibilty');
+        this.setState({showItems: !this.state.showItems});
     }
 
     render() {
@@ -11,15 +40,14 @@ export class DynamicComboBox extends Component {
             <div className="combobox-input">
                 <label className="input-label">{this.props.label}</label>
                 <div className="inputs">
-                    <input type="text" className="input-field"/>
-                    <button className="input-btn"><span>&#x25bc;</span></button>
+                    <input type="text" className="input-field" onChange={this.handleTextInput}
+                           value={this.state.textValue}/>
+                    <button className="input-btn" onClick={this.handleClick}><span>&#x25bc;</span></button>
                 </div>
                 <ul className="list-of-elements">
-                    <li className="list-element">element 1</li>
-                    <li className="list-element">element 2</li>
-                    <li className="list-element">element 3</li>
-                    <li className="list-element">element 4</li>
-                    <li className="list-element">element 5</li>
+                    {valuesAsObjectToArray(this.props.items).map((elem) =>
+                        <ComboBoxItem key={elem.id} id={elem.id} value={elem[this.props.fieldDisplay]} action={this.clickDropdownItem}/>
+                    )}
                 </ul>
                 <div className="error-msg">
                     <span className="error-txt">This is some random error message!!!</span>
@@ -32,5 +60,7 @@ export class DynamicComboBox extends Component {
 DynamicComboBox.propTypes = {
     label: PropTypes.string.isRequired,
     errorMessage: PropTypes.string.isRequired,
-    validation: PropTypes.object
+    validation: PropTypes.object,
+    items: PropTypes.object,
+    fieldDisplay: PropTypes.string,
 };

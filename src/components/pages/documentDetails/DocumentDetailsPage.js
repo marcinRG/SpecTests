@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
+import {DynamicComboBox} from '../../formComponents/DynamicComboBox/DynamicComboBox';
 
 export class DocumentDetailsPage extends Component{
     constructor(props) {
@@ -12,7 +13,7 @@ export class DocumentDetailsPage extends Component{
                 <section className="form-page">
                     <h2 className="form-title">Document <span className="blue">details</span></h2>
                     <form className="input-form">
-
+                        <DynamicComboBox label={'costam'} errorMessage={'error! costam zle'} />
                     </form>
                     <div>
                         <Link className="rounded-button blue btn-back" to={'/documents'}>Back</Link>
