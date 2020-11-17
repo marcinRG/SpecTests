@@ -13,7 +13,7 @@ import {ClientsPage} from './components/pages/clients/ClientsPage';
 import {DocumentsPage} from './components/pages/documents/DocumentsPage';
 import CompanyDetailsPage from './components/pages/companyDetails/CompanyDetailsPage';
 import {OtherTablesPage} from './components/pages/otherTables/OtherTablesPage';
-import {DocumentDetailsPage} from './components/pages/documentDetails/DocumentDetailsPage';
+import DocumentDetailsPage from './components/pages/documentDetails/DocumentDetailsPage';
 import ItemDetailsPage from './components/pages/itemDetails/ItemDetailsPage';
 import ClientDetailsPage from './components/pages/clientDetails/ClientDetailsPage';
 

@@ -6,6 +6,7 @@ import {ComboBoxItem} from '../ComboBox/ComboBoxItem';
 export class DynamicComboBox extends Component {
     constructor(props) {
         super(props);
+        console.log(props.items);
         this.state = {
             showItems: false,
             textValue: ''
@@ -45,9 +46,11 @@ export class DynamicComboBox extends Component {
                     <button className="input-btn" onClick={this.handleClick}><span>&#x25bc;</span></button>
                 </div>
                 <ul className="list-of-elements">
+{/*
                     {valuesAsObjectToArray(this.props.items).map((elem) =>
                         <ComboBoxItem key={elem.id} id={elem.id} value={elem[this.props.fieldDisplay]} action={this.clickDropdownItem}/>
                     )}
+*/}
                 </ul>
                 <div className="error-msg">
                     <span className="error-txt">This is some random error message!!!</span>
