@@ -71,11 +71,11 @@ ComboBox.propTypes = {
 
 
 
-function getHeight(array) {
+export function getHeight(array) {
     return (array.length * 49) + 'px';
 }
 
-function setListStyle(show, array) {
+export function setListStyle(show, array) {
     if (show) {
         return {height: getHeight(array)};
     }

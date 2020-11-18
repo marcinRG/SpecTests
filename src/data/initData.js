@@ -279,82 +279,82 @@ export const InitData = {
         data: {
             '1': {
                 date: '2020-03-17T11:32:38.000Z',
-                document_nr: '203455/30',
+                document_nr: '203455/01',
                 document_sum: 2457.12
             },
             '2': {
                 date: '2019-12-17T11:32:38.000Z',
-                document_nr: '203455/95',
+                document_nr: '203455/02',
                 document_sum: 125.30
             },
             '3': {
                 date: '2020-01-20T11:32:38.000Z',
-                document_nr: '203455/12',
+                document_nr: '203455/02',
                 document_sum: 8825.73
             },
             '4': {
                 date: '2020-02-03T11:32:38.000Z',
-                document_nr: '203455/02',
+                document_nr: '203455/04',
                 document_sum: 12525.73
             },
             '5': {
                 date: '2020-02-10T11:32:38.000Z',
-                document_nr: '203455/03',
+                document_nr: '203455/05',
                 document_sum: 1255.88
             },
             '6': {
                 date: '2020-02-10T11:32:38.000Z',
-                document_nr: '203455/03',
+                document_nr: '203456/05',
                 document_sum: 1255.88
             },
             '7': {
                 date: '2020-02-10T11:32:38.000Z',
-                document_nr: '203455/03',
+                document_nr: '203457/05',
                 document_sum: 1255.88
             },
             '8': {
                 date: '2020-02-10T11:32:38.000Z',
-                document_nr: '203455/03',
+                document_nr: '203458/06',
                 document_sum: 1255.88
             },
             '9': {
                 date: '2020-02-10T11:32:38.000Z',
-                document_nr: '203455/03',
+                document_nr: '303458/06',
                 document_sum: 1255.88
             },
             '10': {
                 date: '2020-02-10T11:32:38.000Z',
-                document_nr: '203455/03',
+                document_nr: '303459/06',
                 document_sum: 1255.88
             },
             '11': {
                 date: '2020-02-10T11:32:38.000Z',
-                document_nr: '203455/03',
+                document_nr: '303460/06',
                 document_sum: 1255.88
             },
             '12': {
                 date: '2020-02-10T11:32:38.000Z',
-                document_nr: '203455/03',
+                document_nr: '403461/07',
                 document_sum: 1255.88
             },
             '13': {
                 date: '2020-02-10T11:32:38.000Z',
-                document_nr: '203455/03',
+                document_nr: '403462/07',
                 document_sum: 1255.88
             },
             '14': {
                 date: '2020-02-10T11:32:38.000Z',
-                document_nr: '203455/03',
+                document_nr: '403463/07',
                 document_sum: 1255.88
             },
             '15': {
                 date: '2020-02-10T11:32:38.000Z',
-                document_nr: '203455/03',
+                document_nr: '403464/07',
                 document_sum: 1255.88
             },
             '16': {
                 date: '2020-02-10T11:32:38.000Z',
-                document_nr: '203455/03',
+                document_nr: '403465/07',
                 document_sum: 1255.88
             },
         }
