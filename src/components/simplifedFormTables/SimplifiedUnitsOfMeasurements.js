@@ -11,12 +11,20 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return {
+        addNew: (obj) => {
+            dispatch({
+                type: actionNames.ADD_UNIT,
+                value: obj
+            })
+        },
+
         changeValue: (obj) => {
             dispatch({
                 type: actionNames.CHANGE_UNITS_VALUE,
                 value: obj
             })
         },
+
         removeValue: (obj) => {
             dispatch({
                 type: actionNames.REMOVE_UNITS_VALUE,
@@ -26,6 +34,6 @@ function mapDispatchToProps(dispatch) {
     }
 }
 
-const SimplifiedUnitsOfMeasurements = connect(mapStateToProps,mapDispatchToProps)(SimplifiedTableEditForm);
+const SimplifiedUnitsOfMeasurements = connect(mapStateToProps, mapDispatchToProps)(SimplifiedTableEditForm);
 
 export default SimplifiedUnitsOfMeasurements;

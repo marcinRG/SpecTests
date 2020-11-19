@@ -21,6 +21,8 @@ export function clientsReducers(state = InitData.clients, action) {
             return {...state,data: newData};
         }
 
+
+
         default: {
             return state;
         }

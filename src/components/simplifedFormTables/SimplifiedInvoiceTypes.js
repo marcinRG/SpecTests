@@ -11,21 +11,18 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        changeValue: (obj) => {
-            dispatch({
-                type: actionNames.CHANGE_INVOICE_TYPE_VALUE,
-                value: obj
-            })
+        addNew: () => {
+            console.log('not implemented');
         },
-        removeValue: (obj) => {
-            dispatch({
-                type: actionNames.REMOVE_INVOICE_TYPE_VALUE,
-                value: obj
-            })
+        changeValue: () => {
+            console.log('not implemented');
+        },
+        removeValue: () => {
+            console.log('not implemented');
         }
     }
 }
 
-const SimplifiedInvoiceTypes = connect(mapStateToProps,mapDispatchToProps)(SimplifiedTableEditForm);
+const SimplifiedInvoiceTypes = connect(mapStateToProps, mapDispatchToProps)(SimplifiedTableEditForm);
 
 export default SimplifiedInvoiceTypes;

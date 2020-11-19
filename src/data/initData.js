@@ -59,12 +59,6 @@ export const InitData = {
     },
 
     additionalTables: {
-        invoiceTypes: {
-          PROFORMA: 'faktura proforma',
-          WDT: 'wewnątrzwspólnotowa dostawa towarów',
-          VAT: 'faktura VAT',
-          KOREKTA: 'faktura korygująca'
-        },
         cars: {
             labels: {
                 plateNo: {
@@ -124,11 +118,17 @@ export const InitData = {
                 }
             },
             data: {
-                '1': {
-                    type: 'krajowa'
+                VAT: {
+                    type: 'faktura VAT - krajowa'
                 },
-                '2': {
-                    type: 'zagraniczna'
+                WDT: {
+                    type: 'wewnątrzwspólnotowa dostawa towarów'
+                },
+                PROFORMA: {
+                    type: 'faktura proforma'
+                },
+                KOREKTA:{
+                    type: 'faktura korygująca'
                 }
             }
         },
@@ -160,7 +160,7 @@ export const InitData = {
                     taxName: '8%',
                     taxRate: 0.08
                 },
-                '4': {
+                '7': {
                     taxName: '23%',
                     taxRate: 0.23
                 },

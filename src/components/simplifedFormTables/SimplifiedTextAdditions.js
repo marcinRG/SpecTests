@@ -11,12 +11,20 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return {
+        addNew: (obj) => {
+            dispatch({
+                type: actionNames.ADD_TEXT_ADDITION,
+                value: obj
+            })
+        },
+
         changeValue: (obj) => {
             dispatch({
                 type: actionNames.CHANGE_TEXT_ADDITION_VALUE,
                 value: obj
             })
         },
+
         removeValue: (obj) => {
             dispatch({
                 type: actionNames.REMOVE_TEXT_ADDITION_VALUE,

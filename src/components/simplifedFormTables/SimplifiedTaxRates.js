@@ -11,12 +11,20 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return {
+        addNew: (obj) => {
+            dispatch({
+                type: actionNames.ADD_TAX_RATE,
+                value: obj
+            })
+        },
+
         changeValue: (obj) => {
             dispatch({
                 type: actionNames.CHANGE_TAX_RATE_VALUE,
                 value: obj
             })
         },
+
         removeValue: (obj) => {
             dispatch({
                 type: actionNames.REMOVE_TAX_RATE_VALUE,
@@ -26,6 +34,6 @@ function mapDispatchToProps(dispatch) {
     }
 }
 
-const SimplifiedTaxRates = connect(mapStateToProps,mapDispatchToProps)(SimplifiedTableEditForm);
+const SimplifiedTaxRates = connect(mapStateToProps, mapDispatchToProps)(SimplifiedTableEditForm);
 
 export default SimplifiedTaxRates;

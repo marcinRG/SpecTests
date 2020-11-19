@@ -11,12 +11,20 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return {
+        addNew: (obj) => {
+            dispatch({
+                type: actionNames.ADD_CURRENCY_VALUE,
+                value: obj
+            })
+        },
+
         changeValue: (obj) => {
             dispatch({
                 type: actionNames.CHANGE_CURRENCY_VALUE,
                 value: obj
             })
         },
+
         removeValue: (obj) => {
             dispatch({
                 type: actionNames.REMOVE_CURRENCY_VALUE,

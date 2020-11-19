@@ -42,7 +42,8 @@ export class SimplifiedTableEditForm extends Component {
         if (this.state.componentState === formStates.TABLE) {
             this.setState({
                 componentState: formStates.REMOVE,
-                selectedItem: this.props.data[id]
+                selectedItem: this.props.data[id],
+                id: id
             });
         }
     }
@@ -51,7 +52,8 @@ export class SimplifiedTableEditForm extends Component {
         if (this.state.componentState === formStates.TABLE) {
             this.setState({
                 componentState: formStates.ADD_NEW,
-                selectedItem: {}
+                selectedItem: {},
+                id: null
             });
         }
     }
@@ -60,7 +62,8 @@ export class SimplifiedTableEditForm extends Component {
         if (this.state.componentState === formStates.TABLE) {
             this.setState({
                 componentState: formStates.EDIT,
-                selectedItem: this.props.data[id]
+                selectedItem: this.props.data[id],
+                id: id
             });
         }
     }
@@ -69,16 +72,41 @@ export class SimplifiedTableEditForm extends Component {
         if (this.state.componentState !== formStates.TABLE) {
             this.setState({
                 componentState: formStates.TABLE,
-                selectedItem: {}
+                selectedItem: {},
+                id: null
             });
         }
     }
 
     save() {
+        let id = this.state.id;
+        if (this.state.componentState === formStates.ADD_NEW) {
+            id = createNewKey(this.props.data);
+            if (this.props.addNew) {
+                this.props.addNew({
+                    item: this.state.selectedItem,
+                    id: id
+                });
+            }
+        }
+        if (this.state.componentState == formStates.EDIT) {
+            if (this.props.changeValue) {
+                this.props.changeValue({
+                    item: this.state.selectedItem,
+                    id: id
+                });
+            }
+        }
         this.initState();
     }
 
     remove() {
+        if (this.props.removeValue) {
+            this.props.removeValue({
+                item: this.state.selectedItem,
+                id: this.state.id
+            });
+        }
         this.initState();
     }
 
@@ -125,7 +153,8 @@ SimplifiedTableEditForm.propTypes = {
     data: PropTypes.object,
     labels: PropTypes.object,
     changeValue: PropTypes.func,
-    removeValue: PropTypes.func
+    removeValue: PropTypes.func,
+    addNew: PropTypes.func
 }
 
 export const formStates = {
@@ -135,28 +164,8 @@ export const formStates = {
     ADD_NEW: 'show new form'
 };
 
-// function createEmpty(labels) {
-//     const obj = {};
-//     Object.keys(labels).forEach(label => {
-//         obj[label] = getEmptyValue(labels[label].dataType);
-//     });
-//     console.log(obj);
-//     return obj;
-// }
-//
-// function getEmptyValue(dataType) {
-//     switch (dataType) {
-//         case dataTypes.DATE: {
-//             return getDateString(new Date().toString(), '-');
-//         }
-//         case dataTypes.STRING: {
-//             return '-';
-//         }
-//         case dataTypes.NUMBER: {
-//             return 0;
-//         }
-//         default: {
-//             return false;
-//         }
-//     }
-// }
+function createNewKey(values) {
+    let dataKeyes = Object.keys(values);
+    dataKeyes = dataKeyes.sort((a, b) => a > b);
+    return Number.parseInt(dataKeyes[dataKeyes.length - 1]) + 1;
+}

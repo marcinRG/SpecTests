@@ -11,12 +11,20 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return {
+        addNew: (obj) => {
+            dispatch({
+                type: actionNames.ADD_PAYMENTS_METHODS,
+                value: obj
+            })
+        },
+
         changeValue: (obj) => {
             dispatch({
                 type: actionNames.CHANGE_PAYMENTS_METHODS_VALUE,
                 value: obj
             })
         },
+
         removeValue: (obj) => {
             dispatch({
                 type: actionNames.REMOVE_PAYMENTS_METHODS_VALUE,
@@ -26,6 +34,6 @@ function mapDispatchToProps(dispatch) {
     }
 }
 
-const SimplifiedMethodsOfPayments = connect(mapStateToProps,mapDispatchToProps)(SimplifiedTableEditForm);
+const SimplifiedMethodsOfPayments = connect(mapStateToProps, mapDispatchToProps)(SimplifiedTableEditForm);
 
 export default SimplifiedMethodsOfPayments;
