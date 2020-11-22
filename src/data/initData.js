@@ -368,23 +368,39 @@ export const InitData = {
             currentPage: 1,
         },
         labels: [
+
+    //         name: 'symbol waluty',
+    // dataType: dataTypes.STRING,
+    // required: true,
+    // errorMsg: 'Symbol waluty nie może być pusty!'
+
+
             {
-                labelName: 'product',
+                labelName: 'nazwa produktu',
                 labelField: 'productName',
                 dataType: dataTypes.STRING,
-                sortable: true
+                required: false,
+                sortable: true,
+                isTableHeader: true,
+                errorMsg: 'Nazwa produktu nie może być pusta'
             },
             {
                 labelName: 'PCN',
                 labelField: 'productCode',
                 dataType: dataTypes.STRING,
-                sortable: true
+                required: false,
+                sortable: true,
+                isTableHeader: true,
+                errorMsg: 'Nazwa produktu nie może być pusta'
             },
             {
-                labelName: 'price',
+                labelName: 'cena',
                 labelField: 'price',
                 dataType: dataTypes.NUMBER,
-                sortable: true
+                required: false,
+                sortable: true,
+                isTableHeader: true,
+                errorMsg: 'Nazwa produktu nie może być pusta'
             }
         ],
         data: {

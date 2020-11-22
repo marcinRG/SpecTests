@@ -13,6 +13,12 @@ import {
 import {Spinner} from '../../formComponents/Spinner/Spinner';
 import {ComboBox} from '../../formComponents/ComboBox/ComboBox';
 import {Link} from 'react-router-dom';
+import {newElement} from '../../../utils/newElements';
+import {
+    initFieldState,
+    initValidation
+} from '../../otherComponents/simplifiedTableEditForm/simplifiedForm/SimplifiedForm';
+import {formStates} from '../../otherComponents/simplifiedTableEditForm/SimplifiedTableEditForm';
 
 export class ItemDetailsPage extends Component {
 
@@ -20,19 +26,39 @@ export class ItemDetailsPage extends Component {
         super(props);
 
         this.state = {
-            validation: {}
-        }
+            validation: {},
+            editedFields: {}
+        };
 
         this.formValid = this.formValid.bind(this);
         this.fieldValid = this.fieldValid.bind(this);
         this.save = this.save.bind(this);
         this.changeValue = this.changeValue.bind(this);
         this.setItem = this.setItem.bind(this);
+        this.getItem = this.getItem.bind(this);
     }
 
     componentDidMount() {
+        let item = {};
+        let componentState;
         if (this.props.match.params && this.props.match.params.itemID) {
-            this.setItem(this.props.match.params.itemID);
+            if (this.props.match.params.itemID === newElement.NEW_ITEM) {
+                componentState = formStates.ADD_NEW;
+            } else {
+                item = this.getItem(this.props.match.params.itemID);
+                componentState = formStates.EDIT;
+            }
+
+            this.setState({
+                item,
+                validation: initValidation(this.props.products.labels, item),
+                editedFields: initFieldState(this.props.products.labels, componentState)
+            })
+
+            //console.log(this.props.products);
+            // console.log(initFieldState(this.props.products.labels, componentState));
+            // console.log(initValidation(this.props.products.labels, item));
+
         }
     }
 
@@ -64,10 +90,14 @@ export class ItemDetailsPage extends Component {
         return isFormValid(this.state.validation);
     }
 
-    setItem(id) {
-        if (id) {
+    getItem(id) {
+        return this.props.products.data[id]
+    }
+
+    setItem(item) {
+        if (item) {
             this.setState({
-                item: this.props.products.data[id]
+                item
             })
         }
     }

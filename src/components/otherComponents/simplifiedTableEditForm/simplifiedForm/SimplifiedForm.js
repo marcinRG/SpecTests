@@ -68,7 +68,7 @@ function setValue(val, fieldName, obj) {
     return obj;
 }
 
-function initValidation(labels, obj) {
+export function initValidation(labels, obj) {
     let formFieldsValidation = {};
     const labelKeys = Object.keys(labels);
     labelKeys.forEach(label => {
@@ -84,7 +84,7 @@ function hasValue(obj, fieldName, dataType) {
     return false;
 }
 
-function initFieldState(labels,componentState) {
+export function initFieldState(labels,componentState) {
     switch (componentState) {
         case formStates.ADD_NEW: {
             return getFormState(labels, fieldState.CLEAN);
@@ -95,7 +95,7 @@ function initFieldState(labels,componentState) {
     }
 }
 
-function getFormState(labels, fieldState) {
+export function getFormState(labels, fieldState) {
     let formFieldsState = {};
     const labelKeys = Object.keys(labels);
     labelKeys.forEach(label => {

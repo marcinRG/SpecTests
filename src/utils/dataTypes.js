@@ -1,5 +1,6 @@
 export const dataTypes = {
     DATE: 'date',
     STRING: 'string',
-    NUMBER: 'number'
+    NUMBER: 'number',
+    OBJECT: 'object'
 };

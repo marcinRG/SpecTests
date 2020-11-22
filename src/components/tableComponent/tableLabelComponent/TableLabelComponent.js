@@ -17,12 +17,12 @@ export class TableLabelComponent extends Component {
         return (
             <thead>
             <tr>
-                {this.props.labels.map((label, i) =>
+                {getHeadersLabels(this.props.labels).map((label, i) =>
                     <LabelComponent key={i} labelName={label.labelName} sortable={label.sortable}
                                     sortDirection={label.sortDirection} action={this.tableLabelClick}
                                     labelField={label.labelField}/>)
                 }
-                {createOperationsLabel(this.props.editDeleteRowVisible, 'Operations')}
+                {createOperationsLabel(this.props.editDeleteRowVisible, 'operacje')}
             </tr>
             </thead>
         );
@@ -41,4 +41,10 @@ function createOperationsLabel(editDeleteRowVisible, labelName) {
             <th className="header-cell">{labelName}</th>
         )
     }
+}
+
+function getHeadersLabels(labels) {
+    return labels.filter(label => {
+        return label.isTableHeader;
+    })
 }

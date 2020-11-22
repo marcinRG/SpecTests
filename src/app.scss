@@ -160,3 +160,13 @@ body {
 
   }
 }
+
+.add-button-wrapper {
+  width: 100%;
+  text-align: right;
+
+  .rounded-button {
+    display: inline-block;
+    margin: 2em .75em;
+  }
+}

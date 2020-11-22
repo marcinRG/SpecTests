@@ -4,9 +4,6 @@ import {SimplifiedTable} from './simplifiedTable/SimplifiedTable';
 import {PropTypes} from 'prop-types';
 import {SimplifiedMessage} from './simplifiedMessage/SimplifiedMessage';
 import './SimplifiedTableEditForm.scss';
-import {dataTypes} from '../../../utils/dataTypes';
-import {getDateString} from '../../../utils/utils';
-
 
 export class SimplifiedTableEditForm extends Component {
     constructor(props) {
@@ -165,7 +162,7 @@ export const formStates = {
 };
 
 function createNewKey(values) {
-    let dataKeyes = Object.keys(values);
-    dataKeyes = dataKeyes.sort((a, b) => a > b);
-    return Number.parseInt(dataKeyes[dataKeyes.length - 1]) + 1;
+    let dataKeys = Object.keys(values);
+    dataKeys = dataKeys.sort((a, b) => a > b);
+    return Number.parseInt(dataKeys[dataKeys.length - 1]) + 1;
 }

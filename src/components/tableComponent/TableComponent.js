@@ -110,11 +110,11 @@ export class TableComponent extends Component {
                                          editDeleteRowVisible={this.props.settings.editDeleteRowVisible}
                                          changeSort={this.changeSort}
                     />
-                    <tbody>
-                    {valuesAsObjectToArray(this.props.data).map((document, i) =>
-                        <TableRowComponent key={i} value={document} defs={this.props.labels} editAction={this.editItem}
-                                           removeAction={this.removeItem}/>)}
-                    </tbody>
+                    {/*<tbody>*/}
+                    {/*{valuesAsObjectToArray(this.props.data).map((document, i) =>*/}
+                    {/*    <TableRowComponent key={i} value={document} defs={this.props.labels} editAction={this.editItem}*/}
+                    {/*                       removeAction={this.removeItem}/>)}*/}
+                    {/*</tbody>*/}
                 </table>
                 <TablePageSelector action={this.changePage} selectedPage={this.props.settings.currentPage}
                                    numberOfPages={getPagesNumber(getLengthFromObject(this.props.data), this.props.settings.itemsPerPage)}/>

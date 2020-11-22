@@ -28,7 +28,6 @@ export class DynamicComboBox extends Component {
 
     handleKeyUp(event) {
         event.preventDefault();
-
         if (event.keyCode === 13) {
             console.log('enter clicked');
             this.setState({
@@ -40,9 +39,7 @@ export class DynamicComboBox extends Component {
     }
 
     handleTextInput(event) {
-        console.log('handle text input');
         event.preventDefault();
-
         this.setState({
             textValue: event.target.value,
             showItems: true,
@@ -51,7 +48,6 @@ export class DynamicComboBox extends Component {
     }
 
     handleClick(event) {
-        console.log('handle click input');
         event.preventDefault();
         this.setState({showItems: !this.state.showItems});
     }
