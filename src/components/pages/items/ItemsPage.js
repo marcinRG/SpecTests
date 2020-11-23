@@ -28,5 +28,3 @@ export function ItemsPage(props) {
 ItemsPage.propTypes = {
     history: PropTypes.object
 }
-
-const newItem = 'newItem'

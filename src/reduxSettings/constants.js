@@ -6,15 +6,30 @@ export const actionNames = {
     CHANGE_COMPANY_DETAILS: 'change company details',
     //client details
     CHANGE_CLIENT_DETAILS: 'change client details',
+
     //entries in table
     REMOVE_ENTRY: 'remove entry',
     ADD_ENTRY: 'add entry',
     CHANGE_ENTRY: 'change entry',
-    SHOW_MESSAGE: 'show message',
-    //filtering
-    CHANGE_PAGE: 'change page',
-    CHANGE_SORT_METHOD: 'change sort method',
-    CHANGE_ACTIVE_PAGE: 'change active page',
+
+    //products table
+    CHANGE_PAGE_ITEMS: 'change page items',
+    CHANGE_SORT_METHOD_ITEMS: 'change items sort method',
+    CHANGE_ACTIVE_PAGE_ITEMS: 'change items active page',
+    SHOW_MESSAGE_ITEMS: 'show message items',
+
+    // clients table
+    CHANGE_PAGE_CLIENTS: 'change page clients',
+    CHANGE_SORT_METHOD_CLIENTS: 'change clients sort method',
+    CHANGE_ACTIVE_PAGE_CLIENTS: 'change clients active page',
+    SHOW_MESSAGE_CLIENTS: 'show message clients',
+
+    // clients table
+    CHANGE_PAGE_DOCUMENTS: 'change page documents',
+    CHANGE_SORT_METHOD_DOCUMENTS: 'change documents sort method',
+    CHANGE_ACTIVE_PAGE_DOCUMENTS: 'change documents active page',
+    SHOW_MESSAGE_DOCUMENTS: 'show message documents',
+
     //cars table actions
     ADD_CAR: 'add new car',
     CHANGE_CARS_VALUE: 'change car value',

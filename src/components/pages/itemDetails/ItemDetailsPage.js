@@ -55,10 +55,6 @@ export class ItemDetailsPage extends Component {
                 editedFields: initFieldState(this.props.products.labels, componentState)
             })
 
-            //console.log(this.props.products);
-            // console.log(initFieldState(this.props.products.labels, componentState));
-            // console.log(initValidation(this.props.products.labels, item));
-
         }
     }
 

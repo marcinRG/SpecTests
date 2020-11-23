@@ -14,22 +14,22 @@ function mapStateToProps(state, ownProps) {
 function mapDispatchToProps(dispatch) {
     return {
         changeSortMethod: (obj) => {
-            dispatch({
-                type: actionNames.CHANGE_SORT_METHOD,
-                value: obj
-            })
+            // dispatch({
+            //     type: actionNames.CHANGE_SORT_METHOD,
+            //     value: obj
+            // })
         },
         toggleMessageVisibility: (obj) => {
-            dispatch({
-                type: actionNames.SHOW_MESSAGE,
-                value: obj
-            })
+            // dispatch({
+            //     type: actionNames.SHOW_MESSAGE,
+            //     value: obj
+            // })
         },
         changePage: (obj) => {
-           dispatch({
-               type: actionNames.CHANGE_PAGE,
-               value: obj
-           })
+           // dispatch({
+           //     type: actionNames.CHANGE_PAGE,
+           //     value: obj
+           // })
         }
     }
 }

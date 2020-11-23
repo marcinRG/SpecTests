@@ -3,19 +3,23 @@ import {actionNames} from '../constants';
 
 export function documentsReducers(state = InitData.documents, action) {
     switch (action.type) {
-        case actionNames.CHANGE_SORT_METHOD: {
-            let newLabels = [...state.labels];
-            newLabels[action.value.index] = action.value.newValue;
-            return {...state, labels: newLabels};
+        case actionNames.CHANGE_SORT_METHOD_DOCUMENTS: {
+            console.log('documents reducer');
+            // let newLabels = [...state.labels];
+            // newLabels[action.value.index] = action.value.newValue;
+            // return {...state, labels: newLabels};
+            return state;
         }
-        case actionNames.SHOW_MESSAGE: {
-            let newValue = {...state.settings, messageVisible: action.value.visible}
-            return {...state, settings: newValue};
+        case actionNames.SHOW_MESSAGE_DOCUMENTS: {
+            // let newValue = {...state.settings, messageVisible: action.value.visible}
+            // return {...state, settings: newValue};
+            return state;
         }
 
-        case actionNames.CHANGE_PAGE: {
-            let newValue = {...state.settings,currentPage: action.value.page}
-            return {...state, settings: newValue};
+        case actionNames.CHANGE_PAGE_DOCUMENTS: {
+            // let newValue = {...state.settings,currentPage: action.value.page}
+            // return {...state, settings: newValue};
+            return state;
         }
 
         default: {

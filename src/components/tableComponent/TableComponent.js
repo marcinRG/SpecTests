@@ -40,12 +40,11 @@ export class TableComponent extends Component {
     }
 
     changeSort(label) {
-        const index = getLabelIndex(label, this.props.labels);
-        const obj = changeSortDirection(this.props.labels[index]);
+        const obj = changeSortDirection(this.props.labels[label]);
         if (this.props.changeSortMethod) {
             this.props.changeSortMethod({
-                index: index,
-                newValue: obj
+                 label,
+                 newValue: obj
             });
         }
     }
@@ -110,11 +109,11 @@ export class TableComponent extends Component {
                                          editDeleteRowVisible={this.props.settings.editDeleteRowVisible}
                                          changeSort={this.changeSort}
                     />
-                    {/*<tbody>*/}
-                    {/*{valuesAsObjectToArray(this.props.data).map((document, i) =>*/}
-                    {/*    <TableRowComponent key={i} value={document} defs={this.props.labels} editAction={this.editItem}*/}
-                    {/*                       removeAction={this.removeItem}/>)}*/}
-                    {/*</tbody>*/}
+                    <tbody>
+                    {valuesAsObjectToArray(this.props.data).map((document, i) =>
+                        <TableRowComponent key={i} value={document} labels={this.props.labels} editAction={this.editItem}
+                                           removeAction={this.removeItem}/>)}
+                    </tbody>
                 </table>
                 <TablePageSelector action={this.changePage} selectedPage={this.props.settings.currentPage}
                                    numberOfPages={getPagesNumber(getLengthFromObject(this.props.data), this.props.settings.itemsPerPage)}/>
@@ -133,7 +132,7 @@ export class TableComponent extends Component {
 
 TableComponent.propTypes = {
     data: PropTypes.object,
-    labels: PropTypes.array,
+    labels: PropTypes.object,
     settings: PropTypes.object,
     changeSortMethod: PropTypes.func,
     toggleMessageVisibility: PropTypes.func,
@@ -153,11 +152,11 @@ function getLengthFromObject(obj) {
     return Object.keys(obj).length;
 }
 
-function getLabelIndex(labelField, labels) {
-    return labels.findIndex((label) => {
-        return label.labelField === labelField;
-    });
-}
+// function getLabelIndex(labelField, labels) {
+//     return labels.findIndex((label) => {
+//         return label.labelField === labelField;
+//     });
+// }
 
 function changeSortDirection(obj) {
     const copy = {...obj};

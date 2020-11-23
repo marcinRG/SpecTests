@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {formatData} from '../../../utils/utils';
+import {getHeadersLabels} from '../tableLabelComponent/TableLabelComponent';
 
 export class TableRowComponent extends Component {
     constructor(props) {
@@ -20,7 +21,7 @@ export class TableRowComponent extends Component {
     render() {
         return (
             <tr>
-                {renderValues(this.props.value, this.props.defs)}
+                {renderValues(this.props.value, this.props.labels)}
                 <td className="table-cell">
                     <button className="table-button" onClick={this.editItem}>&#9998; Edit
                     </button>
@@ -34,14 +35,14 @@ export class TableRowComponent extends Component {
 }
 
 function renderValues(object, defs) {
-    return defs.map((value,index) => {
-        return (<td className="table-cell" key={index}>{formatData(object[value.labelField], value.dataType)}</td>);
+    return getHeadersLabels(defs).map((value,index) => {
+        return (<td className="table-cell" key={index}>{formatData(object[value.id], value.dataType)}</td>);
     });
 }
 
 TableRowComponent.propTypes = {
     value: PropTypes.object.isRequired,
-    defs: PropTypes.array.isRequired,
+    labels: PropTypes.object.isRequired,
     editAction: PropTypes.func.isRequired,
     removeAction: PropTypes.func.isRequired
 };

@@ -15,13 +15,13 @@ function mapDispatchToProps(dispatch) {
     return {
         changeSortMethod: (obj) => {
             dispatch({
-                type: actionNames.CHANGE_SORT_METHOD,
+                type: actionNames.CHANGE_SORT_METHOD_CLIENTS,
                 value: obj
             })
         },
         toggleMessageVisibility: (obj) => {
             dispatch({
-                type: actionNames.SHOW_MESSAGE,
+                type: actionNames.SHOW_MESSAGE_CLIENTS,
                 value: obj
             })
         }

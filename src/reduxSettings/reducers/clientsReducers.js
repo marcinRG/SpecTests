@@ -3,12 +3,14 @@ import {actionNames} from '../constants';
 
 export function clientsReducers(state = InitData.clients, action) {
     switch (action.type) {
-        case actionNames.CHANGE_SORT_METHOD: {
-            let newLabels = [...state.labels];
-            newLabels[action.value.index] = action.value.newValue;
+
+        case actionNames.CHANGE_SORT_METHOD_CLIENTS: {
+            let newLabels = {...state.labels};
+            newLabels[action.value.label] = action.value.newValue;
             return {...state,labels: newLabels};
         }
-        case actionNames.SHOW_MESSAGE: {
+
+        case actionNames.SHOW_MESSAGE_CLIENTS: {
             let newValue = {...state.settings, messageVisible: action.value.visible}
             return {...state, settings: newValue};
         }
@@ -20,8 +22,6 @@ export function clientsReducers(state = InitData.clients, action) {
             }
             return {...state,data: newData};
         }
-
-
 
         default: {
             return state;

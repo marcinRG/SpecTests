@@ -127,7 +127,7 @@ export const InitData = {
                 PROFORMA: {
                     type: 'faktura proforma'
                 },
-                KOREKTA:{
+                KOREKTA: {
                     type: 'faktura korygująca'
                 }
             }
@@ -256,26 +256,26 @@ export const InitData = {
             itemsPerPage: 10,
             currentPage: 1,
         },
-        labels: [
-            {
+        labels: {
+            date: {
                 labelName: 'date',
                 labelField: 'date',
                 dataType: dataTypes.DATE,
                 sortable: true
             },
-            {
+            documentNr: {
                 labelName: 'document no.',
                 labelField: 'document_nr',
                 dataType: dataTypes.STRING,
                 sortable: true
             },
-            {
+            documentSum: {
                 labelName: 'total',
                 labelField: 'document_sum',
                 dataType: dataTypes.NUMBER,
                 sortable: true
             }
-        ],
+        },
         data: {
             '1': {
                 date: '2020-03-17T11:32:38.000Z',
@@ -367,42 +367,80 @@ export const InitData = {
             itemsPerPage: 10,
             currentPage: 1,
         },
-        labels: [
-
-    //         name: 'symbol waluty',
-    // dataType: dataTypes.STRING,
-    // required: true,
-    // errorMsg: 'Symbol waluty nie może być pusty!'
-
-
-            {
+        labels: {
+            productName: {
                 labelName: 'nazwa produktu',
-                labelField: 'productName',
                 dataType: dataTypes.STRING,
-                required: false,
+                required: true,
                 sortable: true,
                 isTableHeader: true,
                 errorMsg: 'Nazwa produktu nie może być pusta'
             },
-            {
+
+            productNameCont: {
+                labelName: 'nazwa produktu cd.',
+                dataType: dataTypes.STRING,
+                required: false,
+                sortable: false,
+                isTableHeader: false,
+                errorMsg: 'Błąd!'
+            },
+
+            piecesInPackage: {
+                labelName: 'ilość sztuk w paczce',
+                dataType: dataTypes.NUMBER,
+                required: true,
+                sortable: false,
+                isTableHeader: false,
+                errorMsg: 'Ilość sztuk w paczce musi byc wypełniona!'
+            },
+
+            weightInKG: {
+                labelName: 'waga [kg]',
+                dataType: dataTypes.NUMBER,
+                required: true,
+                sortable: false,
+                isTableHeader: false,
+                errorMsg: 'Podaj wagę w kg'
+            },
+
+            productCode: {
                 labelName: 'PCN',
-                labelField: 'productCode',
                 dataType: dataTypes.STRING,
                 required: false,
                 sortable: true,
                 isTableHeader: true,
                 errorMsg: 'Nazwa produktu nie może być pusta'
             },
-            {
+
+            price: {
                 labelName: 'cena',
-                labelField: 'price',
                 dataType: dataTypes.NUMBER,
                 required: false,
                 sortable: true,
                 isTableHeader: true,
-                errorMsg: 'Nazwa produktu nie może być pusta'
+                errorMsg: 'Musisz podać cenę produktu'
+            },
+
+            tax: {
+                labelName: 'stawka podatku',
+                dataType: dataTypes.OBJECT,
+                required: false,
+                sortable: false,
+                isTableHeader: false,
+                errorMsg: 'Musisz wybrać jakąś stawkę podatku'
+            },
+
+            unitsOfMeasurement: {
+                labelName: 'jednostka miary',
+                dataType: dataTypes.OBJECT,
+                required: false,
+                sortable: false,
+                isTableHeader: false,
+                errorMsg: 'Musisz wybrać jednostkę miary'
             }
-        ],
+
+        },
         data: {
             '1': {
                 productName: 'Something',
@@ -519,26 +557,59 @@ export const InitData = {
             itemsPerPage: 10,
             currentPage: 1
         },
-        labels: [
-            {
-                labelName: 'company',
-                labelField: 'companyName',
+        labels: {
+            companyName: {
+                labelName: 'Nazwa firmy',
+                //labelField: 'companyName',
                 dataType: dataTypes.STRING,
-                sortable: true
+                required: true,
+                sortable: true,
+                isTableHeader: true,
+                errorMsg: 'Nazwa firmy odbiorcy nie może być pusta'
             },
-            {
-                labelName: 'city',
-                labelField: 'addressCity',
+            addressCity: {
+                labelName: 'miasto',
+                //labelField: 'addressCity',
                 dataType: dataTypes.STRING,
-                sortable: true
+                required: true,
+                sortable: true,
+                isTableHeader: true,
+                errorMsg: 'Musisz wypełnić miejscowość'
             },
-            {
-                labelName: 'street',
-                labelField: 'addressStreet',
+            addressStreet: {
+                labelName: 'ulica',
+                //labelField: 'addressStreet',
                 dataType: dataTypes.STRING,
-                sortable: true
+                required: true,
+                sortable: true,
+                isTableHeader: true,
+                errorMsg: 'Musisz podać ulicę'
+            },
+            companyNameCont: {
+                labelName: 'nazwa firmy cd.',
+                dataType: dataTypes.STRING,
+                required: true,
+                sortable: false,
+                isTableHeader: false,
+                errorMsg: ''
+            },
+            addressPostalCode: {
+                labelName: 'kod pocztowy',
+                dataType: dataTypes.STRING,
+                required: true,
+                sortable: false,
+                isTableHeader: false,
+                errorMsg: 'Podaj kod pocztowy!'
+            },
+            vatUeNumber: {
+                labelName: 'numer VAT UE',
+                dataType: dataTypes.STRING,
+                required: true,
+                sortable: false,
+                isTableHeader: false,
+                errorMsg: 'Musisz podać numer VAT UE!'
             }
-        ],
+        },
         data: {
             '1': {
                 companyName: 'Something Co.',
