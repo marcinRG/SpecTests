@@ -51,41 +51,41 @@ class CompanyDetailsPage extends Component {
                     <h2 className="form-title">Company <span className="blue">details</span></h2>
                     <form className="input-form">
 
-                        <SimpleTextInput label={'Nazwa firmy'} errorMessage={'Nazwa firmy nie może być pusta!'}
-                                         value={this.state.companyDetails.companyName} validate={textNotEmpty}
-                                         validateFormPropertyName={'companyName'} changeValue={this.changeValue}
-                                         isFieldValid={this.fieldValid('companyName')}/>
+                        {/*<SimpleTextInput label={'Nazwa firmy'} errorMessage={'Nazwa firmy nie może być pusta!'}*/}
+                        {/*                 value={this.state.companyDetails.companyName} validate={textNotEmpty}*/}
+                        {/*                 validateFormPropertyName={'companyName'} changeValue={this.changeValue}*/}
+                        {/*                 isFieldValid={this.fieldValid('companyName')}/>*/}
 
-                        <SimpleTextInput label={'Nazwa firmy cd.'} errorMessage={''}
-                                         value={this.state.companyDetails.companyNameCont} validate={alwaysTrue}
-                                         validateFormPropertyName={'companyNameCont'} changeValue={this.changeValue}
-                                         isFieldValid={this.fieldValid('companyNameCont')}/>
+                        {/*<SimpleTextInput label={'Nazwa firmy cd.'} errorMessage={''}*/}
+                        {/*                 value={this.state.companyDetails.companyNameCont} validate={alwaysTrue}*/}
+                        {/*                 validateFormPropertyName={'companyNameCont'} changeValue={this.changeValue}*/}
+                        {/*                 isFieldValid={this.fieldValid('companyNameCont')}/>*/}
 
-                        <SimpleTextInput label={'Numer VAT UE'} errorMessage={'Numer VAT nie może być pusty'}
-                                         value={this.state.companyDetails.vatUeNumber} validate={textNotEmpty}
-                                         validateFormPropertyName={'vatUeNumber'} changeValue={this.changeValue}
-                                         isFieldValid={this.fieldValid('vatUeNumber')}/>
+                        {/*<SimpleTextInput label={'Numer VAT UE'} errorMessage={'Numer VAT nie może być pusty'}*/}
+                        {/*                 value={this.state.companyDetails.vatUeNumber} validate={textNotEmpty}*/}
+                        {/*                 validateFormPropertyName={'vatUeNumber'} changeValue={this.changeValue}*/}
+                        {/*                 isFieldValid={this.fieldValid('vatUeNumber')}/>*/}
 
-                        <SimpleTextInput label={'Kod pocztowy'} errorMessage={'Wypełnij kod pocztowy!'}
-                                         value={this.state.companyDetails.addressPostalCode} validate={textNotEmpty}
-                                         validateFormPropertyName={'addressPostalCode'} changeValue={this.changeValue}
-                                         isFieldValid={this.fieldValid('addressPostalCode')}/>
+                        {/*<SimpleTextInput label={'Kod pocztowy'} errorMessage={'Wypełnij kod pocztowy!'}*/}
+                        {/*                 value={this.state.companyDetails.addressPostalCode} validate={textNotEmpty}*/}
+                        {/*                 validateFormPropertyName={'addressPostalCode'} changeValue={this.changeValue}*/}
+                        {/*                 isFieldValid={this.fieldValid('addressPostalCode')}/>*/}
 
-                        <SimpleTextInput label={'Miasto'} errorMessage={'Miasto nie może być puste!'}
-                                         value={this.state.companyDetails.addressCity} validate={textNotEmpty}
-                                         changeValue={this.changeValue}
-                                         isFieldValid={this.fieldValid('addressCity')}
-                                         validateFormPropertyName={'addressCity'}/>
+                        {/*<SimpleTextInput label={'Miasto'} errorMessage={'Miasto nie może być puste!'}*/}
+                        {/*                 value={this.state.companyDetails.addressCity} validate={textNotEmpty}*/}
+                        {/*                 changeValue={this.changeValue}*/}
+                        {/*                 isFieldValid={this.fieldValid('addressCity')}*/}
+                        {/*                 validateFormPropertyName={'addressCity'}/>*/}
 
-                        <SimpleTextInput label={'Ulica'} errorMessage={'Ulica nie może być pusta!'}
-                                         value={this.state.companyDetails.addressStreet} validate={textNotEmpty}
-                                         changeValue={this.changeValue}
-                                         isFieldValid={this.fieldValid('addressStreet')}
-                                         validateFormPropertyName={'addressStreet'}/>
+                        {/*<SimpleTextInput label={'Ulica'} errorMessage={'Ulica nie może być pusta!'}*/}
+                        {/*                 value={this.state.companyDetails.addressStreet} validate={textNotEmpty}*/}
+                        {/*                 changeValue={this.changeValue}*/}
+                        {/*                 isFieldValid={this.fieldValid('addressStreet')}*/}
+                        {/*                 validateFormPropertyName={'addressStreet'}/>*/}
 
-                        <button className="rounded-button blue btn-save" onClick={this.saveCompanyDetails}
-                                disabled={!this.formValid()}>Save
-                        </button>
+                        {/*<button className="rounded-button blue btn-save" onClick={this.saveCompanyDetails}*/}
+                        {/*        disabled={!this.formValid()}>Save*/}
+                        {/*</button>*/}
                     </form>
                 </section>}
 

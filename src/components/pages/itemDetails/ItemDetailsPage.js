@@ -71,10 +71,13 @@ export class ItemDetailsPage extends Component {
     }
 
     changeValue(obj) {
+        console.log('change obj');
+        console.log(obj);
+
         if (obj) {
-            const newValidationObj = {...this.state.validation, [obj.fieldName]: obj.isValid};
             const newItem = {...this.state.item, [obj.fieldName]: obj.value};
-            this.setState({...this.state, validation: newValidationObj, item: newItem});
+
+            this.setState({item: newItem});
         }
     }
 
@@ -105,64 +108,67 @@ export class ItemDetailsPage extends Component {
                     <h2 className="form-title">Item <span className="blue">details</span></h2>
                     {this.state.item &&
                     <form className="input-form">
-                        <SimpleTextInput label={'Nazwa towaru'} errorMessage={'Nazwa towaru nie może być pusta!'}
-                                         value={this.state.item.productName} validate={textNotEmpty}
-                                         validateFormPropertyName={'productName'} changeValue={this.changeValue}
-                                         isFieldValid={this.fieldValid('productName')}/>
-
-                        <SimpleTextInput label={'Nazwa towaru cd.'} errorMessage={''}
-                                         value={this.state.item.productNameCont} validate={alwaysTrue}
-                                         validateFormPropertyName={'productNameCont'} changeValue={this.changeValue}
-                                         isFieldValid={this.fieldValid('productNameCont')}/>
-
-                        <SimpleTextInput label={'Kod PCN'} errorMessage={''}
-                                         value={this.state.item.productCode} validate={textNotEmpty}
-                                         validateFormPropertyName={'productCode'} changeValue={this.changeValue}
-                                         isFieldValid={this.fieldValid('productCode')}/>
-
-                        <Spinner label={'Ilość sztuk w opakowaniu'} value={this.state.item.piecesInPackage} min={1}
-                                 max={100}
-                                 delta={1}
-                                 errorMessage={'Ilość sztuk w opakowaniu musi zawierać się w zakresie od 1 do 100'}
-                                 changeValue={this.changeValue} validate={numberInRange}
-                                 validateFormPropertyName={'piecesInPackage'} rounding={0}
-                                 isFieldValid={this.fieldValid('piecesInPackage')}
+                        <SimpleTextInput
+                            value={this.state.item.productName}
+                            changeValue={this.changeValue}
+                            labels={this.props.products.labels}
+                            propertyName={'productName'}
+                            fieldStates={this.state.editedFields}
                         />
 
-                        <Spinner label={'Cena netto za sztukę'} value={this.state.item.price} min={0} max={10000}
-                                 delta={.1} errorMessage={'Cena musi być liczbą większą lub równą 0'}
-                                 changeValue={this.changeValue} validate={numberBiggerThanZero}
-                                 validateFormPropertyName={'price'} rounding={2}
-                                 isFieldValid={this.fieldValid('price')}
-                        />
+                        {/*<SimpleTextInput label={'Nazwa towaru cd.'} errorMessage={''}*/}
+                        {/*                 value={this.state.item.productNameCont} validate={alwaysTrue}*/}
+                        {/*                 validateFormPropertyName={'productNameCont'} changeValue={this.changeValue}*/}
+                        {/*                 isFieldValid={this.fieldValid('productNameCont')}/>*/}
+
+                        {/*<SimpleTextInput label={'Kod PCN'} errorMessage={''}*/}
+                        {/*                 value={this.state.item.productCode} validate={textNotEmpty}*/}
+                        {/*                 validateFormPropertyName={'productCode'} changeValue={this.changeValue}*/}
+                        {/*                 isFieldValid={this.fieldValid('productCode')}/>*/}
+
+                        {/*<Spinner label={'Ilość sztuk w opakowaniu'} value={this.state.item.piecesInPackage} min={1}*/}
+                        {/*         max={100}*/}
+                        {/*         delta={1}*/}
+                        {/*         errorMessage={'Ilość sztuk w opakowaniu musi zawierać się w zakresie od 1 do 100'}*/}
+                        {/*         changeValue={this.changeValue} validate={numberInRange}*/}
+                        {/*         validateFormPropertyName={'piecesInPackage'} rounding={0}*/}
+                        {/*         isFieldValid={this.fieldValid('piecesInPackage')}*/}
+                        {/*/>*/}
+
+                        {/*<Spinner label={'Cena netto za sztukę'} value={this.state.item.price} min={0} max={10000}*/}
+                        {/*         delta={.1} errorMessage={'Cena musi być liczbą większą lub równą 0'}*/}
+                        {/*         changeValue={this.changeValue} validate={numberBiggerThanZero}*/}
+                        {/*         validateFormPropertyName={'price'} rounding={2}*/}
+                        {/*         isFieldValid={this.fieldValid('price')}*/}
+                        {/*/>*/}
 
 
-                        <ComboBox label={'Stawka VAT'} errorMessage={'Wystąpił nieokreślony błąd!!!'}
-                                  items={this.props.taxRates}
-                                  value={this.state.item.tax} validateFormPropertyName={'tax'}
-                                  fieldDisplay={'taxName'} fieldValue={'taxRate'} validate={objectExistAndNotEmpty}
-                                  isFieldValid={this.fieldValid('tax')} changeValue={this.changeValue}
-                        />
+                        {/*<ComboBox label={'Stawka VAT'} errorMessage={'Wystąpił nieokreślony błąd!!!'}*/}
+                        {/*          items={this.props.taxRates}*/}
+                        {/*          value={this.state.item.tax} validateFormPropertyName={'tax'}*/}
+                        {/*          fieldDisplay={'taxName'} fieldValue={'taxRate'} validate={objectExistAndNotEmpty}*/}
+                        {/*          isFieldValid={this.fieldValid('tax')} changeValue={this.changeValue}*/}
+                        {/*/>*/}
 
-                        <SimpleTextInput label={'Cena brutto'} errorMessage={''}
-                                         value={calculateGrossPrice(this.state.item.price, this.state.item.tax)}
-                                         validate={alwaysTrue}
-                                         isFieldValid={true}/>
+                        {/*<SimpleTextInput label={'Cena brutto'} errorMessage={''}*/}
+                        {/*                 value={calculateGrossPrice(this.state.item.price, this.state.item.tax)}*/}
+                        {/*                 validate={alwaysTrue}*/}
+                        {/*                 isFieldValid={true}/>*/}
 
-                        <ComboBox label={'Jednostka miary'} errorMessage={'Wystąpił nieokreślony błąd!!!'}
-                                  items={this.props.units}
-                                  value={this.state.item.unitsOfMeasurement}
-                                  validateFormPropertyName={'unitsOfMeasurement'}
-                                  fieldDisplay={'unit'} fieldValue={'unit'} validate={objectExistAndNotEmpty}
-                                  isFieldValid={this.fieldValid('unitsOfMeasurement')} changeValue={this.changeValue}
-                        />
+                        {/*<ComboBox label={'Jednostka miary'} errorMessage={'Wystąpił nieokreślony błąd!!!'}*/}
+                        {/*          items={this.props.units}*/}
+                        {/*          value={this.state.item.unitsOfMeasurement}*/}
+                        {/*          validateFormPropertyName={'unitsOfMeasurement'}*/}
+                        {/*          fieldDisplay={'unit'} fieldValue={'unit'} validate={objectExistAndNotEmpty}*/}
+                        {/*          isFieldValid={this.fieldValid('unitsOfMeasurement')} changeValue={this.changeValue}*/}
+                        {/*/>*/}
 
-                        <Spinner label={'Waga w [kg]'} value={this.state.item.weightInKG} min={0} max={10}
-                                 delta={.01} errorMessage={'Waga musi być liczbą większą lub równą 0'}
-                                 changeValue={this.changeValue} validate={numberBiggerThanZero}
-                                 validateFormPropertyName={'weightInKG'} rounding={3}
-                                 isFieldValid={this.fieldValid('weightInKG')}
-                        />
+                        {/*<Spinner label={'Waga w [kg]'} value={this.state.item.weightInKG} min={0} max={10}*/}
+                        {/*         delta={.01} errorMessage={'Waga musi być liczbą większą lub równą 0'}*/}
+                        {/*         changeValue={this.changeValue} validate={numberBiggerThanZero}*/}
+                        {/*         validateFormPropertyName={'weightInKG'} rounding={3}*/}
+                        {/*         isFieldValid={this.fieldValid('weightInKG')}*/}
+                        {/*/>*/}
 
                         <button className="rounded-button blue btn-save" onClick={this.save}
                                 disabled={!this.formValid()}>Save

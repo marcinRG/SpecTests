@@ -76,41 +76,41 @@ class ClientDetailsPage extends Component {
                     <h2 className="form-title">Client <span className="blue">details</span></h2>
                     {this.state.client &&
                     <form className="input-form">
-                        <SimpleTextInput label={'Nazwa klienta'} errorMessage={'Nazwa firmy nie może być pusta!'}
-                                         value={this.state.client.companyName} validate={textNotEmpty}
-                                         validateFormPropertyName={'companyName'} changeValue={this.changeValue}
-                                         isFieldValid={this.fieldValid('companyName')}/>
+                        {/*<SimpleTextInput label={'Nazwa klienta'} errorMessage={'Nazwa firmy nie może być pusta!'}*/}
+                        {/*                 value={this.state.client.companyName} validate={textNotEmpty}*/}
+                        {/*                 validateFormPropertyName={'companyName'} changeValue={this.changeValue}*/}
+                        {/*                 isFieldValid={this.fieldValid('companyName')}/>*/}
 
-                        <SimpleTextInput label={'Nazwa firmy klienta cd.'} errorMessage={''}
-                                         value={this.state.client.companyNameCont} validate={alwaysTrue}
-                                         validateFormPropertyName={'companyNameCont'} changeValue={this.changeValue}
-                                         isFieldValid={this.fieldValid('companyNameCont')}/>
+                        {/*<SimpleTextInput label={'Nazwa firmy klienta cd.'} errorMessage={''}*/}
+                        {/*                 value={this.state.client.companyNameCont} validate={alwaysTrue}*/}
+                        {/*                 validateFormPropertyName={'companyNameCont'} changeValue={this.changeValue}*/}
+                        {/*                 isFieldValid={this.fieldValid('companyNameCont')}/>*/}
 
-                        <SimpleTextInput label={'Numer VAT UE'} errorMessage={'Numer VAT nie może być pusty'}
-                                         value={this.state.client.vatUeNumber} validate={textNotEmpty}
-                                         validateFormPropertyName={'vatUeNumber'} changeValue={this.changeValue}
-                                         isFieldValid={this.fieldValid('vatUeNumber')}/>
+                        {/*<SimpleTextInput label={'Numer VAT UE'} errorMessage={'Numer VAT nie może być pusty'}*/}
+                        {/*                 value={this.state.client.vatUeNumber} validate={textNotEmpty}*/}
+                        {/*                 validateFormPropertyName={'vatUeNumber'} changeValue={this.changeValue}*/}
+                        {/*                 isFieldValid={this.fieldValid('vatUeNumber')}/>*/}
 
-                        <SimpleTextInput label={'Kod pocztowy'} errorMessage={'Wypełnij kod pocztowy!'}
-                                         value={this.state.client.addressPostalCode} validate={textNotEmpty}
-                                         validateFormPropertyName={'addressPostalCode'} changeValue={this.changeValue}
-                                         isFieldValid={this.fieldValid('addressPostalCode')}/>
+                        {/*<SimpleTextInput label={'Kod pocztowy'} errorMessage={'Wypełnij kod pocztowy!'}*/}
+                        {/*                 value={this.state.client.addressPostalCode} validate={textNotEmpty}*/}
+                        {/*                 validateFormPropertyName={'addressPostalCode'} changeValue={this.changeValue}*/}
+                        {/*                 isFieldValid={this.fieldValid('addressPostalCode')}/>*/}
 
-                        <SimpleTextInput label={'Miasto'} errorMessage={'Miasto nie może być puste!'}
-                                         value={this.state.client.addressCity} validate={textNotEmpty}
-                                         changeValue={this.changeValue}
-                                         isFieldValid={this.fieldValid('addressCity')}
-                                         validateFormPropertyName={'addressCity'}/>
+                        {/*<SimpleTextInput label={'Miasto'} errorMessage={'Miasto nie może być puste!'}*/}
+                        {/*                 value={this.state.client.addressCity} validate={textNotEmpty}*/}
+                        {/*                 changeValue={this.changeValue}*/}
+                        {/*                 isFieldValid={this.fieldValid('addressCity')}*/}
+                        {/*                 validateFormPropertyName={'addressCity'}/>*/}
 
-                        <SimpleTextInput label={'Ulica'} errorMessage={'Ulica nie może być pusta!'}
-                                         value={this.state.client.addressStreet} validate={textNotEmpty}
-                                         changeValue={this.changeValue}
-                                         isFieldValid={this.fieldValid('addressStreet')}
-                                         validateFormPropertyName={'addressStreet'}/>
+                        {/*<SimpleTextInput label={'Ulica'} errorMessage={'Ulica nie może być pusta!'}*/}
+                        {/*                 value={this.state.client.addressStreet} validate={textNotEmpty}*/}
+                        {/*                 changeValue={this.changeValue}*/}
+                        {/*                 isFieldValid={this.fieldValid('addressStreet')}*/}
+                        {/*                 validateFormPropertyName={'addressStreet'}/>*/}
 
-                        <button className="rounded-button blue btn-save" onClick={this.save}
-                                disabled={!this.formValid()}>Save
-                        </button>
+                        {/*<button className="rounded-button blue btn-save" onClick={this.save}*/}
+                        {/*        disabled={!this.formValid()}>Save*/}
+                        {/*</button>*/}
 
                     </form>
                     }
