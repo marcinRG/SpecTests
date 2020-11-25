@@ -6,8 +6,6 @@ import {fieldState} from '../../otherComponents/simplifiedTableEditForm/simplifi
 
 export function SimpleTextInput(props) {
     const labelForField = props.labels[props.propertyName];
-    console.log('Simple Input text');
-    console.log(getValue((props.value, props.propertyName)));
 
     const changeValue = (event) => {
         if (props.changeValue) {
@@ -15,7 +13,7 @@ export function SimpleTextInput(props) {
                 {
                     fieldName: props.propertyName,
                     value: event.target.value,
-                    isValid: isDataValid(event.target.value, labelForField.dataType)
+                    isValid: isValueOk(event.target.value, labelForField, props.validationFunction)
                 }
             );
         }
@@ -27,7 +25,7 @@ export function SimpleTextInput(props) {
             <label className="input-label">{labelForField.labelName}</label>
             <input className="input-field" type="text" value={getValue(props.value, props.propertyName)}
                    onChange={changeValue}/>
-            {!fieldIsValid(props.value, props.propertyName, labelForField, props.fieldStates) &&
+            {!fieldIsValid(props.value, props.propertyName, labelForField, props.fieldStates,props.validationFunction) &&
             <div className="error-msg">
                 <span className="error-txt">{(props.labels[props.propertyName]).errorMsg}</span>
             </div>
@@ -42,7 +40,8 @@ SimpleTextInput.propTypes = {
     changeValue: PropTypes.func,
     labels: PropTypes.object,
     propertyName: PropTypes.string,
-    fieldStates: PropTypes.object
+    fieldStates: PropTypes.object,
+    validationFunction: PropTypes.func
 };
 
 function getValue(obj) {
@@ -52,11 +51,18 @@ function getValue(obj) {
     return '';
 }
 
-function fieldIsValid(value, propertyName, labelForField, fieldStates) {
+function isValueOk(value, labelForField, additionalValidationFunction) {
+    let isOk = isDataValid(value, labelForField.dataType);
+    if (additionalValidationFunction) {
+        isOk = isOk && additionalValidationFunction(value);
+    }
+    return isOk;
+}
+
+function fieldIsValid(value, propertyName, labelForField, fieldStates, additionalValidationFunction) {
     const stateOfField = fieldStates[propertyName];
-    console.log(stateOfField);
-    if (stateOfField != fieldState.CLEAN && labelForField.required) {
-        return isDataValid(value, labelForField.dataType);
+    if (stateOfField != fieldState.CLEAN && (labelForField.required || additionalValidationFunction)) {
+        return isValueOk(value, labelForField, additionalValidationFunction);
     }
     return true;
 }

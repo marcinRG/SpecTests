@@ -1,5 +1,5 @@
 import {describe, it, expect} from '@jest/globals';
-import {alwaysTrue, textNotEmpty} from '../src/utils/valideFunctions';
+import {alwaysTrue, textIsPCNNumber, textNotEmpty} from '../src/utils/valideFunctions';
 import {isFormValid, isFieldValid, isNumber} from '../src/utils/utils';
 
 describe('Form validation functions test',()=>{
@@ -81,6 +81,21 @@ describe('Form validation functions test',()=>{
         str = 'zy';
         expect(isNumber(str)).toBe(false);
 
+    });
+
+    it('function textIsPCNNumber should return expected results',()=>{
+        let str;
+        console.log('str is undefined');
+        expect(textIsPCNNumber(str)).toBe(false);
+        console.log('str contains only number and its length is 10');
+        str = '0123456789';
+        expect(textIsPCNNumber(str)).toBe(true);
+        console.log('str contains illegal characters');
+        str = '012xab3456789';
+        expect(textIsPCNNumber(str)).toBe(false);
+        console.log('str is to long');
+        str = '012345678910';
+        expect(textIsPCNNumber(str)).toBe(false);
     });
 
 

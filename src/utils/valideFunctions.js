@@ -11,6 +11,11 @@ export function textNotEmpty(txt) {
     return false;
 }
 
+export function textIsPCNNumber(txt) {
+    const regEx = /^\d{10}$/gi;
+    return regEx.test(txt);
+}
+
 export function numberBiggerThanZero(str) {
     return (isNumber(str) && Number.parseFloat(str) >= 0);
 }

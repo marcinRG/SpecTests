@@ -7,7 +7,7 @@ import {
     alwaysTrue,
     numberBiggerThanZero,
     numberInRange,
-    objectExistAndNotEmpty,
+    objectExistAndNotEmpty, textIsPCNNumber,
     textNotEmpty
 } from '../../../utils/valideFunctions';
 import {Spinner} from '../../formComponents/Spinner/Spinner';
@@ -15,6 +15,7 @@ import {ComboBox} from '../../formComponents/ComboBox/ComboBox';
 import {Link} from 'react-router-dom';
 import {newElement} from '../../../utils/newElements';
 import {
+    fieldState,
     initFieldState,
     initValidation
 } from '../../otherComponents/simplifiedTableEditForm/simplifiedForm/SimplifiedForm';
@@ -75,9 +76,10 @@ export class ItemDetailsPage extends Component {
         console.log(obj);
 
         if (obj) {
+            const newEditedFields = {...this.state.editedFields, [obj.fieldName]: fieldState.EDITED};
+            const newValidationObj = {...this.state.validation, [obj.fieldName]: obj.isValid};
             const newItem = {...this.state.item, [obj.fieldName]: obj.value};
-
-            this.setState({item: newItem});
+            this.setState({item: newItem, validation: newValidationObj, editedFields: newEditedFields});
         }
     }
 
@@ -108,23 +110,17 @@ export class ItemDetailsPage extends Component {
                     <h2 className="form-title">Item <span className="blue">details</span></h2>
                     {this.state.item &&
                     <form className="input-form">
-                        <SimpleTextInput
-                            value={this.state.item.productName}
-                            changeValue={this.changeValue}
-                            labels={this.props.products.labels}
-                            propertyName={'productName'}
-                            fieldStates={this.state.editedFields}
-                        />
+                        <SimpleTextInput value={this.state.item.productName} changeValue={this.changeValue}
+                                         labels={this.props.products.labels} propertyName={'productName'}
+                                         fieldStates={this.state.editedFields}/>
 
-                        {/*<SimpleTextInput label={'Nazwa towaru cd.'} errorMessage={''}*/}
-                        {/*                 value={this.state.item.productNameCont} validate={alwaysTrue}*/}
-                        {/*                 validateFormPropertyName={'productNameCont'} changeValue={this.changeValue}*/}
-                        {/*                 isFieldValid={this.fieldValid('productNameCont')}/>*/}
+                        <SimpleTextInput value={this.state.item.productNameCont} propertyName={'productNameCont'}
+                                         labels={this.props.products.labels} changeValue={this.changeValue}
+                                         fieldStates={this.state.editedFields}/>
 
-                        {/*<SimpleTextInput label={'Kod PCN'} errorMessage={''}*/}
-                        {/*                 value={this.state.item.productCode} validate={textNotEmpty}*/}
-                        {/*                 validateFormPropertyName={'productCode'} changeValue={this.changeValue}*/}
-                        {/*                 isFieldValid={this.fieldValid('productCode')}/>*/}
+                        <SimpleTextInput value={this.state.item.productCode} labels={this.props.products.labels}
+                                         propertyName={'productCode'} changeValue={this.changeValue}
+                                         fieldStates={this.state.editedFields} validationFunction={textIsPCNNumber}/>
 
                         {/*<Spinner label={'Ilość sztuk w opakowaniu'} value={this.state.item.piecesInPackage} min={1}*/}
                         {/*         max={100}*/}
