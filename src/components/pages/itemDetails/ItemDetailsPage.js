@@ -20,6 +20,8 @@ import {
     initValidation
 } from '../../otherComponents/simplifiedTableEditForm/simplifiedForm/SimplifiedForm';
 import {formStates} from '../../otherComponents/simplifiedTableEditForm/SimplifiedTableEditForm';
+import {dataTypes} from '../../../utils/dataTypes';
+
 
 export class ItemDetailsPage extends Component {
 
@@ -72,9 +74,6 @@ export class ItemDetailsPage extends Component {
     }
 
     changeValue(obj) {
-        console.log('change obj');
-        console.log(obj);
-
         if (obj) {
             const newEditedFields = {...this.state.editedFields, [obj.fieldName]: fieldState.EDITED};
             const newValidationObj = {...this.state.validation, [obj.fieldName]: obj.isValid};
@@ -104,6 +103,7 @@ export class ItemDetailsPage extends Component {
     }
 
     render() {
+
         return (
             <React.Fragment>
                 <section className="form-page">
@@ -111,60 +111,66 @@ export class ItemDetailsPage extends Component {
                     {this.state.item &&
                     <form className="input-form">
                         <SimpleTextInput value={this.state.item.productName} changeValue={this.changeValue}
-                                         labels={this.props.products.labels} propertyName={'productName'}
+                                         labels={this.props.products.labels['productName']} propertyName={'productName'}
                                          fieldStates={this.state.editedFields}/>
 
                         <SimpleTextInput value={this.state.item.productNameCont} propertyName={'productNameCont'}
-                                         labels={this.props.products.labels} changeValue={this.changeValue}
+                                         labels={this.props.products.labels['productNameCont']}
+                                         changeValue={this.changeValue}
                                          fieldStates={this.state.editedFields}/>
 
-                        <SimpleTextInput value={this.state.item.productCode} labels={this.props.products.labels}
+                        <SimpleTextInput value={this.state.item.productCode}
+                                         labels={this.props.products.labels['productCode']}
                                          propertyName={'productCode'} changeValue={this.changeValue}
                                          fieldStates={this.state.editedFields} validationFunction={textIsPCNNumber}/>
 
-                        {/*<Spinner label={'Ilość sztuk w opakowaniu'} value={this.state.item.piecesInPackage} min={1}*/}
-                        {/*         max={100}*/}
-                        {/*         delta={1}*/}
-                        {/*         errorMessage={'Ilość sztuk w opakowaniu musi zawierać się w zakresie od 1 do 100'}*/}
-                        {/*         changeValue={this.changeValue} validate={numberInRange}*/}
-                        {/*         validateFormPropertyName={'piecesInPackage'} rounding={0}*/}
-                        {/*         isFieldValid={this.fieldValid('piecesInPackage')}*/}
-                        {/*/>*/}
+                        <Spinner value={this.state.item.price} min={0} max={10000} rounding={2}
+                                 delta={.1} changeValue={this.changeValue} validationFunction={numberBiggerThanZero}
+                                 labels={this.props.products.labels['price']} propertyName={'price'}
+                                 fieldStates={this.state.editedFields}
+                        />
 
-                        {/*<Spinner label={'Cena netto za sztukę'} value={this.state.item.price} min={0} max={10000}*/}
-                        {/*         delta={.1} errorMessage={'Cena musi być liczbą większą lub równą 0'}*/}
-                        {/*         changeValue={this.changeValue} validate={numberBiggerThanZero}*/}
-                        {/*         validateFormPropertyName={'price'} rounding={2}*/}
-                        {/*         isFieldValid={this.fieldValid('price')}*/}
-                        {/*/>*/}
+                        <ComboBox items={this.props.taxRates}
+                                  value={this.state.item.tax}
+                                  labels={this.props.products.labels['tax']} propertyName={'tax'}
+                                  propertyDisplay={'taxName'}
+                                  changeValue={this.changeValue}
+                                  fieldStates={this.state.editedFields}
+                        />
+
+                        <SimpleTextInput labels={{
+                            labelName: 'cena brutto',
+                            dataType: dataTypes.NUMBER,
+                            required: false,
+                            errorMsg: 'Musisz podać cenę produktu'
+                        }}  value={calculateGrossPrice(this.state.item.price, this.state.item.tax)}
+                        />
 
 
-                        {/*<ComboBox label={'Stawka VAT'} errorMessage={'Wystąpił nieokreślony błąd!!!'}*/}
-                        {/*          items={this.props.taxRates}*/}
-                        {/*          value={this.state.item.tax} validateFormPropertyName={'tax'}*/}
-                        {/*          fieldDisplay={'taxName'} fieldValue={'taxRate'} validate={objectExistAndNotEmpty}*/}
-                        {/*          isFieldValid={this.fieldValid('tax')} changeValue={this.changeValue}*/}
-                        {/*/>*/}
+                        <Spinner value={this.state.item.weightInKG} min={0.001} max={10}
+                                 delta={.01} rounding={3}
+                                 changeValue={this.changeValue} validationFunction={numberBiggerThanZero}
+                                 labels={this.props.products.labels['weightInKG']} propertyName={'weightInKG'}
+                                 fieldStates={this.state.editedFields}
+                        />
 
-                        {/*<SimpleTextInput label={'Cena brutto'} errorMessage={''}*/}
-                        {/*                 value={calculateGrossPrice(this.state.item.price, this.state.item.tax)}*/}
-                        {/*                 validate={alwaysTrue}*/}
-                        {/*                 isFieldValid={true}/>*/}
 
-                        {/*<ComboBox label={'Jednostka miary'} errorMessage={'Wystąpił nieokreślony błąd!!!'}*/}
-                        {/*          items={this.props.units}*/}
-                        {/*          value={this.state.item.unitsOfMeasurement}*/}
-                        {/*          validateFormPropertyName={'unitsOfMeasurement'}*/}
-                        {/*          fieldDisplay={'unit'} fieldValue={'unit'} validate={objectExistAndNotEmpty}*/}
-                        {/*          isFieldValid={this.fieldValid('unitsOfMeasurement')} changeValue={this.changeValue}*/}
-                        {/*/>*/}
+                        <Spinner value={this.state.item.piecesInPackage} min={1} max={100} delta={1}
+                                 labels={this.props.products.labels['piecesInPackage']} propertyName={'piecesInPackage'}
+                                 changeValue={this.changeValue} validationFunction={numberInRange} rounding={0}
+                                 fieldStates={this.state.editedFields}
+                        />
 
-                        {/*<Spinner label={'Waga w [kg]'} value={this.state.item.weightInKG} min={0} max={10}*/}
-                        {/*         delta={.01} errorMessage={'Waga musi być liczbą większą lub równą 0'}*/}
-                        {/*         changeValue={this.changeValue} validate={numberBiggerThanZero}*/}
-                        {/*         validateFormPropertyName={'weightInKG'} rounding={3}*/}
-                        {/*         isFieldValid={this.fieldValid('weightInKG')}*/}
-                        {/*/>*/}
+
+                        <ComboBox
+                            items={this.props.units}
+                            value={this.state.item.unitsOfMeasurement}
+                            changeValue={this.changeValue}
+                            fieldStates={this.state.editedFields}
+                            labels={this.props.products.labels['unitsOfMeasurement']}
+                            propertyName={'unitsOfMeasurement'}
+                            propertyDisplay={'unit'}
+                        />
 
                         <button className="rounded-button blue btn-save" onClick={this.save}
                                 disabled={!this.formValid()}>Save

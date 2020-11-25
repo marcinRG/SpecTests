@@ -1,7 +1,9 @@
 import './Spinner.scss';
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {isNumber, round} from '../../../utils/utils';
+import {isDataValid, isNumber, round} from '../../../utils/utils';
+import {getValue} from '../SimpleTextInput/SimpleTextInput';
+import {fieldState} from '../../otherComponents/simplifiedTableEditForm/simplifiedForm/SimplifiedForm';
 
 export class Spinner extends Component {
 
@@ -21,10 +23,11 @@ export class Spinner extends Component {
     }
 
     changeValue(newValue) {
+        console.log(newValue)
         this.props.changeValue({
-            fieldName: this.props.validateFormPropertyName,
+            fieldName: this.props.propertyName,
             value: newValue,
-            isValid: this.props.validate(newValue, this.props.min, this.props.max)
+            isValid: isValueOk(newValue, this.props.min, this.props.max, this.props.labels, this.props.validationFunction)
         });
     }
 
@@ -43,35 +46,54 @@ export class Spinner extends Component {
     render() {
         return (
             <div className="spinner-input">
-                <label className="input-label">{this.props.label}</label>
+                <label className="input-label">{this.props.labels.labelName}</label>
                 <div className="inputs">
-                    <input type="text" className="input-field" value={this.props.value}
+                    <input type="text" className="input-field"
+                           value={getValue(this.props.value, this.props.propertyName)}
                            onChange={this.changeValueFromInput}/>
                     <div className="button-wrapper">
                         <button className="button-up" onClick={this.moveUp}>&#9650;</button>
                         <button className="button-down" onClick={this.moveDown}>&#9660;</button>
                     </div>
                 </div>
-                {!this.props.isFieldValid &&
+                {!fieldIsValid(this.props.value, this.props.min, this.props.max, this.props.propertyName, this.props.labels, this.props.fieldStates, this.props.validationFunction) &&
                 <div className="error-msg">
-                    <span className="error-txt">{this.props.errorMessage}</span>
+                    <span className="error-txt">{this.props.labels.errorMsg}</span>
                 </div>}
             </div>
         );
     }
 }
 
+function isValueOk(value, min, max, labelForField, additionalValidationFunction) {
+    let isOk = isDataValid(value, labelForField.dataType);
+    if (additionalValidationFunction) {
+        isOk = isOk && additionalValidationFunction(value, min, max);
+    }
+    return isOk;
+}
+
+function fieldIsValid(value, min, max, propertyName, labelForField, fieldStates, additionalValidationFunction) {
+    const stateOfField = fieldStates[propertyName];
+    if (stateOfField != fieldState.CLEAN && (labelForField.required || additionalValidationFunction)) {
+        return isValueOk(value, min, max, labelForField, additionalValidationFunction);
+    }
+    return true;
+}
+
+
 Spinner.propTypes = {
-    label: PropTypes.string.isRequired,
-    errorMessage: PropTypes.string.isRequired,
-    value: PropTypes.string,
+
     min: PropTypes.number,
     max: PropTypes.number,
     delta: PropTypes.number,
-    validate: PropTypes.func,
-    isFieldValid: PropTypes.bool,
+    rounding: PropTypes.number,
+    value: PropTypes.string,
     changeValue: PropTypes.func,
-    validateFormPropertyName: PropTypes.string,
-    rounding: PropTypes.number
+    labels: PropTypes.object,
+    propertyName: PropTypes.string,
+    fieldStates: PropTypes.object,
+    validationFunction: PropTypes.func
+
 };
 

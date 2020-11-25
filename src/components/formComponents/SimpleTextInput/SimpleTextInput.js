@@ -5,15 +5,13 @@ import {isDataValid} from '../../../utils/utils';
 import {fieldState} from '../../otherComponents/simplifiedTableEditForm/simplifiedForm/SimplifiedForm';
 
 export function SimpleTextInput(props) {
-    const labelForField = props.labels[props.propertyName];
-
     const changeValue = (event) => {
         if (props.changeValue) {
             props.changeValue(
                 {
                     fieldName: props.propertyName,
                     value: event.target.value,
-                    isValid: isValueOk(event.target.value, labelForField, props.validationFunction)
+                    isValid: isValueOk(event.target.value, props.labels, props.validationFunction)
                 }
             );
         }
@@ -22,12 +20,12 @@ export function SimpleTextInput(props) {
     return (
 
         <div className="simple-text-input">
-            <label className="input-label">{labelForField.labelName}</label>
+            <label className="input-label">{props.labels.labelName}</label>
             <input className="input-field" type="text" value={getValue(props.value, props.propertyName)}
                    onChange={changeValue}/>
-            {!fieldIsValid(props.value, props.propertyName, labelForField, props.fieldStates,props.validationFunction) &&
+            {!fieldIsValid(props.value, props.propertyName, props.labels, props.fieldStates, props.validationFunction) &&
             <div className="error-msg">
-                <span className="error-txt">{(props.labels[props.propertyName]).errorMsg}</span>
+                <span className="error-txt">{(props.labels.errorMsg)}</span>
             </div>
             }
 
@@ -44,7 +42,7 @@ SimpleTextInput.propTypes = {
     validationFunction: PropTypes.func
 };
 
-function getValue(obj) {
+export function getValue(obj) {
     if (obj) {
         return obj + '';
     }
@@ -60,9 +58,11 @@ function isValueOk(value, labelForField, additionalValidationFunction) {
 }
 
 function fieldIsValid(value, propertyName, labelForField, fieldStates, additionalValidationFunction) {
-    const stateOfField = fieldStates[propertyName];
-    if (stateOfField != fieldState.CLEAN && (labelForField.required || additionalValidationFunction)) {
-        return isValueOk(value, labelForField, additionalValidationFunction);
+    if (propertyName && fieldStates && labelForField) {
+        const stateOfField = fieldStates[propertyName];
+        if (stateOfField != fieldState.CLEAN && (labelForField.required || additionalValidationFunction)) {
+            return isValueOk(value, labelForField, additionalValidationFunction);
+        }
     }
     return true;
 }

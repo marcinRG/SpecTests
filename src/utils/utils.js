@@ -97,6 +97,9 @@ export function isDataValid(valueAsString, dataType) {
         case dataTypes.NUMBER: {
             return isNumber(valueAsString);
         }
+        case dataTypes.OBJECT: {
+            return (valueAsString instanceof Object);
+        }
         default: {
             return false;
         }

@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 export function ComboBoxItem(props) {
 
     const onClickHandler = (event) => {
-        console.log('click ComboBox Item');
         event.preventDefault();
         props.action(props.id);
     }

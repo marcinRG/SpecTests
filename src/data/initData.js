@@ -416,7 +416,7 @@ export const InitData = {
             price: {
                 labelName: 'cena',
                 dataType: dataTypes.NUMBER,
-                required: false,
+                required: true,
                 sortable: true,
                 isTableHeader: true,
                 errorMsg: 'Musisz podać cenę produktu'
@@ -425,7 +425,7 @@ export const InitData = {
             tax: {
                 labelName: 'stawka podatku',
                 dataType: dataTypes.OBJECT,
-                required: false,
+                required: true,
                 sortable: false,
                 isTableHeader: false,
                 errorMsg: 'Musisz wybrać jakąś stawkę podatku'

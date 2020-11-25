@@ -12,12 +12,12 @@ export function textNotEmpty(txt) {
 }
 
 export function textIsPCNNumber(txt) {
-    const regEx = /^\d{10}$/gi;
+    const regEx = /^\d{9}$/gi;
     return regEx.test(txt);
 }
 
 export function numberBiggerThanZero(str) {
-    return (isNumber(str) && Number.parseFloat(str) >= 0);
+    return (isNumber(str) && Number.parseFloat(str) > 0);
 }
 
 export function numberInRange(str, min, max) {

@@ -2,7 +2,8 @@ import './ComboBox.scss';
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {ComboBoxItem} from './ComboBoxItem';
-import {valuesAsObjectToArray} from '../../../utils/utils';
+import {isDataValid, valuesAsObjectToArray} from '../../../utils/utils';
+import {fieldState} from '../../otherComponents/simplifiedTableEditForm/simplifiedForm/SimplifiedForm';
 
 export class ComboBox extends Component {
     constructor(props) {
@@ -19,10 +20,12 @@ export class ComboBox extends Component {
             showItems: false,
         });
 
+        const value = this.props.items[item];
+
         this.props.changeValue({
-            fieldName: this.props.validateFormPropertyName,
-            value: this.props.items[item],
-            isValid: this.props.validate(this.props.items[item])
+            fieldName: this.props.propertyName,
+            value,
+            isValid: isValueOk(value, this.props.labels, this.props.validationFunction)
         });
     }
 
@@ -34,21 +37,21 @@ export class ComboBox extends Component {
     render() {
         return (
             <div className="combobox-input">
-                <label className="input-label">{this.props.label}</label>
+                <label className="input-label">{this.props.labels.labelName}</label>
                 <div className="inputs">
-                    <input type="text" className="input-field" value={this.props.value[this.props.fieldDisplay]} readOnly={true}/>
+                    <input type="text" className="input-field" value={getValue(this.props.value,this.props.propertyDisplay)} readOnly={true}/>
                     <button className="input-btn" onClick={this.toggleItemsList}><span>&#x25bc;</span></button>
                 </div>
                 <ul className="list-of-elements"
                     style={setListStyle(this.state.showItems, valuesAsObjectToArray(this.props.items))} >
                     {valuesAsObjectToArray(this.props.items).map((elem) =>
-                        <ComboBoxItem key={elem.id} id={elem.id} value={elem[this.props.fieldDisplay]} action={this.changeSelected}/>
+                        <ComboBoxItem key={elem.id} id={elem.id} value={elem[this.props.propertyDisplay]} action={this.changeSelected}/>
                     )}
                 </ul>
 
-                {(!this.props.isFieldValid) &&
+                {!fieldIsValid(this.props.value, this.props.propertyName, this.props.labels, this.props.fieldStates, this.props.validationFunction) &&
                 <div className="error-msg">
-                    <span className="error-txt">{this.props.errorMessage}</span>
+                    <span className="error-txt">{this.props.labels.errorMsg}</span>
                 </div>}
 
             </div>
@@ -56,20 +59,46 @@ export class ComboBox extends Component {
     }
 }
 
+
 ComboBox.propTypes = {
-    label: PropTypes.string.isRequired,
-    errorMessage: PropTypes.string.isRequired,
+
+
     value: PropTypes.object,
     items: PropTypes.object,
     fieldValue: PropTypes.string,
     fieldDisplay: PropTypes.string,
-    isFieldValid: PropTypes.bool,
-    validate: PropTypes.func,
+
+    propertyDisplay: PropTypes.string,
     changeValue: PropTypes.func,
-    validateFormPropertyName: PropTypes.string,
+    propertyName: PropTypes.string,
+    fieldStates: PropTypes.object,
+    validationFunction: PropTypes.func,
+    labels: PropTypes.object
 };
 
+function isValueOk(value, labelForField, additionalValidationFunction) {
+    let isOk = isDataValid(value, labelForField.dataType);
+    if (additionalValidationFunction) {
+        isOk = isOk && additionalValidationFunction(value);
+    }
+    return isOk;
+}
 
+
+function fieldIsValid(value, propertyName, labelForField, fieldStates, additionalValidationFunction) {
+    const stateOfField = fieldStates[propertyName];
+    if (stateOfField != fieldState.CLEAN && (labelForField.required || additionalValidationFunction)) {
+        return isValueOk(value, labelForField, additionalValidationFunction);
+    }
+    return true;
+}
+
+function getValue(value,fieldName) {
+    if (value && value.hasOwnProperty(fieldName)) {
+        return value[fieldName] + '';
+    }
+    return '';
+}
 
 export function getHeight(array) {
     return (array.length * 49) + 'px';
