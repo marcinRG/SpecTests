@@ -12,7 +12,7 @@ export function SimplifiedInputField(props) {
                 props.changeValue({
                     fieldName: props.label.id,
                     value: event.target.value,
-                    isValid: isDataValid(event.target.value + '', props.label.dataType)
+                    isValid: dataValid(event.target.value + '', props.label)
                 });
             }}
             />
@@ -30,6 +30,13 @@ SimplifiedInputField.propTypes = {
     fieldStates: PropTypes.object,
     value: PropTypes.object,
     changeValue: PropTypes.func
+}
+
+function dataValid(value,label) {
+    if (label.required) {
+        return isDataValid(value, label.dataType);
+    }
+    return true;
 }
 
 function fieldIsValid(value, objDescription, fieldStates) {

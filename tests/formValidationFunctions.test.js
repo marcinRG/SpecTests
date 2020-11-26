@@ -3,6 +3,7 @@ import {alwaysTrue, textIsPCNNumber, textNotEmpty} from '../src/utils/valideFunc
 import {isFormValid, isFieldValid, isNumber} from '../src/utils/utils';
 
 describe('Form validation functions test',()=>{
+
     it('function alwaysTrue should always return true',()=>{
         let boolValue = alwaysTrue();
         expect(boolValue).toBe(true);
@@ -88,10 +89,10 @@ describe('Form validation functions test',()=>{
         console.log('str is undefined');
         expect(textIsPCNNumber(str)).toBe(false);
         console.log('str contains only number and its length is 10');
-        str = '0123456789';
+        str = '012345678';
         expect(textIsPCNNumber(str)).toBe(true);
         console.log('str contains illegal characters');
-        str = '012xab3456789';
+        str = '012xab345';
         expect(textIsPCNNumber(str)).toBe(false);
         console.log('str is to long');
         str = '012345678910';

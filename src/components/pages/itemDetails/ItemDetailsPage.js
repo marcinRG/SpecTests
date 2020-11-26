@@ -1,14 +1,12 @@
 import React, {Component} from 'react';
-import {isFieldValid, isFormValid, isNumber, round} from '../../../utils/utils';
+import {isFormValid, isNumber, round} from '../../../utils/utils';
 import {PropTypes} from 'prop-types'
 import {connect} from 'react-redux';
 import {SimpleTextInput} from '../../formComponents/SimpleTextInput/SimpleTextInput';
 import {
-    alwaysTrue,
     numberBiggerThanZero,
     numberInRange,
-    objectExistAndNotEmpty, textIsPCNNumber,
-    textNotEmpty
+    textIsPCNNumber
 } from '../../../utils/valideFunctions';
 import {Spinner} from '../../formComponents/Spinner/Spinner';
 import {ComboBox} from '../../formComponents/ComboBox/ComboBox';
@@ -32,16 +30,15 @@ export class ItemDetailsPage extends Component {
             validation: {},
             editedFields: {}
         };
-
+        this.getItem = this.getItem.bind(this);
         this.formValid = this.formValid.bind(this);
-        this.fieldValid = this.fieldValid.bind(this);
         this.save = this.save.bind(this);
         this.changeValue = this.changeValue.bind(this);
-        this.setItem = this.setItem.bind(this);
-        this.getItem = this.getItem.bind(this);
+
+        this.initializeComponent = this.initializeComponent.bind(this);
     }
 
-    componentDidMount() {
+    initializeComponent() {
         let item = {};
         let componentState;
         if (this.props.match.params && this.props.match.params.itemID) {
@@ -61,10 +58,14 @@ export class ItemDetailsPage extends Component {
         }
     }
 
+    componentDidMount() {
+        this.initializeComponent();
+    }
+
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (this.props.match.params && this.props.match.params.itemID) {
             if (this.props.match.params.itemID != prevProps.match.params.itemID) {
-                this.setItem(this.props.match.params.itemID);
+                this.initializeComponent();
             }
         }
     }
@@ -82,24 +83,12 @@ export class ItemDetailsPage extends Component {
         }
     }
 
-    fieldValid(fieldName) {
-        return isFieldValid(fieldName, this.state.validation);
-    }
-
     formValid() {
         return isFormValid(this.state.validation);
     }
 
     getItem(id) {
         return this.props.products.data[id]
-    }
-
-    setItem(item) {
-        if (item) {
-            this.setState({
-                item
-            })
-        }
     }
 
     render() {
@@ -125,7 +114,7 @@ export class ItemDetailsPage extends Component {
                                          fieldStates={this.state.editedFields} validationFunction={textIsPCNNumber}/>
 
                         <Spinner value={this.state.item.price} min={0} max={10000} rounding={2}
-                                 delta={.1} changeValue={this.changeValue} validationFunction={numberBiggerThanZero}
+                                 delta={0.1} changeValue={this.changeValue} validationFunction={numberBiggerThanZero}
                                  labels={this.props.products.labels['price']} propertyName={'price'}
                                  fieldStates={this.state.editedFields}
                         />
@@ -143,7 +132,7 @@ export class ItemDetailsPage extends Component {
                             dataType: dataTypes.NUMBER,
                             required: false,
                             errorMsg: 'Musisz podać cenę produktu'
-                        }}  value={calculateGrossPrice(this.state.item.price, this.state.item.tax)}
+                        }} value={calculateGrossPrice(this.state.item.price, this.state.item.tax)}
                         />
 
 
@@ -192,7 +181,7 @@ export function calculateGrossPrice(netPrice, taxRate) {
         const gross = Number.parseFloat(netPrice) + Number.parseFloat(netPrice) * Number.parseFloat(taxRate.taxRate);
         return '' + round(gross, 2);
     }
-    return '0';
+    return '';
 }
 
 function mapStateToProps(state) {

@@ -3,6 +3,12 @@ import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {DynamicComboBox} from '../../formComponents/DynamicComboBox/DynamicComboBox';
 import {PropTypes} from 'prop-types';
+import {
+    initFieldState,
+    initValidation
+} from '../../otherComponents/simplifiedTableEditForm/simplifiedForm/SimplifiedForm';
+import {formStates} from '../../otherComponents/simplifiedTableEditForm/SimplifiedTableEditForm';
+import {newElement} from '../../../utils/newElements';
 
 const selectedItem = {
     id: '7',
@@ -16,6 +22,7 @@ class DocumentDetailsPage extends Component {
     constructor(props) {
         super(props);
         this.changeValue=this.changeValue.bind(this);
+        this.initializeComponent=this.initializeComponent.bind(this);
     }
 
     changeValue(data) {
@@ -23,16 +30,36 @@ class DocumentDetailsPage extends Component {
         console.log(data);
     }
 
+    initializeComponent() {
+        let document = {};
+        let componentState;
+        if (this.props.match.params && this.props.match.params.documentID) {
+            if (this.props.match.params.documentID === newElement.NEW_ITEM) {
+                componentState = formStates.ADD_NEW;
+            } else {
+                document = this.getDocument(this.props.match.params.documentID);
+                componentState = formStates.EDIT;
+            }
+
+            this.setState({
+                document,
+                validation: initValidation(this.props.documents.labels, document),
+                editedFields: initFieldState(this.props.documents.labels, componentState)
+            })
+        }
+    }
+
+
     render() {
         return (
             <React.Fragment>
                 <section className="form-page">
                     <h2 className="form-title">Document <span className="blue">details</span></h2>
                     <form className="input-form">
-                        <DynamicComboBox label={'Lista wartości'} errorMessage={'Error! coś źle'}
-                                         fieldDisplay={'document_nr'} items={this.props.documents} isFieldValid={true}
-                                         dropdownMaxLength={5} value={selectedItem} changeValue={this.changeValue}
-                        />
+                        {/*<DynamicComboBox label={'Lista wartości'} errorMessage={'Error! coś źle'}*/}
+                        {/*                 fieldDisplay={'document_nr'} items={this.props.documents} isFieldValid={true}*/}
+                        {/*                 dropdownMaxLength={5} value={selectedItem} changeValue={this.changeValue}*/}
+                        {/*/>*/}
                     </form>
                     <div>
                         <Link className="rounded-button blue btn-back" to={'/documents'}>Back</Link>
@@ -46,14 +73,13 @@ class DocumentDetailsPage extends Component {
 function mapStateToProps(state) {
     return {
         documents: state.documents.data,
-        docs: state.documents
     };
 }
 
 export default connect(mapStateToProps)(DocumentDetailsPage);
 
 DocumentDetailsPage.propTypes = {
-    docs: PropTypes.object,
+    match: PropTypes.object,
     documents: PropTypes.object
 }
 

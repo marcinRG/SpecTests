@@ -72,14 +72,21 @@ export function initValidation(labels, obj) {
     let formFieldsValidation = {};
     const labelKeys = Object.keys(labels);
     labelKeys.forEach(label => {
-        formFieldsValidation = {...formFieldsValidation,[label]: hasValue(obj, label, labels[label].dataType)};
+        formFieldsValidation = {...formFieldsValidation,[label]: getObjectValidation(obj, label, labels)};
     });
     return formFieldsValidation;
 }
 
+function getObjectValidation(obj, label,labels) {
+    if (labels[label].required) {
+        return hasValue(obj,label,labels[label].dataType);
+    }
+    return true;
+}
+
 function hasValue(obj, fieldName, dataType) {
     if (obj && obj.hasOwnProperty(fieldName)) {
-        return isDataValid(obj[fieldName] + '', dataType);
+        return isDataValid(obj[fieldName], dataType);
     }
     return false;
 }

@@ -17,11 +17,11 @@ export function DocumentsPage(props) {
     return (
         <React.Fragment>
             <section className="table-page">
-                {/*<h2 className="form-title">Documents <span className="blue">list</span></h2>*/}
-                {/*/!*<DocumentsTable editFunction={editFunction}/>*!/*/}
-                {/*<div className="add-button-wrapper">*/}
-                {/*    <button className="rounded-button white-inverted" onClick={addNew}>Add new</button>*/}
-                {/*</div>*/}
+                <h2 className="form-title">Documents <span className="blue">list</span></h2>
+                <DocumentsTable editFunction={editFunction}/>
+                <div className="add-button-wrapper">
+                    <button className="rounded-button white-inverted" onClick={addNew}>Add new</button>
+                </div>
             </section>
         </React.Fragment>
     )

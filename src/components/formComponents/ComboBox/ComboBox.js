@@ -77,17 +77,20 @@ ComboBox.propTypes = {
 };
 
 function isValueOk(value, labelForField, additionalValidationFunction) {
-    let isOk = isDataValid(value, labelForField.dataType);
-    if (additionalValidationFunction) {
-        isOk = isOk && additionalValidationFunction(value);
+    if (labelForField.required) {
+        let isOk = isDataValid(value, labelForField.dataType);
+        if (additionalValidationFunction) {
+            isOk = isOk && additionalValidationFunction(value);
+        }
+        return isOk;
     }
-    return isOk;
+    return true;
 }
 
 
 function fieldIsValid(value, propertyName, labelForField, fieldStates, additionalValidationFunction) {
     const stateOfField = fieldStates[propertyName];
-    if (stateOfField != fieldState.CLEAN && (labelForField.required || additionalValidationFunction)) {
+    if (stateOfField != fieldState.CLEAN) {
         return isValueOk(value, labelForField, additionalValidationFunction);
     }
     return true;

@@ -66,16 +66,19 @@ export class Spinner extends Component {
 }
 
 function isValueOk(value, min, max, labelForField, additionalValidationFunction) {
-    let isOk = isDataValid(value, labelForField.dataType);
-    if (additionalValidationFunction) {
-        isOk = isOk && additionalValidationFunction(value, min, max);
+    if (labelForField.required) {
+        let isOk = isDataValid(value, labelForField.dataType);
+        if (additionalValidationFunction) {
+            isOk = isOk && additionalValidationFunction(value, min, max);
+        }
+        return isOk;
     }
-    return isOk;
+    return true;
 }
 
 function fieldIsValid(value, min, max, propertyName, labelForField, fieldStates, additionalValidationFunction) {
     const stateOfField = fieldStates[propertyName];
-    if (stateOfField != fieldState.CLEAN && (labelForField.required || additionalValidationFunction)) {
+    if (stateOfField != fieldState.CLEAN) {
         return isValueOk(value, min, max, labelForField, additionalValidationFunction);
     }
     return true;

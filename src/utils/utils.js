@@ -86,19 +86,21 @@ export function isNumber(str) {
     return false;
 }
 
-export function isDataValid(valueAsString, dataType) {
+export function isDataValid(value, dataType) {
     switch (dataType) {
         case dataTypes.DATE: {
-            return validDate(valueAsString);
+            return validDate(value + '');
         }
         case dataTypes.STRING: {
-            return valueAsString.length > 0;
+            let str = value + '';
+            return str.length > 0;
         }
         case dataTypes.NUMBER: {
-            return isNumber(valueAsString);
+            return isNumber(value + '');
         }
         case dataTypes.OBJECT: {
-            return (valueAsString instanceof Object);
+            let str = value + '';
+            return (str.includes('object'));
         }
         default: {
             return false;
