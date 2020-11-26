@@ -4,6 +4,11 @@ export const actionNames = {
     CHANGE_APP_JUMBOTRON_VISIBILITY: 'change application jumbotron visibility',
     //company details
     CHANGE_COMPANY_DETAILS: 'change company details',
+    //company accounts actions
+    ADD_COMPANY_ACCOUNT: 'add company account',
+    CHANGE_COMPANY_ACCOUNT_VALUE: 'change company account value',
+    REMOVE_COMPANY_ACCOUNT_VALUE: 'remove company account from table',
+
     //client details
     CHANGE_CLIENT_DETAILS: 'change client details',
 
@@ -57,10 +62,7 @@ export const actionNames = {
     //type of invoices table actions
     CHANGE_INVOICE_TYPE_VALUE: 'change type of invoice value',
     REMOVE_INVOICE_TYPE_VALUE: 'remove type of invoice from table',
-    //company accounts actions
-    ADD_COMPANY_ACCOUNT: 'add company account',
-    CHANGE_COMPANY_ACCOUNT_VALUE: 'change company account value',
-    REMOVE_COMPANY_ACCOUNT_VALUE: 'remove company account from table',
+
 
 
 };

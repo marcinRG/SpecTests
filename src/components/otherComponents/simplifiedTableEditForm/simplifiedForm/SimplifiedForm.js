@@ -16,10 +16,13 @@ export class SimplifiedForm extends Component {
     }
 
     changeValueAndValidate(obj) {
-        this.props.changeSelected(setValue(obj.value, obj.fieldName, this.props.selectedValue));
-        const newEditedFields = {...this.state.editedFields, [obj.fieldName]: fieldState.EDITED};
-        const newValidationObj = {...this.state.validation, [obj.fieldName]: obj.isValid};
-        this.setState({validation: newValidationObj, editedFields: newEditedFields});
+        if (obj) {
+            this.props.changeSelected(setValue(obj.value, obj.fieldName, this.props.selectedValue));
+            const newEditedFields = {...this.state.editedFields, [obj.fieldName]: fieldState.EDITED};
+            const newValidationObj = {...this.state.validation, [obj.fieldName]: obj.isValid};
+            this.setState({validation: newValidationObj, editedFields: newEditedFields});
+        }
+
     }
 
     render() {

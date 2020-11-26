@@ -32,7 +32,7 @@ SimplifiedInputField.propTypes = {
     changeValue: PropTypes.func
 }
 
-function dataValid(value,label) {
+function dataValid(value, label) {
     if (label.required) {
         return isDataValid(value, label.dataType);
     }

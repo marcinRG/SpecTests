@@ -34,11 +34,11 @@ export function additionalTablesReducers(state = InitData.additionalTables, acti
         case actionNames.ADD_CURRENCY_VALUE:
         case actionNames.CHANGE_CURRENCY_VALUE: {
             return {...state, currencies: {...state.currencies, data: changeData(action,state.currencies)}};
-        }        
+        }
         case actionNames.REMOVE_CURRENCY_VALUE: {
             return {...state, currencies: {...state.currencies, data: removeData(action,state.currencies)}};
         }
-        
+
         //method of payments
         case actionNames.ADD_PAYMENTS_METHODS:
         case actionNames.CHANGE_PAYMENTS_METHODS_VALUE: {
@@ -46,8 +46,8 @@ export function additionalTablesReducers(state = InitData.additionalTables, acti
         }
         case actionNames.REMOVE_PAYMENTS_METHODS_VALUE: {
             return {...state, methodsOfPayments: {...state.methodsOfPayments, data: removeData(action,state.methodsOfPayments)}};
-        }   
-        
+        }
+
         //units of measurements
         case actionNames.ADD_UNIT:
         case actionNames.CHANGE_UNITS_VALUE: {

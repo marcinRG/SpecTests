@@ -4,7 +4,7 @@ import {PropTypes} from 'prop-types';
 import connect from 'react-redux/es/connect/connect';
 import {SimpleTextInput} from '../../formComponents/SimpleTextInput/SimpleTextInput';
 import {actionNames} from '../../../reduxSettings/constants';
-import {isFieldValid, isFormValid} from '../../../utils/utils';
+import {isFormValid} from '../../../utils/utils';
 import SimplifiedCompanyAccounts from '../../simplifedFormTables/SimpifiedCompanyAccounts';
 import {
     fieldState,
@@ -25,25 +25,19 @@ class CompanyDetailsPage extends Component {
         };
         this.saveCompanyDetails = this.saveCompanyDetails.bind(this);
         this.formValid = this.formValid.bind(this);
-        this.fieldValid = this.fieldValid.bind(this);
         this.changeValue = this.changeValue.bind(this);
-    }
-
-    fieldValid(fieldName) {
-        return isFieldValid(fieldName, this.state.validation);
     }
 
     formValid() {
         return isFormValid(this.state.validation);
     }
-    
 
     changeValue(obj) {
-        console.log('changed value');
         if (obj) {
             const newEditedFields = {...this.state.editedFields, [obj.fieldName]: fieldState.EDITED};
             const newValidationObj = {...this.state.validation, [obj.fieldName]: obj.isValid};
-            this.setState({validation: newValidationObj, editedFields: newEditedFields});
+            const newCompanyDetails = {...this.state.companyDetails, [obj.fieldName]: obj.value};
+            this.setState({validation: newValidationObj, editedFields: newEditedFields,companyDetails:newCompanyDetails});
         }
     }
 
@@ -71,17 +65,10 @@ class CompanyDetailsPage extends Component {
                                          labels={this.props.labels['vatUeNumber']} propertyName={'vatUeNumber'}
                                          fieldStates={this.state.editedFields}/>
 
-                        <SimpleTextInput value={this.state.companyDetails.vatUeNumber} changeValue={this.changeValue}
-                                         labels={this.props.labels['vatUeNumber']} propertyName={'vatUeNumber'}
-                                         fieldStates={this.state.editedFields}/>
-
                         <SimpleTextInput value={this.state.companyDetails.addressPostalCode} changeValue={this.changeValue}
                                          labels={this.props.labels['addressPostalCode']} propertyName={'addressPostalCode'}
                                          fieldStates={this.state.editedFields}/>
 
-                        <SimpleTextInput value={this.state.companyDetails.addressPostalCode} changeValue={this.changeValue}
-                                         labels={this.props.labels['addressPostalCode']} propertyName={'addressPostalCode'}
-                                         fieldStates={this.state.editedFields}/>
 
                         <SimpleTextInput value={this.state.companyDetails.addressCity} changeValue={this.changeValue}
                                          labels={this.props.labels['addressCity']} propertyName={'addressCity'}
@@ -100,7 +87,7 @@ class CompanyDetailsPage extends Component {
 
                 <section className="form-page">
                     <h2 className="form-title">Company <span className="blue">accounts</span></h2>
-                    <SimplifiedCompanyAccounts/>
+                    <SimplifiedCompanyAccounts isSelected={true}/>
                 </section>
             </React.Fragment>
         );
