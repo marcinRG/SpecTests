@@ -61,10 +61,11 @@ export class DynamicComboBox extends Component {
 
         return (
             <div className="combobox-input">
-                <label className="input-label">{this.props.label}</label>
+                {this.state.item}
+                <label className="input-label">{this.props.labels.labelName}</label>
                 <div className="inputs">
-                    <input type="text" className="input-field" onChange={this.handleTextInput}
-                           value={this.state.textValue} onKeyUp={this.handleKeyUp}/>
+                    <input type="text" className="input-field" value={getValue(this.props.value,this.props.propertyDisplay)}
+                           onKeyUp={this.handleKeyUp}/>
                     <button className="input-btn" onClick={this.handleClick}><span>&#x25bc;</span></button>
                 </div>
                 <ul className="list-of-elements"
@@ -76,25 +77,32 @@ export class DynamicComboBox extends Component {
                     )}
 
                 </ul>
-                {(!this.props.isFieldValid) &&
-                <div className="error-msg">
-                    <span className="error-txt">{this.props.errorMessage}</span>
-                </div>}
+                {/*{(!this.props.isFieldValid) &&*/}
+                {/*<div className="error-msg">*/}
+                {/*    <span className="error-txt">{this.props.errorMessage}</span>*/}
+                {/*</div>}*/}
             </div>
         )
     }
 }
 
 DynamicComboBox.propTypes = {
-    label: PropTypes.string.isRequired,
-    isFieldValid: PropTypes.bool.isRequired,
-    errorMessage: PropTypes.string.isRequired,
+
     dropdownMaxLength: PropTypes.number.isRequired,
-    validation: PropTypes.object,
+    value: PropTypes.object,
     items: PropTypes.object,
+    fieldValue: PropTypes.string,
     fieldDisplay: PropTypes.string,
+
+    propertyDisplay: PropTypes.string,
     changeValue: PropTypes.func,
-    value: PropTypes.object
+    propertyName: PropTypes.string,
+    fieldStates: PropTypes.object,
+    validationFunction: PropTypes.func,
+    labels: PropTypes.object
+
+
+
 };
 
 function elementInTable(txtValue,field,table) {
@@ -119,3 +127,9 @@ function getElements(txt, elementList, maxLength, field) {
     }).slice(0, maxLength);
 }
 
+function getValue(value,fieldName) {
+    if (value && value.hasOwnProperty(fieldName)) {
+        return value[fieldName] + '';
+    }
+    return '';
+}

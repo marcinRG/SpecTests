@@ -65,7 +65,7 @@ export class DatePicker extends Component {
     render() {
         return (
             <div className="datepicker-input">
-                <label className="input-label">{this.props.label}</label>
+                <label className="input-label">{this.props.labels.labelName}</label>
                 <div className="inputs">
                     <input type="text" className="input-field" value={this.state.dateSelected}
                            onChange={this.changeSelectedDate}/>
@@ -90,10 +90,10 @@ export class DatePicker extends Component {
                         </tbody>
                     </table>
                 </div>
-                {this.state.isError &&
-                <div className="error-msg">
-                    <span className="error-txt">This is some random error message!!!</span>
-                </div>}
+                {/*{this.state.isError &&*/}
+                {/*<div className="error-msg">*/}
+                {/*    <span className="error-txt">This is some random error message!!!</span>*/}
+                {/*</div>}*/}
 
             </div>
         )
@@ -101,9 +101,10 @@ export class DatePicker extends Component {
 }
 
 DatePicker.propTypes = {
-    label: PropTypes.string.isRequired,
-    errorMessage: PropTypes.string.isRequired,
-    validation: PropTypes.object
+    value: PropTypes.string,
+    changeValue: PropTypes.func,
+    fieldStates: PropTypes.object,
+    labels: PropTypes.object
 };
 
 
