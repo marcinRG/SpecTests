@@ -17,19 +17,28 @@ export class DatePicker extends Component {
             isError: false,
             dateSelected: ''
         }
+
+        this.changeValue = this.changeValue.bind(this);
         this.toggleItemsList = this.toggleItemsList.bind(this);
         this.changeMonth = this.changeMonth.bind(this);
         this.setDate = this.setDate.bind(this);
         this.changeSelectedDate = this.changeSelectedDate.bind(this);
     }
 
-    toggleItemsList() {
+    changeValue(date) {
+        this.props.changeValue(date);
+    }
+
+    toggleItemsList(event) {
+        event.preventDefault();
         this.setState({showItems: !this.state.showItems});
     }
 
     changeSelectedDate(event) {
+        event.preventDefault();
         const dateTxt = event.target.value;
         const isError = dateTxt !== '' ? !validDate(dateTxt) : false;
+        this.changeValue(dateTxt);
         this.setState({
             dateSelected: dateTxt,
             isError
@@ -39,8 +48,11 @@ export class DatePicker extends Component {
     setDate(day) {
         const tempDate = new Date(this.state.date.toString());
         tempDate.setDate(day);
+        const dateAsString = getDateString(tempDate.toString(), '-');
+        this.changeValue(dateAsString);
+
         this.setState({
-            dateSelected: getDateString(tempDate.toString(), '-'),
+            dateSelected: dateAsString,
             showItems: false
         });
     }
@@ -104,7 +116,8 @@ DatePicker.propTypes = {
     value: PropTypes.string,
     changeValue: PropTypes.func,
     fieldStates: PropTypes.object,
-    labels: PropTypes.object
+    labels: PropTypes.object,
+    propertyName: PropTypes.string
 };
 
 

@@ -11,13 +11,6 @@ import {formStates} from '../../otherComponents/simplifiedTableEditForm/Simplifi
 import {newElement} from '../../../utils/newElements';
 import {DatePicker} from '../../formComponents/DatePicker/DatePicker';
 
-const selectedItem = {
-    id: '7',
-    date: '2020-02-10T11:32:38.000Z',
-    document_nr: '203457/05',
-    document_sum: 1255.88
-}
-
 
 class DocumentDetailsPage extends Component {
     constructor(props) {
@@ -75,15 +68,17 @@ class DocumentDetailsPage extends Component {
 
 
     render() {
-        console.log(this.state);
         return (
             <React.Fragment>
                 <section className="form-page">
                     <h2 className="form-title">Document <span className="blue">details</span></h2>
                     {this.state.document &&
                     <form className="input-form">
-                        <DatePicker value={this.state.document.date} labels={this.props.labels}
-                                    changeValue={this.changeValue} fieldStates={this.state.editedFields}/>
+                        <DatePicker value={this.state.document.date} labels={this.props.labels['date']}
+                                    changeValue={this.changeValue} fieldStates={this.state.editedFields}
+                                    propertyName={'date'}
+                        />
+
                         {/*<DynamicComboBox label={'Lista wartości'} errorMessage={'Error! coś źle'}*/}
                         {/*                 fieldDisplay={'document_nr'} items={this.props.documents} isFieldValid={true}*/}
                         {/*                 dropdownMaxLength={5} value={selectedItem} changeValue={this.changeValue}*/}

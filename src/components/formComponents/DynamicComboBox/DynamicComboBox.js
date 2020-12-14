@@ -101,8 +101,6 @@ DynamicComboBox.propTypes = {
     validationFunction: PropTypes.func,
     labels: PropTypes.object
 
-
-
 };
 
 function elementInTable(txtValue,field,table) {
