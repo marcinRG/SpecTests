@@ -4,7 +4,8 @@ import PropTypes from 'prop-types';
 import {months} from '../../../data/monthAndDaysTables';
 import {DayHeaderRow} from './DayHeaderRow';
 import {DatePickerCell} from './DatePickerCell';
-import {getDateString, getElementClass, validDate} from '../../../utils/utils';
+import {getDateString, getElementClass, isDataValid, validDate} from '../../../utils/utils';
+import {fieldState} from '../../otherComponents/simplifiedTableEditForm/simplifiedForm/SimplifiedForm';
 
 export class DatePicker extends Component {
     constructor(props) {
@@ -13,9 +14,7 @@ export class DatePicker extends Component {
         this.state = {
             showItems: false,
             date: date,
-            daysOfMonth: createDaysOfMonth(date),
             isError: false,
-            dateSelected: ''
         }
 
         this.changeValue = this.changeValue.bind(this);
@@ -36,23 +35,38 @@ export class DatePicker extends Component {
 
     changeSelectedDate(event) {
         event.preventDefault();
-        const dateTxt = event.target.value;
-        const isError = dateTxt !== '' ? !validDate(dateTxt) : false;
-        this.changeValue(dateTxt);
-        this.setState({
-            dateSelected: dateTxt,
-            isError
+        const isDateValid = validDate(event.target.value);
+
+        const newState = {
+            date: this.state.date,
+            isError: !isDateValid
+        }
+
+        if (isDateValid) {
+            newState.date = new Date(event.target.value);
+        }
+        this.changeValue({
+            fieldName: this.props.propertyName,
+            value: event.target.value,
+            isValid: isDateValid
         });
+        this.setState({...newState});
     }
 
     setDate(day) {
         const tempDate = new Date(this.state.date.toString());
         tempDate.setDate(day);
         const dateAsString = getDateString(tempDate.toString(), '-');
-        this.changeValue(dateAsString);
+
+        this.changeValue({
+            fieldName: this.props.propertyName,
+            value: dateAsString,
+            isValid: true
+        });
 
         this.setState({
             dateSelected: dateAsString,
+            isError: false,
             showItems: false
         });
     }
@@ -69,8 +83,7 @@ export class DatePicker extends Component {
         const year = this.state.date.getFullYear();
         const tempDate = new Date(year, month, 1);
         this.setState({
-            date: tempDate,
-            daysOfMonth: createDaysOfMonth(tempDate)
+            date: tempDate
         });
     }
 
@@ -79,7 +92,7 @@ export class DatePicker extends Component {
             <div className="datepicker-input">
                 <label className="input-label">{this.props.labels.labelName}</label>
                 <div className="inputs">
-                    <input type="text" className="input-field" value={this.state.dateSelected}
+                    <input type="text" className="input-field" value={getValue(this.props.value)}
                            onChange={this.changeSelectedDate}/>
                     <button className="input-btn" onClick={this.toggleItemsList}><span>&#128198;</span></button>
                 </div>
@@ -98,7 +111,7 @@ export class DatePicker extends Component {
                         <DayHeaderRow cellClassName={'cell-header'} isDaysShort={false}/>
                         </thead>
                         <tbody>
-                        {createTableRows(6, 7, this.state.daysOfMonth, this.setDate)}
+                        {createTableRows(6, 7, createDaysOfMonth(this.state.date), this.setDate)}
                         </tbody>
                     </table>
                 </div>
@@ -119,6 +132,35 @@ DatePicker.propTypes = {
     labels: PropTypes.object,
     propertyName: PropTypes.string
 };
+
+
+export function getValue(obj) {
+    if (obj) {
+        return getDateString(obj, '-');
+    }
+    return '';
+}
+
+function isValueOk(value, labelForField, additionalValidationFunction) {
+    if (labelForField.required) {
+        let isOk = isDataValid(value, labelForField.dataType);
+        if (additionalValidationFunction) {
+            isOk = isOk && additionalValidationFunction(value);
+        }
+        return isOk;
+    }
+    return true;
+}
+
+function fieldIsValid(value, propertyName, labelForField, fieldStates, additionalValidationFunction) {
+    if (propertyName && fieldStates && labelForField) {
+        const stateOfField = fieldStates[propertyName];
+        if (stateOfField != fieldState.CLEAN) {
+            return isValueOk(value, labelForField, additionalValidationFunction);
+        }
+    }
+    return true;
+}
 
 
 function getMonthNames(monthsTable, index) {
