@@ -115,10 +115,10 @@ export class DatePicker extends Component {
                         </tbody>
                     </table>
                 </div>
-                {/*{this.state.isError &&*/}
-                {/*<div className="error-msg">*/}
-                {/*    <span className="error-txt">This is some random error message!!!</span>*/}
-                {/*</div>}*/}
+                {!fieldIsValid(this.props.value, this.props.propertyName, this.props.labels, this.props.fieldStates) &&
+                <div className="error-msg">
+                    <span className="error-txt">This is some random error message!!!</span>
+                </div>}
 
             </div>
         )
@@ -136,9 +136,17 @@ DatePicker.propTypes = {
 
 export function getValue(obj) {
     if (obj) {
-        return getDateString(obj, '-');
+        return obj + '';
     }
     return '';
+}
+
+function fieldIsValid(value, propertyName, labelForField, fieldStates, additionalValidationFunction) {
+    const stateOfField = fieldStates[propertyName];
+    if (stateOfField != fieldState.CLEAN) {
+        return isValueOk(value, labelForField, additionalValidationFunction);
+    }
+    return true;
 }
 
 function isValueOk(value, labelForField, additionalValidationFunction) {
@@ -148,16 +156,6 @@ function isValueOk(value, labelForField, additionalValidationFunction) {
             isOk = isOk && additionalValidationFunction(value);
         }
         return isOk;
-    }
-    return true;
-}
-
-function fieldIsValid(value, propertyName, labelForField, fieldStates, additionalValidationFunction) {
-    if (propertyName && fieldStates && labelForField) {
-        const stateOfField = fieldStates[propertyName];
-        if (stateOfField != fieldState.CLEAN) {
-            return isValueOk(value, labelForField, additionalValidationFunction);
-        }
     }
     return true;
 }

@@ -31,16 +31,18 @@ class DocumentDetailsPage extends Component {
         }
     }
 
-    changeValue(data) {
+    changeValue(obj) {
         console.log('data changed');
-        console.log(data);
+        console.log(obj);
+        const newDocumentState = {...this.state.document, [obj.fieldName]: obj.value};
+        this.setState({document: newDocumentState});
     }
 
     initializeComponent() {
         let document = {};
         let componentState;
         if (this.props.match.params && this.props.match.params.documentID) {
-            if (this.props.match.params.documentID === newElement.NEW_ITEM) {
+            if (this.props.match.params.documentID === newElement.NEW_DOCUMENT) {
                 componentState = formStates.ADD_NEW;
             } else {
                 document = this.getDocument(this.props.match.params.documentID);
@@ -107,7 +109,3 @@ DocumentDetailsPage.propTypes = {
     documents: PropTypes.object,
     labels: PropTypes.object
 }
-
-// date: '2020-03-17T11:32:38.000Z',
-// document_nr: '203455/30',
-// document_sum: 2457.12

@@ -11,7 +11,7 @@ export function DocumentsPage(props) {
     }
 
     const addNew = () => {
-        props.history.push('/item-details/' + newElement.NEW_DOCUMENT);
+        props.history.push('/document-details/' + newElement.NEW_DOCUMENT);
     }
 
     return (

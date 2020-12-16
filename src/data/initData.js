@@ -308,12 +308,13 @@ export const InitData = {
         },
         labels: {
             date: {
-                labelName: 'date',
+                labelName: 'data',
                 labelField: 'date',
                 dataType: dataTypes.DATE,
                 required: true,
                 sortable: true,
                 isTableHeader: true,
+                errorMsg: 'Data jest nieprawidłowa!'
             },
             documentNr: {
                 labelName: 'document no.',
@@ -322,12 +323,13 @@ export const InitData = {
                 required: true,
                 sortable: true,
                 isTableHeader: true,
+                errorMsg: 'Numer dokumentu nieprawidłowy!'
             },
             documentSum: {
                 labelName: 'total',
                 labelField: 'documentSum',
                 dataType: dataTypes.NUMBER,
-                required: true,
+                required: false,
                 sortable: true,
                 isTableHeader: true,
             }
@@ -616,7 +618,6 @@ export const InitData = {
         labels: {
             companyName: {
                 labelName: 'Nazwa firmy klienta',
-                //labelField: 'companyName',
                 dataType: dataTypes.STRING,
                 required: true,
                 sortable: true,
@@ -625,7 +626,6 @@ export const InitData = {
             },
             addressCity: {
                 labelName: 'miasto',
-                //labelField: 'addressCity',
                 dataType: dataTypes.STRING,
                 required: true,
                 sortable: true,
@@ -634,7 +634,6 @@ export const InitData = {
             },
             addressStreet: {
                 labelName: 'ulica',
-                //labelField: 'addressStreet',
                 dataType: dataTypes.STRING,
                 required: true,
                 sortable: true,
