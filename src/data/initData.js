@@ -307,15 +307,87 @@ export const InitData = {
             currentPage: 1,
         },
         labels: {
-            date: {
-                labelName: 'data',
-                labelField: 'date',
+
+            dateOfCreation: {
+                labelName: 'data wystawienia',
+                labelField: 'dateOfCreation',
                 dataType: dataTypes.DATE,
                 required: true,
-                sortable: true,
+                sortable: false,
                 isTableHeader: true,
-                errorMsg: 'Data jest nieprawidłowa!'
+                errorMsg: 'Data wystawienia jest nieprawidłowa!'
             },
+
+            dateOfSale: {
+                labelName: 'data sprzedaży',
+                labelField: 'dateOfSale',
+                dataType: dataTypes.DATE,
+                required: true,
+                sortable: false,
+                isTableHeader: false,
+                errorMsg: 'Data sprzedaży jest nieprawidłowa!'
+            },
+
+            account: {
+                labelName: 'konto',
+                labelField: 'account',
+                dataType: dataTypes.OBJECT,
+                required: true,
+                sortable: false,
+                isTableHeader: false,
+                errorMsg: 'Konto jest nieprawidłowe!'
+            },
+
+            buyer: {
+                labelName: 'nabywca',
+                labelField: 'buyer',
+                dataType: dataTypes.OBJECT,
+                required: true,
+                sortable: false,
+                isTableHeader: false,
+                errorMsg: 'Nabywca jest nieprawidłowy!'
+            },
+
+            methodOfPayment: {
+                labelName: 'sposób zapłaty',
+                labelField: 'methodOfPayment',
+                dataType: dataTypes.OBJECT,
+                required: true,
+                sortable: false,
+                isTableHeader: false,
+                errorMsg: 'Sposób zapłaty jest nieprawidłowy!'
+            },
+
+            dateOfPayment: {
+                labelName: 'termin zapłaty',
+                labelField: 'dateOfPayment',
+                dataType: dataTypes.DATE,
+                required: true,
+                sortable: false,
+                isTableHeader: false,
+                errorMsg: 'Termin zapłaty jest nieprawidłowy!'
+            },
+
+            currency: {
+                labelName: 'waluta',
+                labelField: 'currency',
+                dataType: dataTypes.DATE,
+                required: true,
+                sortable: false,
+                isTableHeader: false,
+                errorMsg: 'Waluta jest nieprawidłowa!'
+            },
+
+            invoiceType: {
+                labelName: 'rodzaj faktury',
+                labelField: 'invoiceType',
+                dataType: dataTypes.OBJECT,
+                required: true,
+                sortable: false,
+                isTableHeader: false,
+                errorMsg: 'Podany rodzaj faktury jest nieprawidłowy!'
+            },
+
             documentNr: {
                 labelName: 'document no.',
                 labelField: 'document_nr',
@@ -325,6 +397,7 @@ export const InitData = {
                 isTableHeader: true,
                 errorMsg: 'Numer dokumentu nieprawidłowy!'
             },
+
             documentSum: {
                 labelName: 'total',
                 labelField: 'documentSum',
@@ -332,89 +405,315 @@ export const InitData = {
                 required: false,
                 sortable: true,
                 isTableHeader: true,
+            },
+
+            car: {
+                labelName: 'samochód',
+                labelField: 'car',
+                dataType: dataTypes.OBJECT,
+                required: false,
+                sortable: false,
+                isTableHeader: false,
+                errorMsg: 'Podany samochód jest nieprawidłowy!'
+            },
+
+            additionalText: {
+                labelName: 'dodatkowy tekst',
+                labelField: 'additionalText',
+                dataType: dataTypes.OBJECT,
+                required: false,
+                sortable: false,
+                isTableHeader: false,
+                errorMsg: 'Podany tekst jest nieprawidłowy!'
             }
+
         },
         data: {
             '1': {
-                date: '2020-03-17T11:32:38.000Z',
+                dateOfCreation:'2020-03-17',
+                dateOfSale:'2020-03-17',
+                dateOfPayment:'2020-03-24',
+                account: {
+                    accountType: 'krajowe',
+                    swiftCodeAccount: 'PL XX 22 33',
+                    bankName: 'PKO BP',
+                    accountNumber: ' PL 06 1189 0035 0000 0001 0056 9186'
+                },
+                buyer:{
+                    companyName: 'AKME GmbH',
+                    companyNameCont: '',
+                    addressStreet: 'Breslauer Str 19',
+                    addressCity: 'Berlin',
+                    addressPostalCode: '33-150',
+                    vatUeNumber: 'DE 123456789',
+                },
                 documentNr: '203455/01',
+                invoiceType: {
+                    type: 'faktura VAT - krajowa'
+                },
+                methodOfPayment: {
+                    payment: 'gotówka'
+                },
+                additionalText: {
+                    symbol: 'krajowe',
+                    text: 'Dziękujemy i zapraszamy ponownie',
+                    textCont: ''
+                },
+                car: {
+
+                },
+                currency: {
+                    currency: 'zł'
+                },
                 documentSum: 2457.12
             },
             '2': {
-                date: '2019-12-17T11:32:38.000Z',
+                dateOfCreation:'2019-12-17',
+                dateOfSale:'2019-12-17',
+                dateOfPayment:'2019-12-17',
+                account: {
+                    accountType: 'krajowe',
+                    swiftCodeAccount: 'PL XX 22 33',
+                    bankName: 'PKO BP',
+                    accountNumber: ' PL 06 1189 0035 0000 0001 0056 9186'
+                },
+                buyer:{
+                    companyName: 'Something Co.',
+                    companyNameCont: '',
+                    addressStreet: 'Sienkiewicza 19A/12',
+                    addressCity: 'Wrocław',
+                    addressPostalCode: '00-850',
+                    vatUeNumber: 'PL 123456789',
+                },
+
                 documentNr: '203455/02',
+                invoiceType: {
+                    type: 'faktura VAT - krajowa'
+                },
+                methodOfPayment: {
+                    payment: 'gotówka'
+                },
+                additionalText: {
+                    symbol: 'krajowe',
+                    text: 'Dziękujemy i zapraszamy ponownie',
+                    textCont: ''
+                },
+                car: {
+
+                },
+                currency: {
+                    currency: 'kč'
+                },
                 documentSum: 125.30
             },
             '3': {
-                date: '2020-01-20T11:32:38.000Z',
+                dateOfCreation:'2020-01-20',
+                dateOfSale:'2020-01-20',
+                dateOfPayment:'2020-01-20',
+                account: {
+                    accountType: 'krajowe',
+                    swiftCodeAccount: 'PL XX 22 33',
+                    bankName: 'PKO BP',
+                    accountNumber: ' PL 06 1189 0035 0000 0001 0056 9186'
+                },
+                buyer:{
+                    companyName: 'Something Co.',
+                    companyNameCont: '',
+                    addressStreet: 'Sienkiewicza 19A/12',
+                    addressCity: 'Wrocław',
+                    addressPostalCode: '00-850',
+                    vatUeNumber: 'PL 123456789',
+                },
+
                 documentNr: '203455/02',
+                invoiceType: {
+                    type: 'faktura proforma'
+                },
+                methodOfPayment: {
+                    payment: 'przelew'
+                },
+                additionalText: {
+                    symbol: 'krajowe',
+                    text: 'Dziękujemy i zapraszamy ponownie',
+                    textCont: ''
+                },
+                car: {
+
+                },
+                currency: {
+                    currency: 'zł'
+                },
                 documentSum: 8825.73
             },
             '4': {
-                date: '2020-02-03T11:32:38.000Z',
+                dateOfCreation:'2020-02-03',
+                dateOfSale:'2020-02-03',
+                dateOfPayment:'2020-02-03',
+                account: {
+                    accountType: 'krajowe',
+                    swiftCodeAccount: 'PL XX 22 33',
+                    bankName: 'PKO BP',
+                    accountNumber: ' PL 06 1189 0035 0000 0001 0056 9186'
+                },
+                buyer:{
+                    companyName: 'Super Company',
+                    companyNameCont: '',
+                    addressStreet: 'Downing Str 8',
+                    addressCity: 'London',
+                    addressPostalCode: 'AX-12E',
+                    vatUeNumber: 'UK 123456789',
+                },
+
                 documentNr: '203455/04',
+                invoiceType: {
+                    type: 'wewnątrzwspólnotowa dostawa towarów'
+                },
+                methodOfPayment: {
+                    payment: 'gotówka'
+                },
+                additionalText: {
+                    symbol: 'zagraniczne',
+                    text: 'Podatek VAT od transakcji uiszcza nabywca',
+                    textCont: 'Dostawa wewnątrzwspólnotowa art. 41 i 42 ust. o VAT'
+                },
+                car: {
+                    plateNo: 'DXC 2275',
+                    carName: 'Mercedes Vito'
+                },
+                currency: {
+                    currency: '€'
+                },
                 documentSum: 12525.73
             },
             '5': {
-                date: '2020-02-10T11:32:38.000Z',
+                dateOfCreation:'2020-02-10',
+                dateOfSale:'2020-02-10',
+                dateOfPayment:'2020-02-17',
+                account: {
+                    accountType: 'zagraniczne',
+                    swiftCodeAccount: 'XW ZX GB LPP',
+                    bankName: 'Bank of Austria',
+                    accountNumber: ' GB 06 1189 0035 0000 0001 0056 9186'
+                },
+                buyer:{
+                    companyName: 'Something Co.',
+                    companyNameCont: '',
+                    addressStreet: 'Sienkiewicza 19A/12',
+                    addressCity: 'Wrocław',
+                    addressPostalCode: '00-850',
+                    vatUeNumber: 'PL 123456789',
+                },
+
                 documentNr: '203455/05',
+                invoiceType: {
+                    type: 'faktura VAT - krajowa'
+                },
+                methodOfPayment: {
+                    payment: 'gotówka'
+                },
+                additionalText: {
+                    symbol: 'krajowe',
+                    text: 'Dziękujemy i zapraszamy ponownie',
+                    textCont: ''
+                },
+                car: {
+
+                },
+                currency: {
+                    currency: 'zł'
+                },
                 documentSum: 1255.88
             },
             '6': {
-                date: '2020-02-10T11:32:38.000Z',
+                dateOfCreation:'2020-02-10',
+                dateOfSale:'2020-02-10',
+                dateOfPayment:'2020-02-24',
+                account: {
+                    accountType: 'zagraniczne',
+                    swiftCodeAccount: 'XW ZX GB LPP',
+                    bankName: 'Bank of Austria',
+                    accountNumber: ' GB 06 1189 0035 0000 0001 0056 9186'
+                },
+                buyer:{
+                    companyName: 'Something Co.',
+                    companyNameCont: '',
+                    addressStreet: 'Sienkiewicza 19A/12',
+                    addressCity: 'Wrocław',
+                    addressPostalCode: '00-850',
+                    vatUeNumber: 'PL 123456789',
+                },
+
                 documentNr: '203456/05',
+                invoiceType: {
+                    type: 'wewnątrzwspólnotowa dostawa towarów'
+                },
+                methodOfPayment: {
+                    payment: 'przelew'
+                },
+                additionalText: {
+                    symbol: 'zagraniczne',
+                    text: 'Podatek VAT od transakcji uiszcza nabywca',
+                    textCont: 'Dostawa wewnątrzwspólnotowa art. 41 i 42 ust. o VAT'
+                },
+                car: {
+                    plateNo: 'AXB 125Q',
+                    carName: 'Fiat Ducato'
+                },
+                currency: {
+                    currency: '€'
+                },
                 documentSum: 1255.88
             },
-            '7': {
-                date: '2020-02-10T11:32:38.000Z',
-                documentNr: '203457/05',
-                documentSum: 1255.88
-            },
-            '8': {
-                date: '2020-02-10T11:32:38.000Z',
-                documentNr: '203458/06',
-                documentSum: 1255.88
-            },
-            '9': {
-                date: '2020-02-10T11:32:38.000Z',
-                documentNr: '303458/06',
-                documentSum: 1255.88
-            },
-            '10': {
-                date: '2020-02-10T11:32:38.000Z',
-                documentNr: '303459/06',
-                documentSum: 1255.88
-            },
-            '11': {
-                date: '2020-02-10T11:32:38.000Z',
-                documentNr: '303460/06',
-                documentSum: 1255.88
-            },
-            '12': {
-                date: '2020-02-10T11:32:38.000Z',
-                documentNr: '403461/07',
-                documentSum: 1255.88
-            },
-            '13': {
-                date: '2020-02-10T11:32:38.000Z',
-                documentNr: '403462/07',
-                documentSum: 1255.88
-            },
-            '14': {
-                date: '2020-02-10T11:32:38.000Z',
-                documentNr: '403463/07',
-                documentSum: 1255.88
-            },
-            '15': {
-                date: '2020-02-10T11:32:38.000Z',
-                documentNr: '403464/07',
-                documentSum: 1255.88
-            },
-            '16': {
-                date: '2020-02-10T11:32:38.000Z',
-                documentNr: '403465/07',
-                documentSum: 1255.88
-            },
+            // '7': {
+            //     date: '2020-02-10T11:32:38.000Z',
+            //     documentNr: '203457/05',
+            //     documentSum: 1255.88
+            // },
+            // '8': {
+            //     date: '2020-02-10T11:32:38.000Z',
+            //     documentNr: '203458/06',
+            //     documentSum: 1255.88
+            // },
+            // '9': {
+            //     date: '2020-02-10T11:32:38.000Z',
+            //     documentNr: '303458/06',
+            //     documentSum: 1255.88
+            // },
+            // '10': {
+            //     date: '2020-02-10T11:32:38.000Z',
+            //     documentNr: '303459/06',
+            //     documentSum: 1255.88
+            // },
+            // '11': {
+            //     date: '2020-02-10T11:32:38.000Z',
+            //     documentNr: '303460/06',
+            //     documentSum: 1255.88
+            // },
+            // '12': {
+            //     date: '2020-02-10',
+            //     documentNr: '403461/07',
+            //     documentSum: 1255.88
+            // },
+            // '13': {
+            //     date: '2020-02-10',
+            //     documentNr: '403462/07',
+            //     documentSum: 1255.88
+            // },
+            // '14': {
+            //     date: '2020-02-10',
+            //     documentNr: '403463/07',
+            //     documentSum: 1255.88
+            // },
+            // '15': {
+            //     date: '2020-02-10',
+            //     documentNr: '403464/07',
+            //     documentSum: 1255.88
+            // },
+            // '16': {
+            //     date: '2020-02-10',
+            //     documentNr: '403465/07',
+            //     documentSum: 1255.88
+            // },
         }
     },
 

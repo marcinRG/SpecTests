@@ -23,6 +23,14 @@ class DocumentDetailsPage extends Component {
         this.changeValue = this.changeValue.bind(this);
         this.initializeComponent = this.initializeComponent.bind(this);
         this.getDocument = this.getDocument.bind(this);
+
+        console.log(this.props.accounts);
+        console.log(this.props.clients);
+        console.log(this.props.invoiceTypes);
+        console.log(this.props.methodsOfPayments);
+        console.log(this.props.additionalTexts);
+        console.log(this.props.cars);
+        console.log(this.props.currencies);
     }
 
     getDocument(id) {
@@ -76,10 +84,24 @@ class DocumentDetailsPage extends Component {
                     <h2 className="form-title">Document <span className="blue">details</span></h2>
                     {this.state.document &&
                     <form className="input-form">
-                        <DatePicker value={this.state.document.date} labels={this.props.labels['date']}
+
+                        <DatePicker value={this.state.document.dateOfCreation}
+                                    labels={this.props.labels['dateOfCreation']}
                                     changeValue={this.changeValue} fieldStates={this.state.editedFields}
                                     propertyName={'date'}
                         />
+
+                        <DatePicker value={this.state.document.dateOfSale} labels={this.props.labels['dateOfSale']}
+                                    changeValue={this.changeValue} fieldStates={this.state.editedFields}
+                                    propertyName={'date'}
+                        />
+
+                        <DatePicker value={this.state.document.dateOfPayment}
+                                    labels={this.props.labels['dateOfPayment']}
+                                    changeValue={this.changeValue} fieldStates={this.state.editedFields}
+                                    propertyName={'date'}
+                        />
+
 
                         {/*<DynamicComboBox label={'Lista wartości'} errorMessage={'Error! coś źle'}*/}
                         {/*                 fieldDisplay={'document_nr'} items={this.props.documents} isFieldValid={true}*/}
@@ -97,6 +119,14 @@ class DocumentDetailsPage extends Component {
 
 function mapStateToProps(state) {
     return {
+        accounts: state.company.accounts,
+        clients: state.clients,
+        invoiceTypes: state.additionalTables.invoiceType,
+        methodsOfPayments: state.additionalTables.methodsOfPayments,
+        additionalTexts: state.additionalTables.textAdditions,
+        cars: state.additionalTables.cars,
+        currencies: state.additionalTables.currencies,
+
         documents: state.documents.data,
         labels: state.documents.labels
     };
@@ -105,6 +135,15 @@ function mapStateToProps(state) {
 export default connect(mapStateToProps)(DocumentDetailsPage);
 
 DocumentDetailsPage.propTypes = {
+
+    accounts: PropTypes.object,
+    clients: PropTypes.object,
+    invoiceTypes: PropTypes.object,
+    methodsOfPayments: PropTypes.object,
+    additionalTexts: PropTypes.object,
+    cars: PropTypes.object,
+    currencies: PropTypes.object,
+
     match: PropTypes.object,
     documents: PropTypes.object,
     labels: PropTypes.object
