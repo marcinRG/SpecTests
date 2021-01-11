@@ -10,6 +10,8 @@ import {
 import {formStates} from '../../otherComponents/simplifiedTableEditForm/SimplifiedTableEditForm';
 import {newElement} from '../../../utils/newElements';
 import {DatePicker} from '../../formComponents/DatePicker/DatePicker';
+import {ComboBox} from '../../formComponents/ComboBox/ComboBox';
+import {SimpleTextInput} from '../../formComponents/SimpleTextInput/SimpleTextInput';
 
 
 class DocumentDetailsPage extends Component {
@@ -24,13 +26,13 @@ class DocumentDetailsPage extends Component {
         this.initializeComponent = this.initializeComponent.bind(this);
         this.getDocument = this.getDocument.bind(this);
 
-        console.log(this.props.accounts);
-        console.log(this.props.clients);
-        console.log(this.props.invoiceTypes);
-        console.log(this.props.methodsOfPayments);
-        console.log(this.props.additionalTexts);
-        console.log(this.props.cars);
-        console.log(this.props.currencies);
+        // console.log(this.props.accounts);
+        // console.log(this.props.clients);
+        // console.log(this.props.invoiceTypes);
+        // console.log(this.props.methodsOfPayments);
+        // console.log(this.props.additionalTexts);
+        // console.log(this.props.cars);
+        // console.log(this.props.currencies);
     }
 
     getDocument(id) {
@@ -78,12 +80,23 @@ class DocumentDetailsPage extends Component {
 
 
     render() {
+       console.log('render');
+
         return (
             <React.Fragment>
                 <section className="form-page">
                     <h2 className="form-title">Document <span className="blue">details</span></h2>
                     {this.state.document &&
                     <form className="input-form">
+
+                        <ComboBox items={this.props.invoiceTypes}
+                                  value={this.state.document.invoiceType}
+                                  labels={this.props.labels['invoiceType']} propertyName={'invoiceType'}
+                                  propertyDisplay={'type'}
+                                  changeValue={this.changeValue}
+                                  fieldStates={this.state.editedFields}
+                        />
+
 
                         <DatePicker value={this.state.document.dateOfCreation}
                                     labels={this.props.labels['dateOfCreation']}
@@ -102,6 +115,50 @@ class DocumentDetailsPage extends Component {
                                     propertyName={'date'}
                         />
 
+                        <SimpleTextInput value={this.state.document.documentNr} changeValue={this.changeValue}
+                                         labels={this.props.labels['documentNr']}
+                                         propertyName={'documentNr'}
+                                         fieldStates={this.state.editedFields}/>
+
+                        <ComboBox items={this.props.accounts}
+                                  value={this.state.document.account}
+                                  labels={this.props.labels['account']} propertyName={'account'}
+                                  propertyDisplay={'accountType'}
+                                  changeValue={this.changeValue}
+                                  fieldStates={this.state.editedFields}
+                        />
+
+                        <ComboBox items={this.props.currencies}
+                                  value={this.state.document.currency}
+                                  labels={this.props.labels['currency']} propertyName={'currency'}
+                                  propertyDisplay={'currency'}
+                                  changeValue={this.changeValue}
+                                  fieldStates={this.state.editedFields}
+                        />
+
+                        <ComboBox items={this.props.cars}
+                                  value={this.state.document.car}
+                                  labels={this.props.labels['car']} propertyName={'car'}
+                                  propertyDisplay={'plateNo'}
+                                  changeValue={this.changeValue}
+                                  fieldStates={this.state.editedFields}
+                        />
+
+                        <ComboBox items={this.props.methodsOfPayments}
+                                  value={this.state.document.methodOfPayment}
+                                  labels={this.props.labels['methodOfPayment']} propertyName={'methodOfPayment'}
+                                  propertyDisplay={'payment'}
+                                  changeValue={this.changeValue}
+                                  fieldStates={this.state.editedFields}
+                        />
+
+
+
+
+
+
+
+
 
                         {/*<DynamicComboBox label={'Lista wartości'} errorMessage={'Error! coś źle'}*/}
                         {/*                 fieldDisplay={'document_nr'} items={this.props.documents} isFieldValid={true}*/}
@@ -119,13 +176,13 @@ class DocumentDetailsPage extends Component {
 
 function mapStateToProps(state) {
     return {
-        accounts: state.company.accounts,
+        accounts: state.company.accounts.data,
         clients: state.clients,
-        invoiceTypes: state.additionalTables.invoiceType,
-        methodsOfPayments: state.additionalTables.methodsOfPayments,
-        additionalTexts: state.additionalTables.textAdditions,
-        cars: state.additionalTables.cars,
-        currencies: state.additionalTables.currencies,
+        invoiceTypes: state.additionalTables.invoiceType.data,
+        methodsOfPayments: state.additionalTables.methodsOfPayments.data,
+        additionalTexts: state.additionalTables.textAdditions.data,
+        cars: state.additionalTables.cars.data,
+        currencies: state.additionalTables.currencies.data,
 
         documents: state.documents.data,
         labels: state.documents.labels

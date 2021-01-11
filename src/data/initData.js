@@ -176,9 +176,6 @@ export const InitData = {
                 },
                 PROFORMA: {
                     type: 'faktura proforma'
-                },
-                KOREKTA: {
-                    type: 'faktura korygująca'
                 }
             }
         },
@@ -371,7 +368,7 @@ export const InitData = {
             currency: {
                 labelName: 'waluta',
                 labelField: 'currency',
-                dataType: dataTypes.DATE,
+                dataType: dataTypes.OBJECT,
                 required: true,
                 sortable: false,
                 isTableHeader: false,
@@ -390,7 +387,7 @@ export const InitData = {
 
             documentNr: {
                 labelName: 'document no.',
-                labelField: 'document_nr',
+                labelField: 'documentNr',
                 dataType: dataTypes.STRING,
                 required: true,
                 sortable: true,
@@ -459,211 +456,209 @@ export const InitData = {
                     text: 'Dziękujemy i zapraszamy ponownie',
                     textCont: ''
                 },
-                car: {
-
-                },
+                car: {},
                 currency: {
                     currency: 'zł'
                 },
                 documentSum: 2457.12
             },
-            '2': {
-                dateOfCreation:'2019-12-17',
-                dateOfSale:'2019-12-17',
-                dateOfPayment:'2019-12-17',
-                account: {
-                    accountType: 'krajowe',
-                    swiftCodeAccount: 'PL XX 22 33',
-                    bankName: 'PKO BP',
-                    accountNumber: ' PL 06 1189 0035 0000 0001 0056 9186'
-                },
-                buyer:{
-                    companyName: 'Something Co.',
-                    companyNameCont: '',
-                    addressStreet: 'Sienkiewicza 19A/12',
-                    addressCity: 'Wrocław',
-                    addressPostalCode: '00-850',
-                    vatUeNumber: 'PL 123456789',
-                },
-
-                documentNr: '203455/02',
-                invoiceType: {
-                    type: 'faktura VAT - krajowa'
-                },
-                methodOfPayment: {
-                    payment: 'gotówka'
-                },
-                additionalText: {
-                    symbol: 'krajowe',
-                    text: 'Dziękujemy i zapraszamy ponownie',
-                    textCont: ''
-                },
-                car: {
-
-                },
-                currency: {
-                    currency: 'kč'
-                },
-                documentSum: 125.30
-            },
-            '3': {
-                dateOfCreation:'2020-01-20',
-                dateOfSale:'2020-01-20',
-                dateOfPayment:'2020-01-20',
-                account: {
-                    accountType: 'krajowe',
-                    swiftCodeAccount: 'PL XX 22 33',
-                    bankName: 'PKO BP',
-                    accountNumber: ' PL 06 1189 0035 0000 0001 0056 9186'
-                },
-                buyer:{
-                    companyName: 'Something Co.',
-                    companyNameCont: '',
-                    addressStreet: 'Sienkiewicza 19A/12',
-                    addressCity: 'Wrocław',
-                    addressPostalCode: '00-850',
-                    vatUeNumber: 'PL 123456789',
-                },
-
-                documentNr: '203455/02',
-                invoiceType: {
-                    type: 'faktura proforma'
-                },
-                methodOfPayment: {
-                    payment: 'przelew'
-                },
-                additionalText: {
-                    symbol: 'krajowe',
-                    text: 'Dziękujemy i zapraszamy ponownie',
-                    textCont: ''
-                },
-                car: {
-
-                },
-                currency: {
-                    currency: 'zł'
-                },
-                documentSum: 8825.73
-            },
-            '4': {
-                dateOfCreation:'2020-02-03',
-                dateOfSale:'2020-02-03',
-                dateOfPayment:'2020-02-03',
-                account: {
-                    accountType: 'krajowe',
-                    swiftCodeAccount: 'PL XX 22 33',
-                    bankName: 'PKO BP',
-                    accountNumber: ' PL 06 1189 0035 0000 0001 0056 9186'
-                },
-                buyer:{
-                    companyName: 'Super Company',
-                    companyNameCont: '',
-                    addressStreet: 'Downing Str 8',
-                    addressCity: 'London',
-                    addressPostalCode: 'AX-12E',
-                    vatUeNumber: 'UK 123456789',
-                },
-
-                documentNr: '203455/04',
-                invoiceType: {
-                    type: 'wewnątrzwspólnotowa dostawa towarów'
-                },
-                methodOfPayment: {
-                    payment: 'gotówka'
-                },
-                additionalText: {
-                    symbol: 'zagraniczne',
-                    text: 'Podatek VAT od transakcji uiszcza nabywca',
-                    textCont: 'Dostawa wewnątrzwspólnotowa art. 41 i 42 ust. o VAT'
-                },
-                car: {
-                    plateNo: 'DXC 2275',
-                    carName: 'Mercedes Vito'
-                },
-                currency: {
-                    currency: '€'
-                },
-                documentSum: 12525.73
-            },
-            '5': {
-                dateOfCreation:'2020-02-10',
-                dateOfSale:'2020-02-10',
-                dateOfPayment:'2020-02-17',
-                account: {
-                    accountType: 'zagraniczne',
-                    swiftCodeAccount: 'XW ZX GB LPP',
-                    bankName: 'Bank of Austria',
-                    accountNumber: ' GB 06 1189 0035 0000 0001 0056 9186'
-                },
-                buyer:{
-                    companyName: 'Something Co.',
-                    companyNameCont: '',
-                    addressStreet: 'Sienkiewicza 19A/12',
-                    addressCity: 'Wrocław',
-                    addressPostalCode: '00-850',
-                    vatUeNumber: 'PL 123456789',
-                },
-
-                documentNr: '203455/05',
-                invoiceType: {
-                    type: 'faktura VAT - krajowa'
-                },
-                methodOfPayment: {
-                    payment: 'gotówka'
-                },
-                additionalText: {
-                    symbol: 'krajowe',
-                    text: 'Dziękujemy i zapraszamy ponownie',
-                    textCont: ''
-                },
-                car: {
-
-                },
-                currency: {
-                    currency: 'zł'
-                },
-                documentSum: 1255.88
-            },
-            '6': {
-                dateOfCreation:'2020-02-10',
-                dateOfSale:'2020-02-10',
-                dateOfPayment:'2020-02-24',
-                account: {
-                    accountType: 'zagraniczne',
-                    swiftCodeAccount: 'XW ZX GB LPP',
-                    bankName: 'Bank of Austria',
-                    accountNumber: ' GB 06 1189 0035 0000 0001 0056 9186'
-                },
-                buyer:{
-                    companyName: 'Something Co.',
-                    companyNameCont: '',
-                    addressStreet: 'Sienkiewicza 19A/12',
-                    addressCity: 'Wrocław',
-                    addressPostalCode: '00-850',
-                    vatUeNumber: 'PL 123456789',
-                },
-
-                documentNr: '203456/05',
-                invoiceType: {
-                    type: 'wewnątrzwspólnotowa dostawa towarów'
-                },
-                methodOfPayment: {
-                    payment: 'przelew'
-                },
-                additionalText: {
-                    symbol: 'zagraniczne',
-                    text: 'Podatek VAT od transakcji uiszcza nabywca',
-                    textCont: 'Dostawa wewnątrzwspólnotowa art. 41 i 42 ust. o VAT'
-                },
-                car: {
-                    plateNo: 'AXB 125Q',
-                    carName: 'Fiat Ducato'
-                },
-                currency: {
-                    currency: '€'
-                },
-                documentSum: 1255.88
-            },
+            // '2': {
+            //     dateOfCreation:'2019-12-17',
+            //     dateOfSale:'2019-12-17',
+            //     dateOfPayment:'2019-12-17',
+            //     account: {
+            //         accountType: 'krajowe',
+            //         swiftCodeAccount: 'PL XX 22 33',
+            //         bankName: 'PKO BP',
+            //         accountNumber: ' PL 06 1189 0035 0000 0001 0056 9186'
+            //     },
+            //     buyer:{
+            //         companyName: 'Something Co.',
+            //         companyNameCont: '',
+            //         addressStreet: 'Sienkiewicza 19A/12',
+            //         addressCity: 'Wrocław',
+            //         addressPostalCode: '00-850',
+            //         vatUeNumber: 'PL 123456789',
+            //     },
+            //
+            //     documentNr: '203455/02',
+            //     invoiceType: {
+            //         type: 'faktura VAT - krajowa'
+            //     },
+            //     methodOfPayment: {
+            //         payment: 'gotówka'
+            //     },
+            //     additionalText: {
+            //         symbol: 'krajowe',
+            //         text: 'Dziękujemy i zapraszamy ponownie',
+            //         textCont: ''
+            //     },
+            //     car: {
+            //
+            //     },
+            //     currency: {
+            //         currency: 'kč'
+            //     },
+            //     documentSum: 125.30
+            // },
+            // '3': {
+            //     dateOfCreation:'2020-01-20',
+            //     dateOfSale:'2020-01-20',
+            //     dateOfPayment:'2020-01-20',
+            //     account: {
+            //         accountType: 'krajowe',
+            //         swiftCodeAccount: 'PL XX 22 33',
+            //         bankName: 'PKO BP',
+            //         accountNumber: ' PL 06 1189 0035 0000 0001 0056 9186'
+            //     },
+            //     buyer:{
+            //         companyName: 'Something Co.',
+            //         companyNameCont: '',
+            //         addressStreet: 'Sienkiewicza 19A/12',
+            //         addressCity: 'Wrocław',
+            //         addressPostalCode: '00-850',
+            //         vatUeNumber: 'PL 123456789',
+            //     },
+            //
+            //     documentNr: '203455/02',
+            //     invoiceType: {
+            //         type: 'faktura proforma'
+            //     },
+            //     methodOfPayment: {
+            //         payment: 'przelew'
+            //     },
+            //     additionalText: {
+            //         symbol: 'krajowe',
+            //         text: 'Dziękujemy i zapraszamy ponownie',
+            //         textCont: ''
+            //     },
+            //     car: {
+            //
+            //     },
+            //     currency: {
+            //         currency: 'zł'
+            //     },
+            //     documentSum: 8825.73
+            // },
+            // '4': {
+            //     dateOfCreation:'2020-02-03',
+            //     dateOfSale:'2020-02-03',
+            //     dateOfPayment:'2020-02-03',
+            //     account: {
+            //         accountType: 'krajowe',
+            //         swiftCodeAccount: 'PL XX 22 33',
+            //         bankName: 'PKO BP',
+            //         accountNumber: ' PL 06 1189 0035 0000 0001 0056 9186'
+            //     },
+            //     buyer:{
+            //         companyName: 'Super Company',
+            //         companyNameCont: '',
+            //         addressStreet: 'Downing Str 8',
+            //         addressCity: 'London',
+            //         addressPostalCode: 'AX-12E',
+            //         vatUeNumber: 'UK 123456789',
+            //     },
+            //
+            //     documentNr: '203455/04',
+            //     invoiceType: {
+            //         type: 'wewnątrzwspólnotowa dostawa towarów'
+            //     },
+            //     methodOfPayment: {
+            //         payment: 'gotówka'
+            //     },
+            //     additionalText: {
+            //         symbol: 'zagraniczne',
+            //         text: 'Podatek VAT od transakcji uiszcza nabywca',
+            //         textCont: 'Dostawa wewnątrzwspólnotowa art. 41 i 42 ust. o VAT'
+            //     },
+            //     car: {
+            //         plateNo: 'DXC 2275',
+            //         carName: 'Mercedes Vito'
+            //     },
+            //     currency: {
+            //         currency: '€'
+            //     },
+            //     documentSum: 12525.73
+            // },
+            // '5': {
+            //     dateOfCreation:'2020-02-10',
+            //     dateOfSale:'2020-02-10',
+            //     dateOfPayment:'2020-02-17',
+            //     account: {
+            //         accountType: 'zagraniczne',
+            //         swiftCodeAccount: 'XW ZX GB LPP',
+            //         bankName: 'Bank of Austria',
+            //         accountNumber: ' GB 06 1189 0035 0000 0001 0056 9186'
+            //     },
+            //     buyer:{
+            //         companyName: 'Something Co.',
+            //         companyNameCont: '',
+            //         addressStreet: 'Sienkiewicza 19A/12',
+            //         addressCity: 'Wrocław',
+            //         addressPostalCode: '00-850',
+            //         vatUeNumber: 'PL 123456789',
+            //     },
+            //
+            //     documentNr: '203455/05',
+            //     invoiceType: {
+            //         type: 'faktura VAT - krajowa'
+            //     },
+            //     methodOfPayment: {
+            //         payment: 'gotówka'
+            //     },
+            //     additionalText: {
+            //         symbol: 'krajowe',
+            //         text: 'Dziękujemy i zapraszamy ponownie',
+            //         textCont: ''
+            //     },
+            //     car: {
+            //
+            //     },
+            //     currency: {
+            //         currency: 'zł'
+            //     },
+            //     documentSum: 1255.88
+            // },
+            // '6': {
+            //     dateOfCreation:'2020-02-10',
+            //     dateOfSale:'2020-02-10',
+            //     dateOfPayment:'2020-02-24',
+            //     account: {
+            //         accountType: 'zagraniczne',
+            //         swiftCodeAccount: 'XW ZX GB LPP',
+            //         bankName: 'Bank of Austria',
+            //         accountNumber: ' GB 06 1189 0035 0000 0001 0056 9186'
+            //     },
+            //     buyer:{
+            //         companyName: 'Something Co.',
+            //         companyNameCont: '',
+            //         addressStreet: 'Sienkiewicza 19A/12',
+            //         addressCity: 'Wrocław',
+            //         addressPostalCode: '00-850',
+            //         vatUeNumber: 'PL 123456789',
+            //     },
+            //
+            //     documentNr: '203456/05',
+            //     invoiceType: {
+            //         type: 'wewnątrzwspólnotowa dostawa towarów'
+            //     },
+            //     methodOfPayment: {
+            //         payment: 'przelew'
+            //     },
+            //     additionalText: {
+            //         symbol: 'zagraniczne',
+            //         text: 'Podatek VAT od transakcji uiszcza nabywca',
+            //         textCont: 'Dostawa wewnątrzwspólnotowa art. 41 i 42 ust. o VAT'
+            //     },
+            //     car: {
+            //         plateNo: 'AXB 125Q',
+            //         carName: 'Fiat Ducato'
+            //     },
+            //     currency: {
+            //         currency: '€'
+            //     },
+            //     documentSum: 1255.88
+            // },
             // '7': {
             //     date: '2020-02-10T11:32:38.000Z',
             //     documentNr: '203457/05',
