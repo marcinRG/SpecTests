@@ -93,6 +93,7 @@
 
   .cell-header {
     @include header-cell-table;
+    font-size: .65em;
     border-spacing: 0;
   }
 

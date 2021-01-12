@@ -90,33 +90,36 @@ class DocumentDetailsPage extends Component {
                                   fieldStates={this.state.editedFields}
                         />
 
+                        <div className="form-row columns-2 column-space-20">
+                            <DatePicker value={this.state.document.dateOfCreation}
+                                        labels={this.props.labels['dateOfCreation']}
+                                        changeValue={this.changeValue} fieldStates={this.state.editedFields}
+                                        propertyName={'date'}
+                            />
 
-                        <DatePicker value={this.state.document.dateOfCreation}
-                                    labels={this.props.labels['dateOfCreation']}
-                                    changeValue={this.changeValue} fieldStates={this.state.editedFields}
-                                    propertyName={'date'}
-                        />
+                            <DatePicker value={this.state.document.dateOfSale} labels={this.props.labels['dateOfSale']}
+                                        changeValue={this.changeValue} fieldStates={this.state.editedFields}
+                                        propertyName={'date'}
+                            />
+
+                        </div>
+
+                        <div className="form-row columns-2 column-space-20">
+                            <ComboBox items={this.props.methodsOfPayments}
+                                      value={this.state.document.methodOfPayment}
+                                      labels={this.props.labels['methodOfPayment']} propertyName={'methodOfPayment'}
+                                      propertyDisplay={'payment'}
+                                      changeValue={this.changeValue}
+                                      fieldStates={this.state.editedFields}
+                            />
 
 
-                        <DatePicker value={this.state.document.dateOfSale} labels={this.props.labels['dateOfSale']}
-                                    changeValue={this.changeValue} fieldStates={this.state.editedFields}
-                                    propertyName={'date'}
-                        />
-
-                        <ComboBox items={this.props.methodsOfPayments}
-                                  value={this.state.document.methodOfPayment}
-                                  labels={this.props.labels['methodOfPayment']} propertyName={'methodOfPayment'}
-                                  propertyDisplay={'payment'}
-                                  changeValue={this.changeValue}
-                                  fieldStates={this.state.editedFields}
-                        />
-
-
-                        <DatePicker value={this.state.document.dateOfPayment}
-                                    labels={this.props.labels['dateOfPayment']}
-                                    changeValue={this.changeValue} fieldStates={this.state.editedFields}
-                                    propertyName={'date'}
-                        />
+                            <DatePicker value={this.state.document.dateOfPayment}
+                                        labels={this.props.labels['dateOfPayment']}
+                                        changeValue={this.changeValue} fieldStates={this.state.editedFields}
+                                        propertyName={'date'}
+                            />
+                        </div>
 
 
                         <SimpleTextInput value={this.state.document.documentNr} changeValue={this.changeValue}
