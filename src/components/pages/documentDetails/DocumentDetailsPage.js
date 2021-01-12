@@ -12,6 +12,7 @@ import {newElement} from '../../../utils/newElements';
 import {DatePicker} from '../../formComponents/DatePicker/DatePicker';
 import {ComboBox} from '../../formComponents/ComboBox/ComboBox';
 import {SimpleTextInput} from '../../formComponents/SimpleTextInput/SimpleTextInput';
+import {ObjectPreview} from '../../formComponents/ObjectPreview/ObjectPreview';
 
 
 class DocumentDetailsPage extends Component {
@@ -25,14 +26,6 @@ class DocumentDetailsPage extends Component {
         this.changeValue = this.changeValue.bind(this);
         this.initializeComponent = this.initializeComponent.bind(this);
         this.getDocument = this.getDocument.bind(this);
-
-        // console.log(this.props.accounts);
-        // console.log(this.props.clients);
-        // console.log(this.props.invoiceTypes);
-        // console.log(this.props.methodsOfPayments);
-        // console.log(this.props.additionalTexts);
-        // console.log(this.props.cars);
-        // console.log(this.props.currencies);
     }
 
     getDocument(id) {
@@ -104,44 +97,10 @@ class DocumentDetailsPage extends Component {
                                     propertyName={'date'}
                         />
 
+
                         <DatePicker value={this.state.document.dateOfSale} labels={this.props.labels['dateOfSale']}
                                     changeValue={this.changeValue} fieldStates={this.state.editedFields}
                                     propertyName={'date'}
-                        />
-
-                        <DatePicker value={this.state.document.dateOfPayment}
-                                    labels={this.props.labels['dateOfPayment']}
-                                    changeValue={this.changeValue} fieldStates={this.state.editedFields}
-                                    propertyName={'date'}
-                        />
-
-                        <SimpleTextInput value={this.state.document.documentNr} changeValue={this.changeValue}
-                                         labels={this.props.labels['documentNr']}
-                                         propertyName={'documentNr'}
-                                         fieldStates={this.state.editedFields}/>
-
-                        <ComboBox items={this.props.accounts}
-                                  value={this.state.document.account}
-                                  labels={this.props.labels['account']} propertyName={'account'}
-                                  propertyDisplay={'accountType'}
-                                  changeValue={this.changeValue}
-                                  fieldStates={this.state.editedFields}
-                        />
-
-                        <ComboBox items={this.props.currencies}
-                                  value={this.state.document.currency}
-                                  labels={this.props.labels['currency']} propertyName={'currency'}
-                                  propertyDisplay={'currency'}
-                                  changeValue={this.changeValue}
-                                  fieldStates={this.state.editedFields}
-                        />
-
-                        <ComboBox items={this.props.cars}
-                                  value={this.state.document.car}
-                                  labels={this.props.labels['car']} propertyName={'car'}
-                                  propertyDisplay={'plateNo'}
-                                  changeValue={this.changeValue}
-                                  fieldStates={this.state.editedFields}
                         />
 
                         <ComboBox items={this.props.methodsOfPayments}
@@ -153,17 +112,64 @@ class DocumentDetailsPage extends Component {
                         />
 
 
+                        <DatePicker value={this.state.document.dateOfPayment}
+                                    labels={this.props.labels['dateOfPayment']}
+                                    changeValue={this.changeValue} fieldStates={this.state.editedFields}
+                                    propertyName={'date'}
+                        />
 
 
+                        <SimpleTextInput value={this.state.document.documentNr} changeValue={this.changeValue}
+                                         labels={this.props.labels['documentNr']}
+                                         propertyName={'documentNr'}
+                                         fieldStates={this.state.editedFields}/>
 
 
+                        <ComboBox items={this.props.accounts}
+                                  value={this.state.document.account}
+                                  labels={this.props.labels['account']} propertyName={'account'}
+                                  propertyDisplay={'accountType'}
+                                  changeValue={this.changeValue}
+                                  fieldStates={this.state.editedFields}
+                        />
 
+                        <ObjectPreview objectToView={this.state.document.account} propertyToSkip={'accountType'} />
+
+
+                        <ComboBox items={this.props.currencies}
+                                  value={this.state.document.currency}
+                                  labels={this.props.labels['currency']} propertyName={'currency'}
+                                  propertyDisplay={'currency'}
+                                  changeValue={this.changeValue}
+                                  fieldStates={this.state.editedFields}
+                        />
+
+
+                        <ComboBox items={this.props.cars}
+                                  value={this.state.document.car}
+                                  labels={this.props.labels['car']} propertyName={'car'}
+                                  propertyDisplay={'plateNo'}
+                                  changeValue={this.changeValue}
+                                  fieldStates={this.state.editedFields}
+                        />
+
+
+                        <ComboBox items={this.props.additionalTexts}
+                                  value={this.state.document.additionalText}
+                                  labels={this.props.labels['additionalText']} propertyName={'additionalText'}
+                                  propertyDisplay={'symbol'}
+                                  changeValue={this.changeValue}
+                                  fieldStates={this.state.editedFields}
+                        />
+
+                        <ObjectPreview objectToView={this.state.document.additionalText} propertyToSkip={'symbol'} />
 
 
                         {/*<DynamicComboBox label={'Lista wartości'} errorMessage={'Error! coś źle'}*/}
                         {/*                 fieldDisplay={'document_nr'} items={this.props.documents} isFieldValid={true}*/}
                         {/*                 dropdownMaxLength={5} value={selectedItem} changeValue={this.changeValue}*/}
                         {/*/>*/}
+
                     </form>}
                     <div>
                         <Link className="rounded-button blue btn-back" to={'/documents'}>Back</Link>

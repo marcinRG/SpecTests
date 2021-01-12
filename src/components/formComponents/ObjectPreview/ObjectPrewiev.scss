@@ -1,0 +1,23 @@
+@import '../../../scss/mixins';
+@import '../../../scss/variables';
+
+.object-preview {
+  margin: 40px 0;
+
+  .object-property {
+    color: $text-darker;
+    padding: 1em 0;
+  }
+
+  .object-preview-properties {
+    @include shadow-box;
+    border: 1px solid lightgray;
+    padding: 5px 20px;
+    background-color: white;
+  }
+
+}
+
+.preview-label {
+  @include small-text;
+}
